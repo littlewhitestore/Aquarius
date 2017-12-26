@@ -10,7 +10,7 @@
   
     
     <view class="cont">
-      <navigator class="pr" url="../product/detail?productId={{item.id}}" hover-class="changestyle"
+      <navigator class="pr" url="../goods/detail?goodsId={{item.id}}" hover-class="changestyle"
                  wx:for="{{productData}}">
         <image class="photo" src="{{item.photo_x}}"></image>
         <view class="title">{{item.name}}</view>

@@ -9,6 +9,9 @@ App({
     appKey:"",
     ceshiUrl:'https://wxplus.paoyeba.com/index.php',
   },
+  backend: {
+    host: 'https://www.xiaobaidian.cn/api'
+  },
   onLaunch: function () {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []

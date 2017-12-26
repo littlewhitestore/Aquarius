@@ -166,7 +166,7 @@ getMore:function(e){
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'http://10.211.55.11:8002/api/home',
+      url: app.backend.host + '/home',
       method:'get',
       data: {},
       header: {
@@ -201,7 +201,7 @@ getMore:function(e){
   onShareAppMessage: function () {
     return {
       title: '宠物美容学校',
-      path: '/pages/index/index',
+      path: '/pages/home/home',
       success: function(res) {
         // 分享成功
       },

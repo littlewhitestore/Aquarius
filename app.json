@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/product/detail",
+    "pages/home/home",
+    "pages/goods/detail",
     "pages/search/search",
     "pages/user/user",
     "pages/user/dingdan",
@@ -32,7 +32,7 @@
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [{
-      "pagePath": "pages/index/index",
+      "pagePath": "pages/home/home",
       "iconPath":"images/icons/btn-tabs_01.png",
       "selectedIconPath":"images/icons/btn-tabs_07.png",
       "text": "首页"

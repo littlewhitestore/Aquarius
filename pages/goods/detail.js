@@ -10,9 +10,10 @@ Page({
     winWidth: 0,
     winHeight: 0,
     currentTab: 0, //tab切换  
-    productId:0,
-    itemData:{},
-    bannerItem:[],
+    goodsId:0,
+    detailData: {},
+    bannerList: [],
+    detailImageList: [],
     buynum:1,
     // 产品图片轮播
     indicatorDots: true,
@@ -86,43 +87,35 @@ Page({
     //this.initNavHeight();
     var that = this;
     that.setData({
-      productId: option.productId,
+      goodsId: option.goodsId,
     });
-    that.loadProductDetail();
+    that.loadGoodsDetail();
 
   },
-// 商品详情数据获取
-  loadProductDetail:function(){
+  // 商品详情数据获取
+  loadGoodsDetail:function(){
     var that = this;
     wx.request({
       url: app.d.ceshiUrl + '/Api/Product/index',
-      method:'post',
-      data: {
-        pro_id: that.data.productId,
-      },
+      url: app.backend.host + '/goods/' + that.data.goodsId + '/detail',
+      method:'get',
       header: {
         'Content-Type':  'application/x-www-form-urlencoded'
       },
       success: function (res) {
         //--init data 
-        var status = res.data.status;
-        if(status==1) {   
-          var pro = res.data.pro;
-          var content=pro.content;
-          //that.initProductData(data);
-          WxParse.wxParse('content', 'html', content, that, 3);
-          that.setData({
-            itemData:pro,
-            bannerItem:pro.img_arr,
-            commodityAttr:res.data.commodityAttr,
-            attrValueList:res.data.attrValueList,
-          });
-        } else {
-          wx.showToast({
-            title:res.data.err,
-            duration:2000,
-          });
-        }
+        console.log(res);
+        var goods_info = res.data.goods_info;
+        console.log(goods_info.detail_image_list)
+        that.setData({
+          bannerList: goods_info.banner_list,
+          detailData: {
+            brand: goods_info.brand,
+            name: goods_info.name           
+          },
+          detailImageList: goods_info.detail_image_list
+        });
+
       },
       error:function(e){
         wx.showToast({
@@ -354,7 +347,7 @@ Page({
       method:'post',
       data: {
         uid: app.d.userId,
-        pid: that.data.productId,
+        pid: that.data.goodsId,
       },
       header: {
         'Content-Type':  'application/x-www-form-urlencoded'
@@ -368,7 +361,7 @@ Page({
             duration: 2000
           });
           //变成已收藏，但是目前小程序可能不能改变图片，只能改样式
-          that.data.itemData.isCollect = true;
+          that.data.detailData.isCollect = true;
         }else{
           wx.showToast({
             title: data.err,
@@ -393,7 +386,7 @@ Page({
       method:'post',
       data: {
         uid: app.d.userId,
-        pid: that.data.productId,
+        pid: that.data.goodsId,
         num: that.data.buynum,
       },
       header: {
