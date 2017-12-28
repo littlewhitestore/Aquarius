@@ -5,7 +5,7 @@ Page({
     page:1,
     minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
     total: 0,
-    carts: []
+    product_list: []
   },
 
 bindMinus: function(e) {
@@ -55,7 +55,7 @@ bindMinus: function(e) {
       fail: function() {
         // fail
         wx.showToast({
-          title: '网络异常！',
+          title: '网络异常！1',
           duration: 2000
         });
       }
@@ -107,7 +107,7 @@ bindPlus: function(e) {
       fail: function() {
         // fail
         wx.showToast({
-          title: '网络异常！',
+          title: '网络异常！2',
           duration: 2000
         });
       }
@@ -236,7 +236,7 @@ removeShopCard:function(e){
       fail: function() {
         // fail
         wx.showToast({
-          title: '网络异常！',
+          title: '网络异常！3',
           duration: 2000
         });
       }
@@ -247,8 +247,8 @@ removeShopCard:function(e){
   loadProductData:function(){
     var that = this;
     wx.request({
-      url: app.d.ceshiUrl + '/Api/Shopping/index',
-      method:'post',
+      url: app.backend.host + '/cart',
+      method:'get',
       data: {
         user_id: app.d.userId
       },
@@ -259,7 +259,7 @@ removeShopCard:function(e){
         //--init data
         var cart = res.data.cart;
         that.setData({
-          carts:cart,
+          productList:res.data.cart_info.product_list,
         });
         //endInitData
       },

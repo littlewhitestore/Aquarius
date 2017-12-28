@@ -1,7 +1,4 @@
-
 <!--pages/index/detail.wxml-->
-
-
 <!--内容开始-->
 <view class="cont">
   <swiper style="height:375px" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -18,7 +15,6 @@
     <view class="font_14 c6">支付：微信支付</view>
   </view>
 </view>
-
 
 <view wx:for="{{detailImageList}}">
   <view>
@@ -44,7 +40,7 @@
   </view>
   <view class="fl_l w60">
     <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view>
-    <view class="bg_red white w50 fl_l" bindtap="setModalStatus" data-status="1">立刻购买</view>
+    <view class="bg_red white w50 fl_l" bindtap="setModalStatus" data-status="1">立即购买</view>
   </view>
 </view>
 
@@ -54,112 +50,28 @@
 <view class="close_icon" bindtap="setModalStatus" data-status="0">×</view>
   <view class="drawer_attr_content">
     <view class="text_center">
-         <image class="drawer_image" src="{{detailData.photo_x}}" ></image>
-         <view class="mingcheng">
-             <view>{{detailData.name}}</view>
-             <view style="font-size:29rpx;color:red">¥ {{detailData.price_yh}}</view>
-             <view  style="font-size:26rpx;color:#ccc">库存：{{detailData.num}}</view>
-         </view>
+      <image class="drawer_image" src="{{detailData.photo_x}}" ></image>
+      <view class="mingcheng">
+        <view>{{detailData.name}}</view>
+        <view style="font-size:29rpx;color:red">¥ {{detailData.price_yh}}</view>
+        <view  style="font-size:26rpx;color:#ccc">库存：{{detailData.num}}</view>
+      </view>
     </view>
-    <!--<view>
-        <text class="cun">尺寸</text>
-   </view>-->
-<!--<view class="commodity_attr_list">
-
-  <view class="attr_box" wx:for="{{attrValueList}}" wx:for-item="attrValueObj" wx:for-index="attrValueList">
-
-    <view class="attr_name">{{attrValueObj.attrKey}}</view>
-
-    <view class="attr_value_box">
-
-      <view class="attr_value {{attrIndex==firstIndex || attrValueObj.attrValueStatus[valueIndex]?(value==attrValueObj.selectedValue?'attr_value_active':''):'attr_value_disabled'}}" bindtap="selectAttrValue" data-status="{{attrValueObj.attrValueStatus[valueIndex]}}"
-      data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-index="{{attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}" wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex">{{value}}</view>
-    </view>
-  </view>
-</view>-->
     <view class="shu">
-        <text class="cun">购买数量</text>
-       <view class="dian">
+      <text class="cun">购买数量</text>
+      <view class="dian">
         <view class="stepper">
-
-       <!-- 减号 -->
-       <text class="{{minusStatuses[index]}}" data-alpha-beta="0" bindtap="changeNum">-</text>
-       <!-- 数值 -->
-       <view class="nownum">{{buynum}}</view>
-       <!-- 加号 -->
-       <text class="normal" data-alpha-beta="1" bindtap="changeNum">+</text>
-      </view>
-      </view>
-   </view>
-   <view class="footc" bindtap="addShopCart" data-type="buynow" data-status="1">
-立即购买
-</view>
-  </view>
-</view>
-
-
-
-
-<!--
-<view>
-
-
-
-  <swiper-item>
-    <view wx:for="{{detailImageList}}">
-      <view>
-        <view>abjkldsjafkld</view>
-        <image src="{{item}}" mode="widthFix" />
+          <!-- 减号 -->
+          <text class="{{minusStatuses[index]}}" data-alpha-beta="0" bindtap="changeNum">-</text>
+          <!-- 数值 -->
+          <view class="nownum">{{buynum}}</view>
+          <!-- 加号 -->
+          <text class="normal" data-alpha-beta="1" bindtap="changeNum">+</text>
+        </view>
       </view>
     </view>
-  </swiper-item>
-  
-
-
-  <swiper-item>
-        <view class="p_all">
-      <view class="canshu df">
-        <view class="name">商品名称：</view>
-        <view class="df_1 c3">{{detailData.name}}</view>
-      </view>
-      <view class="canshu df">
-        <view class="name">商品编号：</view>
-        <view class="df_1 c3">{{detailData.pro_number}}</view>
-      </view>
-      <view class="canshu df">
-        <view class="name">分类：</view>
-        <view class="df_1 c3">{{detailData.cat_name}}</view>
-      </view>
-      <view class="canshu df">
-        <view class="name">售后：</view>
-        <view class="df_1 c3">签收之日48小时无条件退货</view>
-      </view>
+    <view class="footc" bindtap="addShopCart" data-type="buynow" data-status="1">
+      确定
     </view>
-  </swiper-item>
-</swiper>
-</view>
-
-
-<view class="footfixed tc">
-  <view class="fl_l w40 font_12 hui03 df">
-          <view class="df_1 l_h15 pt5 bre">
-                <contact-button type="default-light" session-from="productId_{{detailData.id}}" class="ke">
-                <contact-button class="pos"></contact-button>
-                  <image class="icon_kf" src="/images/kefu.png" style="margin-right:20px;"></image>
-                  <view class="dbtext" style="line;margin-top:5px">客服</view>
-                </contact-button >
-          </view>
-            <view class="df_1 l_h15 pt5">
-                 <view bindtap="addFavorites">
-                    <image class="icon_kf" src="/images/shc.png" ></image>
-                    <view bindtap="addFavorites" class="dbtext">收藏</view>
-              </view>
-     </view>
-  </view>
-  <view class="fl_l w60">
-    <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view>
-    <view class="bg_red white w50 fl_l" bindtap="setModalStatus" data-status="1">立刻购买</view>
   </view>
 </view>
-
--->
