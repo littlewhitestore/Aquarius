@@ -8,7 +8,6 @@
     "pages/user/tuihuo",
     "pages/order/pay",
     "pages/order/detail",
-    "pages/order/downline",
     "pages/cart/cart",
     "pages/listdetail/listdetail",
     "pages/address/address",
@@ -17,8 +16,6 @@
     "pages/ritual/ritual",   
     "pages/rituall/rituall", 
     "pages/shop_store/shop_store"
-
-
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -42,6 +39,12 @@
       "iconPath":"images/icons/btn-tabs_05.png",
       "selectedIconPath":"images/icons/btn-tabs_09.png",
       "text": "购物车"
+    },
+    {
+      "pagePath": "pages/user/dingdan",
+      "iconPath": "images/icons/btn-tabs_05.png",
+      "selectedIconPath": "images/icons/btn-tabs_09.png",
+      "text": "订单"
     },
     {
       "pagePath": "pages/user/user",

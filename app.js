@@ -5,61 +5,108 @@ App({
     hostImg: 'http://img.ynjmzb.net',
     hostVideo: 'http://zhubaotong-file.oss-cn-beijing.aliyuncs.com',
     userId: 1,
-    appId:"",
-    appKey:"",
-    ceshiUrl:'https://wxplus.paoyeba.com/index.php',
+    appId: "",
+    appKey: "",
+    ceshiUrl: 'https://wxplus.paoyeba.com/index.php',
   },
-  backend: {
+  globalData: {
+    session: null,
+    userInfo: null,
+  },
+  config: {
     host: 'https://www.xiaobaidian.cn/api'
   },
   onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs);
-    //login
-    this.getUserInfo();
+    this.confirmUserLogin();
   },
-  getUserInfo:function(cb){
-    var that = this
-    if(this.globalData.userInfo){
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
-      //调用登录接口
-      wx.login({
-        success: function (res) {
-          var code = res.code;
-          //get wx user simple info
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo);
-              //get user sessionKey
-              //get sessionKey
-              that.getUserSessionKey(code);
-            }
-          });
+  confirmUserLogin() {
+    var reload = false;
+    wx.checkSession({
+      fail: function () {
+        reload = true;
+      }
+    })
+    if (!reload) {
+      try {
+        var value = wx.getStorageSync('session');
+        if (value) {
+          this.globalData.sessionn = value;
         }
-      });
+        else {
+          reload = true;
+        }
+      } catch(e) {
+        reload = true;
+      }
+      try {
+        var value = wx.getStorageSync('user_info');
+        if (value) {
+          this.globalData.userInfo = value;
+        }
+        else {
+          reload = true;
+        }
+      } catch (e) {
+        reload = true;
+      }
+    }
+    if (reload) {
+      this.loginUser();
     }
   },
+  loginUser: function () {
+    var that = this;
+    wx.login({
+      success: function (res) {
+        var code = res.code;
+        wx.request({
+          url: that.config.host + '/login',
+          method: 'get',
+          data: {
+            'code': code
+          },
+          header: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            that.globalData.session = res.data.session;
+            wx.setStorage({
+              key: 'session',
+              data: res.data.session,
+            }) 
+          }
+        })
+        wx.getUserInfo({
+          success: function (res) {
+            that.globalData.userInfo = res.userInfo;
+            wx.setStorage({
+              key: 'userInfo',
+              data: res.userInfo,
+            })
+          }
+        });
+      }
+    });
+  },
 
-  getUserSessionKey:function(code){
+
+
+  getUserSessionKey: function (code) {
     //用户的订单状态
     var that = this;
     wx.request({
       url: that.d.ceshiUrl + '/Api/Login/getsessionkey',
-      method:'post',
+      method: 'post',
       data: {
         code: code
       },
       header: {
-        'Content-Type':  'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
         //--init data        
         var data = res.data;
-        if(data.status==0){
+        if (data.status == 0) {
           wx.showToast({
             title: data.err,
             duration: 2000
@@ -71,7 +118,7 @@ App({
         that.globalData.userInfo['openid'] = data.openid;
         that.onLoginUser();
       },
-      fail:function(e){
+      fail: function (e) {
         wx.showToast({
           title: '网络异常！err:getsessionkeys',
           duration: 2000
@@ -79,27 +126,27 @@ App({
       },
     });
   },
-  onLoginUser:function(){
+  onLoginUser: function () {
     var that = this;
     var user = that.globalData.userInfo;
     wx.request({
       url: that.d.ceshiUrl + '/Api/Login/authlogin',
-      method:'post',
+      method: 'post',
       data: {
         SessionId: user.sessionId,
-        gender:user.gender,
+        gender: user.gender,
         NickName: user.nickName,
         HeadUrl: user.avatarUrl,
-        openid:user.openid
+        openid: user.openid
       },
       header: {
-        'Content-Type':  'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
         //--init data        
         var data = res.data.arr;
         var status = res.data.status;
-        if(status!=1){
+        if (status != 1) {
           wx.showToast({
             title: res.data.err,
             duration: 3000
@@ -110,7 +157,7 @@ App({
         that.globalData.userInfo['NickName'] = data.NickName;
         that.globalData.userInfo['HeadUrl'] = data.HeadUrl;
         var userId = data.ID;
-        if (!userId){
+        if (!userId) {
           wx.showToast({
             title: '登录失败！',
             duration: 3000
@@ -119,7 +166,7 @@ App({
         }
         that.d.userId = userId;
       },
-      fail:function(e){
+      fail: function (e) {
         wx.showToast({
           title: '网络异常！err:authlogin',
           duration: 2000
@@ -127,23 +174,6 @@ App({
       },
     });
   },
-  getOrBindTelPhone:function(returnUrl){
-    var user = this.globalData.userInfo;
-    if(!user.tel){
-      wx.navigateTo({
-        url: 'pages/binding/binding'
-      });
-    }
-  },
-
- globalData:{
-    userInfo:null
-  },
-
-  onPullDownRefresh: function (){
-    wx.stopPullDownRefresh();
-  }
-
 });
 
 

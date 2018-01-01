@@ -166,7 +166,7 @@ getMore:function(e){
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: app.backend.host + '/home',
+      url: app.config.host + '/home',
       method:'get',
       data: {},
       header: {
