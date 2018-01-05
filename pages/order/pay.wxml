@@ -58,7 +58,7 @@
   </view>
   <view class="p_all mt10">
     <view class="btnGreen">
-      <button class="wx_pay_submit" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="createProductOrderByWX">
+      <button class="wx_pay_submit" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="settlement">
         去支付
       </button>    
     </view>

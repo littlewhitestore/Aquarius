@@ -77,15 +77,6 @@ Page({
     })
   },
 
-  //微信支付
-  createProductOrderByWX: function (e) {
-    this.setData({
-      paytype: 'weixin',
-    });
-
-    this.createProductOrder();
-  },
-
   //确认订单
   createProductOrder: function () {
     this.setData({
