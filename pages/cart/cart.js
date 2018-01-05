@@ -31,7 +31,7 @@ Page({
   loadProductData: function () {
     var that = this;
     wx.request({
-      url: app.backend.host + '/cart',
+      url: app.config.host + '/cart',
       method: 'get',
       data: {
         user_id: app.d.userId
@@ -46,7 +46,6 @@ Page({
           productList: res.data.cart_info.product_list,
           totalAmount: res.data.cart_info.total_amount
         });
-        console.log(totalAmount)
         //endInitData
       },
     });

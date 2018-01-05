@@ -86,19 +86,6 @@ Page({
     this.createProductOrder();
   },
 
-  //线下支付
-  createProductOrderByXX: function (e) {
-    this.setData({
-      paytype: 'cash',
-    });
-    wx.showToast({
-      title: "线下支付开通中，敬请期待!",
-      duration: 3000
-    });
-    return false;
-    this.createProductOrder();
-  },
-
   //确认订单
   createProductOrder: function () {
     this.setData({
@@ -154,9 +141,9 @@ Page({
     });
   },
 
-  testWXPay: function () {
+  settlement: function () {
     wx.request({
-      url: app.backend.host + '/testpay',
+      url: app.config.host + '/settlement',
       method: 'GET',
       data: {},
       header: {
