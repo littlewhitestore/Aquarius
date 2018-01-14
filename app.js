@@ -14,7 +14,7 @@ App({
     userInfo: null,
   },
   config: {
-    host: 'https://www.xiaobaidian.cn/api'
+    host: 'https://www.xiaobaidiandev.com/api'
   },
   onLaunch: function () {
     this.confirmUserLogin();
