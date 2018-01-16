@@ -1,17 +1,11 @@
 // app.js
 App({
-  d: {
-    hostUrl: 'https://wxplus.paoyeba.com/index.php',
-    hostImg: 'http://img.ynjmzb.net',
-    hostVideo: 'http://zhubaotong-file.oss-cn-beijing.aliyuncs.com',
-    userId: 1,
-    appId: "",
-    appKey: "",
-    ceshiUrl: 'https://wxplus.paoyeba.com/index.php',
-  },
   globalData: {
     session: null,
     userInfo: null,
+  },
+  header:{
+    session_id: null,
   },
   config: {
     host: 'https://www.xiaobaidiandev.com/api'
@@ -24,6 +18,10 @@ App({
     wx.checkSession({
       fail: function () {
         reload = true;
+        console.info("检测session状态 ，返回fail")
+      },
+      success: function(){
+        console.info("检测session状态 ，返回success")
       }
     })
     if (!reload) {
@@ -70,6 +68,8 @@ App({
           },
           success: function (res) {
             that.globalData.session = res.data.session;
+            that.header.session_id = res.data.session;
+            console.info("服务器接口返回的session=" + res.data.session);
             wx.setStorage({
               key: 'session',
               data: res.data.session,
@@ -79,6 +79,7 @@ App({
         wx.getUserInfo({
           success: function (res) {
             that.globalData.userInfo = res.userInfo;
+            console.info("用户信息-》",res)
             wx.setStorage({
               key: 'userInfo',
               data: res.userInfo,
@@ -91,89 +92,89 @@ App({
 
 
 
-  getUserSessionKey: function (code) {
-    //用户的订单状态
-    var that = this;
-    wx.request({
-      url: that.d.ceshiUrl + '/Api/Login/getsessionkey',
-      method: 'post',
-      data: {
-        code: code
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        //--init data        
-        var data = res.data;
-        if (data.status == 0) {
-          wx.showToast({
-            title: data.err,
-            duration: 2000
-          });
-          return false;
-        }
+  // getUserSessionKey: function (code) {
+  //   //用户的订单状态
+  //   var that = this;
+  //   wx.request({
+  //     url: that.d.ceshiUrl + '/Api/Login/getsessionkey',
+  //     method: 'post',
+  //     data: {
+  //       code: code
+  //     },
+  //     header: {
+  //       'Content-Type': 'application/x-www-form-urlencoded'
+  //     },
+  //     success: function (res) {
+  //       //--init data        
+  //       var data = res.data;
+  //       if (data.status == 0) {
+  //         wx.showToast({
+  //           title: data.err,
+  //           duration: 2000
+  //         });
+  //         return false;
+  //       }
 
-        that.globalData.userInfo['sessionId'] = data.session_key;
-        that.globalData.userInfo['openid'] = data.openid;
-        that.onLoginUser();
-      },
-      fail: function (e) {
-        wx.showToast({
-          title: '网络异常！err:getsessionkeys',
-          duration: 2000
-        });
-      },
-    });
-  },
-  onLoginUser: function () {
-    var that = this;
-    var user = that.globalData.userInfo;
-    wx.request({
-      url: that.d.ceshiUrl + '/Api/Login/authlogin',
-      method: 'post',
-      data: {
-        SessionId: user.sessionId,
-        gender: user.gender,
-        NickName: user.nickName,
-        HeadUrl: user.avatarUrl,
-        openid: user.openid
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        //--init data        
-        var data = res.data.arr;
-        var status = res.data.status;
-        if (status != 1) {
-          wx.showToast({
-            title: res.data.err,
-            duration: 3000
-          });
-          return false;
-        }
-        that.globalData.userInfo['id'] = data.ID;
-        that.globalData.userInfo['NickName'] = data.NickName;
-        that.globalData.userInfo['HeadUrl'] = data.HeadUrl;
-        var userId = data.ID;
-        if (!userId) {
-          wx.showToast({
-            title: '登录失败！',
-            duration: 3000
-          });
-          return false;
-        }
-        that.d.userId = userId;
-      },
-      fail: function (e) {
-        wx.showToast({
-          title: '网络异常！err:authlogin',
-          duration: 2000
-        });
-      },
-    });
-  },
+  //       that.globalData.userInfo['sessionId'] = data.session_key;
+  //       that.globalData.userInfo['openid'] = data.openid;
+  //       that.onLoginUser();
+  //     },
+  //     fail: function (e) {
+  //       wx.showToast({
+  //         title: '网络异常！err:getsessionkeys',
+  //         duration: 2000
+  //       });
+  //     },
+  //   });
+  // },
+  // onLoginUser: function () {
+  //   var that = this;
+  //   var user = that.globalData.userInfo;
+  //   wx.request({
+  //     url: that.d.ceshiUrl + '/Api/Login/authlogin',
+  //     method: 'post',
+  //     data: {
+  //       SessionId: user.sessionId,
+  //       gender: user.gender,
+  //       NickName: user.nickName,
+  //       HeadUrl: user.avatarUrl,
+  //       openid: user.openid
+  //     },
+  //     header: {
+  //       'Content-Type': 'application/x-www-form-urlencoded'
+  //     },
+  //     success: function (res) {
+  //       //--init data        
+  //       var data = res.data.arr;
+  //       var status = res.data.status;
+  //       if (status != 1) {
+  //         wx.showToast({
+  //           title: res.data.err,
+  //           duration: 3000
+  //         });
+  //         return false;
+  //       }
+  //       that.globalData.userInfo['id'] = data.ID;
+  //       that.globalData.userInfo['NickName'] = data.NickName;
+  //       that.globalData.userInfo['HeadUrl'] = data.HeadUrl;
+  //       var userId = data.ID;
+  //       if (!userId) {
+  //         wx.showToast({
+  //           title: '登录失败！',
+  //           duration: 3000
+  //         });
+  //         return false;
+  //       }
+  //       that.d.userId = userId;
+  //     },
+  //     fail: function (e) {
+  //       wx.showToast({
+  //         title: '网络异常！err:authlogin',
+  //         duration: 2000
+  //       });
+  //     },
+  //   });
+  // },
 });
 
 

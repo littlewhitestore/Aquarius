@@ -85,7 +85,14 @@ Page({
     that.setData({
       goodsId: option.goodsId,
     });
-    that.loadGoodsDetail();
+    // that.loadGoodsDetail();
+    that.setData({
+      detailData: {
+        brand: "小白客品牌",
+        name: "小白客测试商品",
+        price_yh: 0.01
+      }
+    });
 
   },
   // 商品详情数据获取
@@ -102,14 +109,16 @@ Page({
         console.log(res);
         var goods_info = res.data.goods_info;
         console.log(goods_info.detail_image_list)
-        that.setData({
-          bannerList: goods_info.banner_list,
-          detailData: {
-            brand: goods_info.brand,
-            name: goods_info.name
-          },
-          detailImageList: goods_info.detail_image_list
-        });
+        // that.setData({
+        //   bannerList: goods_info.banner_list,
+        //   detailData: {
+        //     brand: goods_info.brand,
+        //     name: goods_info.name
+        //   },
+        //   detailImageList: goods_info.detail_image_list
+        // });
+        //使用假数据
+        
 
       },
       error: function (e) {
@@ -377,7 +386,7 @@ Page({
   addShopCart: function (e) { //添加到购物车
     var that = this;
     wx.request({
-      url: app.d.ceshiUrl + '/Api/Shopping/add',
+      url: app.cn.ceshiUrl + '/Api/Shopping/add',
       method: 'post',
       data: {
         uid: app.d.userId,

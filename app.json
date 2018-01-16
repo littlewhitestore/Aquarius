@@ -28,7 +28,7 @@
     "selectedColor": "#008842",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
-    "list": [{
+    "list"  : [{
       "pagePath": "pages/home/home",
       "iconPath":"images/icons/btn-tabs_01.png",
       "selectedIconPath":"images/icons/btn-tabs_07.png",
