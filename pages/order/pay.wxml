@@ -17,22 +17,28 @@
   </view>
   <view class="p_all bg_hui mt10 font_14" wx:else>
     <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
-      <view class="df">
+      <view class="df text_aligncenter">
         添加收货地址
       </view>
     </navigator>
   </view>
-
+  <view class='bbe list_title p_all'>
+    <image class="i_n_image" src='/images/icons/slice 2.png'></image>
+    <text class='font_16'>商品清单</text>
+  </view>
   <view class="p_all bg_white df item" wx:for="{{productData}}">
     <view class="cp_photo">
       <image src="{{item.photo_x}}"></image>
     </view>
-    <view class="df_1">
-      <view class="font_14 mt5 ovh1">
+    <view class="columb_sbtw">
+      <view class="font_15 mt5 ovh1">
         {{item.name}}
       </view>
-      <text class="gm_ovh_1h red pt10">¥{{item.price}}</text>
-      <text class="gm_ovh_1h pt10">数量：{{item.num}}</text>
+      <view class="pn"> 
+        <text class="gm_ovh_1h red pt10">¥{{item.price}}</text>
+        <text class="gm_ovh_1h pt10">X{{item.num}}</text>
+      </view>
+      
     </view>
   </view>
 

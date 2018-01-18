@@ -120,7 +120,7 @@
         </view>
       </view>
     </view>
-    <view class="footc" bindtap="gobuy" data-type="buynow" data-status="1">
+    <view class="footc" bindtap="addShopCart" data-type="buynow" data-status="1">
       立即购买
     </view>
   </view>
