@@ -172,5 +172,5 @@ background-color:#d9002f;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  flex-grow:1;
 }

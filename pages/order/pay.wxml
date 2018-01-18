@@ -26,7 +26,7 @@
     <image class="i_n_image" src='/images/icons/slice 2.png'></image>
     <text class='font_16'>商品清单</text>
   </view>
-  <view class="p_all bg_white df item" wx:for="{{productData}}">
+  <view class="p_all bg_white df item bbe" wx:for="{{productData}}">
     <view class="cp_photo">
       <image src="{{item.photo_x}}"></image>
     </view>
@@ -40,8 +40,15 @@
       </view>
       
     </view>
+    
   </view>
-
+  <view class="p_all bg_white item bbe e_rpx">
+    <view class='pn'>
+      <text class='font_14 c6'>支付金额总计(免运费)</text>
+      <text class='font_16 red'>¥ {{total}}</text>     
+    </view>
+  </view>
+  
 
 
   <view class="xuan" wx:if="{{vou!=''}}">
@@ -67,11 +74,11 @@
     <span class="font_20 red">¥ {{total}}</span>
   </view>
   <view class="p_all mt10">
-    <view class="btnGreen">
-      <button class="wx_pay_submit" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="settlement">
-        去支付
-      </button>    
-    </view>
+    
+    <button class="wx_pay_btn" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="settlement">
+      支付订单
+    </button>    
+    
   </view>
 
 </view>
