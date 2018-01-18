@@ -17,33 +17,31 @@
     "pages/shop_store/shop_store"
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#9d9d9d",
-    "navigationBarTitleText": "小白店",
-    "navigationBarTextStyle":"white"
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#858585",
-    "selectedColor": " #fe6e1f",
+    "selectedColor": "#fe6e1f",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list"  : [{
       "pagePath": "pages/home/home",
-      "iconPath":"images/icons/slice.png",
-      "selectedIconPath":"images/icons/slice-1.png",
+      "iconPath":"images/icons/shop.png",
+      "selectedIconPath":"images/icons/shopsel.png",
       "text": "首页"
     }, 
 
     {
       "pagePath": "pages/user/dingdan",
-      "iconPath": "images/icons/slice 2.png",
-      "selectedIconPath": "images/icons/slice-2.png",
+      "iconPath": "images/icons/order.png",
+      "selectedIconPath": "images/icons/ordersel.png",
       "text": "订单"
     },
     {
       "pagePath": "pages/user/user",
-      "iconPath":"images/icons/slice 3.png",
-      "selectedIconPath":"images/icons/slice-3.png",
+      "iconPath":"images/icons/my.png",
+      "selectedIconPath":"images/icons/mysel.png",
       "text": "我的"
     }]
   }

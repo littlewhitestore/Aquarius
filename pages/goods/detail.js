@@ -8,18 +8,19 @@ Page({
     currentTab: 0, //tab切换  
     goodsId: 0,
     detailData: {},
-    bannerList: [
+ 
+    slider: [
       { url: '../../images/44.png' },
       { url: '../../images/44.png' },
       { url: '../../images/44.png' }
     ],
+    swiperCurrent: 0,
+
+ 
     detailImageList: [],
     buynum: 1,
-    // 产品图片轮播
-    indicatorDots: true,
-    autoplay: true,
-    interval: 5000,
-    duration: 1000,
+
+  
     // 属性选择
     firstIndex: -1,
     //准备数据
@@ -35,6 +36,27 @@ Page({
   //   commodityAttr: [],
   //   attrValueList: []
   // },
+  swiperChange: function (e) {
+    this.setData({
+      swiperCurrent: e.detail.current
+    })
+  } ,
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '小白店测试商品',
+      path: '/pages/goods/detail',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
   backshop: function (e) {
 
     wx.reLaunch({
