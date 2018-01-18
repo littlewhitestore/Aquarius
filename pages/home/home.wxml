@@ -29,4 +29,9 @@
       </navigator>
     </view>
     <view class="clear mt10" bindtap="getMore">点击查看更多</view>
+    <contact-button type="default-light" session-from="productId_{{detailData.id}}" class="ke">
+        <contact-button class="pos"></contact-button>
+        <image class="icon_kf" src="/images/kefu.png" style="margin-right:20px;"></image>
+        <view class="dbtext" style="line;margin-top:5px">客服</view>
+      </contact-button >
   </view>

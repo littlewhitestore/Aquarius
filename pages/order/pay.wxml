@@ -1,5 +1,28 @@
 <!--pay.wxml-->
 <view class="w100">
+
+
+  <view class="p_all bg_hui mt10 font_14" wx:if="{{addemt==0}}">
+    <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
+      <view class="df">
+        <view class="df_1 c6">
+          <view class="l_h20">收货人：{{address.name}}
+            <text class="fl_r mr10">{{address.tel}}</text>
+          </view>
+          <view class="l_h20 mt5">地址：{{address.address_xq}}</view>
+        </view>
+        <image class="x_right mt15" src="/images/x_right.png"></image>
+      </view>
+    </navigator>
+  </view>
+  <view class="p_all bg_hui mt10 font_14" wx:else>
+    <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
+      <view class="df">
+        添加收货地址
+      </view>
+    </navigator>
+  </view>
+
   <view class="p_all bg_white df item" wx:for="{{productData}}">
     <view class="cp_photo">
       <image src="{{item.photo_x}}"></image>
@@ -13,26 +36,7 @@
     </view>
   </view>
 
-  <view class="p_all bg_white mt10 font_14" wx:if="{{addemt==0}}">
-    <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
-      <view class="df">
-        <view class="df_1 c6">
-          <view class="l_h20">收货人：{{address.name}}
-            <text class="fl_r mr10">{{address.tel}}</text>
-          </view>
-          <view class="l_h20 mt5">地址：{{address.address_xq}}</view>
-        </view>
-        <image class="x_right mt15" src="/images/x_right.png"></image>
-      </view>
-    </navigator>
-  </view>
-  <view class="p_all bg_white mt10 font_14" wx:else>
-    <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
-      <view class="df">
-        添加收货地址
-      </view>
-    </navigator>
-  </view>
+
 
   <view class="xuan" wx:if="{{vou!=''}}">
     <view class="hui">可使用优惠券：</view>
