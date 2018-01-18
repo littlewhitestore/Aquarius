@@ -87,6 +87,7 @@ swiper-container {
   flex-direction: column;
 }
 .right .title{
+  padding-top: 6rpx;
   height: 90rpx;
   overflow: hidden;
   font-size:14px;

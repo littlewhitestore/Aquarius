@@ -2,7 +2,7 @@
 <view class="page">
 
   <view class="swiper-container">
-    <swiper autoplay="auto" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
+    <swiper autoplay="auto" circular="true" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
       <block wx:for="{{slider}}" wx:key="unique">
         <swiper-item>
           <image src="{{item.url}}" class="img"></image>
@@ -33,8 +33,8 @@
       </view>
       <view class="price">
         <view class='money'>
-          <view class="now"> {{item.price_yh}}</view>
-          <view class="old">{{item.price}} </view>
+          <view class="now"> ￥{{item.price_yh}}</view>
+          <view class="old">￥{{item.price}} </view>
         </view>
         <view class='buy' bindtap='godetail'>
           <text require>立即抢购 ></text> </view>
