@@ -231,12 +231,13 @@ vertical-align: top;
 
 }
 .mingcheng view{
-
-  margin: 30rpx 0;
+ margin: 30rpx 0;
 }
 .drawer_image {
   width: 28%;
   height: 200rpx;
+  /* margin-top:-60rpx;
+  z-index: 10000; */
 }
 
 .drawer_desc{
@@ -390,7 +391,7 @@ border-radius:29rpx;
 .btn:first-child {
   margin-top: 0;
 }
-swiper{
+/* swiper{
   width: 100%; 
   height: 2000rpx;
 }
@@ -401,7 +402,38 @@ swiper{
 .slide-image{ 
   width: 100%; 
   height: 100%;
-}
+} */
+
+
+
+    swiper-container{  
+      position: relative;  
+    }  
+    .swiper-container .swiper{  
+      height: 750rpx;  
+    }  
+    .swiper-container .swiper .img{  
+      width: 100%;  
+      height: 100%;  
+    }  
+    .swiper-container .dots{  
+      position: absolute;  
+      top:710rpx;
+      left: 300rpx;
+      display: flex;  
+      justify-content: center;  
+    }  
+    .swiper-container .dots .dot{  
+      margin: 0 20rpx;  
+      width: 20rpx;  
+      height: 20rpx;  
+      background:#dfdfdf ;  
+      border-radius: 50%;  
+      transition: all .6s;  
+    }  
+    .swiper-container .dots .dot.active{  
+      background: #d0021b;  
+    }  
 
 .pos{
 
@@ -452,7 +484,7 @@ swiper{
 }
 .liner{
   border:solid 3rpx #fe6e1f;
-  z-index: 999;
+  z-index: 99;
   position: absolute;
   left: 26rpx;
   top:-2rpx;
@@ -473,4 +505,15 @@ swiper{
    }
    .mt_10{
      margin-top: 10rpx
+   }
+   .bt{
+     position: absolute;
+     left: 100px;
+     top:10px;
+     opacity: 0;
+   }
+   .btshare{
+     background-color: #fff;
+     border: none;
+     height: 50px;
    }
