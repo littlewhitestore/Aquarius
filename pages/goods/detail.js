@@ -8,7 +8,11 @@ Page({
     currentTab: 0, //tab切换  
     goodsId: 0,
     detailData: {},
-    bannerList: [],
+    bannerList: [
+      { url: '../../images/44.png' },
+      { url: '../../images/44.png' },
+      { url: '../../images/44.png' }
+    ],
     detailImageList: [],
     buynum: 1,
     // 产品图片轮播
@@ -23,7 +27,29 @@ Page({
     commodityAttr: [],
     attrValueList: []
   },
+  // backshop:function(e){
+  //   console.log(e)
+  //   wx.navigateTo({
 
+  //   //数据结构：以一组一组来进行设定
+  //   commodityAttr: [],
+  //   attrValueList: []
+  // },
+  backshop: function (e) {
+
+    wx.reLaunch({
+      url: '../home/home',
+      success: function (res) {
+        console.log(e)
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
+  },
   // 弹窗
   setModalStatus: function (e) {
     var animation = wx.createAnimation({
@@ -118,7 +144,7 @@ Page({
         //   detailImageList: goods_info.detail_image_list
         // });
         //使用假数据
-        
+
 
       },
       error: function (e) {
@@ -458,5 +484,6 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
-  }
+  },
+
 });

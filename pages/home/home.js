@@ -8,7 +8,16 @@ Page({
     interval: 5000,
     duration: 1000,
     circular: true,
-    productData: [],
+    productData: [
+      {
+        id: 1,
+        is_show: 1,
+        name: "测试商品",
+        price: 18.88,
+        price_yh: 20,
+        shiyong: 100
+      }
+    ],
     proCat:[],
     page: 2,
     index: 2,

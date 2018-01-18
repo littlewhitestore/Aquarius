@@ -1,60 +1,110 @@
 <!--pages/index/detail.wxml-->
 <!--内容开始-->
 <view class="cont">
-  <swiper style="height:375px" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <swiper style="height:750rpx" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{bannerList}}">
       <swiper-item>
-        <image src="{{item}}" class="slide-image" />
+        <image src="{{item.url}}" class="slide-image" />
       </swiper-item>
     </block>
   </swiper>
-  <view class="title">{{detailData.name}}</view>
+    <view class="title mt_10">{{detailData.name}}</view>
+  <view class="fb_r ">
+    <view class="price">￥{{detailData.price_yh}}</view>
+    <view class="oldprice">
+      <text style="text-decoration:line-through">￥1000.00</text>
+    </view>
+    <!-- <view class="postage">免邮费</view> -->
+  </view>
+
+
   <view class="gmxx">
-    <view><span class="jiage">¥：{{detailData.price_yh}}</span> <span class="c6 fl_r font_14" style='color:#ccc'>库存：{{detailData.num}}</span> </view>
-    <view class="font_14 c6">品牌：{{detailData.brand}}</view>   
-    <view class="font_14 c6">支付：微信支付</view>
+    <view class="fb_row">
+      <view>
+        <image class="circle" src="/images/icons/rond.png"></image>
+      </view>
+      <view style='color:#43484c'>正品保证</view>
+    </view>
+    <view class="fb_row">
+      <view>
+        <image class="circle" src="/images/icons/rond.png"></image>
+      </view>
+      <view style='color:#43484c'>发货&售后</view>
+    </view>
+    <view class="fb_row">
+      <view>
+        <image class="circle" src="/images/icons/rond.png"></image>
+      </view>
+      <view style='color:#43484c'>七天退换</view>
+    </view>
+     <view class="fb_row">
+      <view>
+        <image class="circle" src="/images/icons/rond.png"></image>
+      </view>
+      <view style='color:#43484c'>免邮费</view>
+    </view>
   </view>
-</view>
 
-<view wx:for="{{detailImageList}}">
-  <view>
-    <image src="{{item}}" mode="widthFix" style="width:375px"/>
+  <view class="font">商品详情</view>
+  <view class="line"><view class="liner"></view></view>
+  <view class="info">
+    <text>#90%白鸭绒，超保暖##双层高密防钻绒里布，不跑毛##刺绣丝绒领，复古风# 这款羽绒服结合了汉服的元素，领部采用经典的斜襟交叉来衬托颈部线条。不同之处在于领圈一周拼接了丝绒材质，更具精致感，而且不同材质面料的碰撞也让整件衣服更富鲜活。领口的古典纹样绣花线条流畅细腻，为整件衣服带来了一丝传统的韵味。</text>
   </view>
-</view>
+  <view wx:for="{{detailImageList}}">
+    <view>
+      <image src="{{item}}" mode="widthFix" style="width:375px" />
+    </view>
+  </view>
 
+
+</view>
 <view class="footfixed tc">
-  <view class="fl_l w40 font_12 hui03 df">
+
+  <view class="fl_l w60 font_12 hui03 df">
     <view class="df_1 l_h15 pt5 bre">
+
+
+      <view bindtap="backshop">
+        <image class="icon_kf" src="/images/icons/slice.png"></image>
+        <view bindtap="backshop" class="dbtext">回首页</view>
+      </view>
+
+    </view>
+    <view class="df_1 l_h15 pt5 bre">
+
       <contact-button type="default-light" session-from="productId_{{detailData.id}}" class="ke">
-        <contact-button class="pos"></contact-button>
-        <image class="icon_kf" src="/images/kefu.png" style="margin-right:20px;"></image>
-        <view class="dbtext" style="line;margin-top:5px">客服</view>
-      </contact-button >
+        <!-- <contact-button class="pos"></contact-button> -->
+        <image class="icon_kf" src="/images/icons/support-2.png" style="margin-right:20px;"></image>
+        <view class="dbtext" style='margin-top:6rpx'>联系客服</view>
+      </contact-button>
+
     </view>
     <view class="df_1 l_h15 pt5">
-      <view bindtap="addFavorites">
-        <image class="icon_kf" src="/images/shc.png" ></image>
-        <view bindtap="addFavorites" class="dbtext">收藏</view>
-      </view>
+      <!-- <contact-button class="pos"></contact-button> -->
+      <image class="icon_kf" src="/images/icons/share.png"></image>
+      <view class="dbtext">好友分享</view>
     </view>
   </view>
-  <view class="fl_l w60">
-    <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view>
-    <view class="bg_red white w50 fl_l" bindtap="setModalStatus" data-status="1">立即购买</view>
+  <view class="fl_l w40">
+    <!-- <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view> -->
+
+    <view class="bg_cheng white w100 fl_l" bindtap="setModalStatus" data-status="1">立即抢购</view>
   </view>
 </view>
 
 <!--弹窗-->
 <view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
 <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
-<view class="close_icon" bindtap="setModalStatus" data-status="0">×</view>
+  <view class="close_icon" bindtap="setModalStatus" data-status="0">X</view>
   <view class="drawer_attr_content">
     <view class="text_center">
-      <image class="drawer_image" src="{{detailData.photo_x}}" ></image>
+      <image class="drawer_image" src="{{detailData.photo_x}}"></image>
       <view class="mingcheng">
-        <view>{{detailData.name}}</view>
-        <view style="font-size:29rpx;color:red">¥ {{detailData.price_yh}}</view>
-        <view  style="font-size:26rpx;color:#ccc">库存：{{detailData.num}}</view>
+
+        <!-- <view>{{detailData.name}}</view> -->
+        <view style="font-size:18px;color:red">¥ {{detailData.price_yh}}</view>
+        <view style="font-size:16px;">卡其色/XL </view>
+        <!-- <view style="font-size:26rpx;color:#ccc">库存：{{detailData.num}}</view> -->
       </view>
     </view>
     <view class="shu">
@@ -70,8 +120,8 @@
         </view>
       </view>
     </view>
-    <view class="footc" bindtap="addShopCart" data-type="buynow" data-status="1">
-      确定
+    <view class="footc" bindtap="gobuy" data-type="buynow" data-status="1">
+      立即购买
     </view>
   </view>
 </view>
