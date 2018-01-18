@@ -44,27 +44,28 @@
   height:910rpx;
 }
 .cont .title{
-  font-size: 15px;
-  color: #333;
+  font-size: 17px;
+  color:rgba(67, 72, 76, 0.87);
+  padding-left: 30rpx;
   line-height:20px;
-  margin:0;
   max-height:40px;
   overflow:hidden;
   text-overflow:ellipsis;
   display:-webkit-box;
   -webkit-line-clamp:2;
   -webkit-box-orient:vertical;
-  padding: 5% 5% 0 5%;
-  font-weight: 700
 }
 .gmxx{
-  padding:1% 5% 5% 5%;
-  line-height: 25px;
-}
-.gmxx .jiage{
-  font-size: 15px;
-  color: #dd2727;
-  padding-top: 10px;
+  margin-top: 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size:14px;
+  border-bottom: solid 9rpx #f3f3f3;
+  border-top: solid 9rpx #f3f3f3;
+  
 }
 .icon_kf{
   width: 20px;
@@ -161,7 +162,7 @@ color: snow
 position:fixed;
 bottom:0;
 left:0;
-background:red;
+background: #fe6e1f;
 z-index:100;
 width:100%;
 font-size:14px;
@@ -224,9 +225,14 @@ text-align: center
 .mingcheng{
 width: 60%;
 display: inline-block;
-font-size:35rpx;
-line-height: 50rpx;
+font-size:16px;
 margin-left: 40rpx;
+vertical-align: top;
+
+}
+.mingcheng view{
+
+  margin: 30rpx 0;
 }
 .drawer_image {
   width: 28%;
@@ -272,6 +278,7 @@ margin-left: 40rpx;
 .dian{
   width: 70%;
   display: inline-block;
+  
 }
 .shu{
   width: 100%;
@@ -397,9 +404,73 @@ swiper{
 }
 
 .pos{
-  position: absolute;
-  top: 10px;
-  left: 23px;
-  opacity: 0;
-}
 
+   opacity: 0;
+}
+.fb_row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+.price{
+  font-size:16px;
+  color:#fe6e1f;
+  margin-left: 30rpx;
+
+}
+.oldprice{
+   font-size:12px;
+   color:#bebebe;
+   margin: 10rpx 50rpx;
+}
+.postage{
+  margin-right: 30rpx;
+  font-size:13px;
+  color:rgba(67, 72, 76, 0.87);
+}
+.circle{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 14rpx 6rpx 0 0;
+
+
+}
+.font{
+  color: #43484c; 
+  width: 150rpx;
+  font-size:18px;
+ margin-left: 15rpx ;
+ padding:15rpx;
+ 
+
+}
+.line{
+  border: solid 1rpx #979fa7;
+  position: relative;
+
+}
+.liner{
+  border:solid 3rpx #fe6e1f;
+  z-index: 999;
+  position: absolute;
+  left: 26rpx;
+  top:-2rpx;
+  width: 150rpx;
+
+}
+.info{
+   padding:15rpx 30rpx;
+   color: #43484c; 
+   font-size: 14px;
+   line-height: 40rpx;
+   letter-spacing:0.2rpx;
+   margin-bottom: 60px;
+   }
+   .fb_r{
+     display: flex;
+     flex-direction: row;
+   }
+   .mt_10{
+     margin-top: 10rpx
+   }
