@@ -1,4 +1,4 @@
-<!--pages/user/dingdan.wxml-->
+ pages/user/dingdan.wxml
 <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" data-otype="pay" bindtap="swichNav">待付款</view>
    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" data-otype="deliver" bindtap="swichNav">待发货</view> 
@@ -124,4 +124,4 @@
         </view>
     </view>
   </swiper-item>
-</swiper>
+</swiper> 

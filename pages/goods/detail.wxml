@@ -75,7 +75,7 @@
 
 
       <view bindtap="backshop">
-        <image class="icon_kf" src="/images/icons/slice.png"></image>
+        <image class="icon_kf" src="/images/icons/shop.png"></image>
         <view bindtap="backshop" class="dbtext">回首页</view>
       </view>
 
@@ -89,7 +89,7 @@
         <view class="dbtext" >联系客服</view>
    
     </view>
-    <button class="df_1 l_h15 pt5 btshare" open-type="share">
+    <button class=" btshare df_1 l_h15 pt5"  open-type="share">
      
       <image class="icon_kf" src="/images/icons/share.png"></image>
       <view class="dbtext" style='margin-top:4rpx'>好友分享</view>

@@ -514,6 +514,11 @@ border-radius:29rpx;
    }
    .btshare{
      background-color: #fff;
-     border: none;
+     border:none;
      height: 50px;
+     margin: 0;
+     padding: 0; 
    }
+  .btshare::after{
+    border: 0;
+  }
