@@ -4,7 +4,7 @@ App({
     session: null,
     userInfo: null,
   },
-  header:{
+  header: {
     session_id: null,
   },
   config: {
@@ -20,7 +20,7 @@ App({
         reload = true;
         console.info("检测session状态 ，返回fail")
       },
-      success: function(){
+      success: function () {
         console.info("检测session状态 ，返回success")
       }
     })
@@ -33,7 +33,7 @@ App({
         else {
           reload = true;
         }
-      } catch(e) {
+      } catch (e) {
         reload = true;
       }
       try {
@@ -73,17 +73,44 @@ App({
             wx.setStorage({
               key: 'session',
               data: res.data.session,
-            }) 
+            })
           }
         })
         wx.getUserInfo({
           success: function (res) {
             that.globalData.userInfo = res.userInfo;
-            console.info("用户信息-》",res)
+            console.info("用户信息-》", res)
             wx.setStorage({
               key: 'userInfo',
               data: res.userInfo,
             })
+          },
+          fail: function () {
+            wx.showModal({
+              title: '警告',
+              content: '您未搜权登录小程序，将无法使用部分功能，请点击确定按钮重新授权登录',
+              success: function (res) {
+                if (res.confirm) {
+                  wx.openSetting({
+                    success: (res) => {
+                      if (res.authSetting["scope.userInfo"])
+                        wx.getUserInfo({
+                          success: function (res) {
+                            that.globalData.userInfo = res.userInfo;
+                            console.info("用户信息-》", res)
+                            wx.setStorage({
+                              key: 'userInfo',
+                              data: res.userInfo,
+                            })
+                          }
+                        })
+                    }
+                  })
+                }
+              }
+            })
+
+
           }
         });
       }

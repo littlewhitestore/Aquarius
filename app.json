@@ -6,6 +6,7 @@
     "pages/user/user",
     "pages/user/dingdan",
     "pages/user/tuihuo",
+    "pages/user/about",
     "pages/order/pay",
     "pages/order/detail",
     "pages/listdetail/listdetail",

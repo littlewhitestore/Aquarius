@@ -6,7 +6,7 @@
   position: relative;
   width: 750rpx;
   height: 320rpx;
-  background: #008842;
+  background:#fe6e1f;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -28,6 +28,38 @@
   font-size: 14px;
 }
 
+
+.bigspace{
+    height: 40rpx;
+  background-color: #fafbfc; 
+
+}
+.row{
+  padding:  0 14rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+   height: 80rpx;
+
+
+
+}
+.font{
+ color:#43484c;
+ font-size:16px;
+}
+.space{
+  height: 10rpx;
+  background-color: #fafbfc; 
+
+}
+.row image{
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: middle;
+  margin: 0 12rpx
+}
 .sc{
   background: #fff;
   width: 100%;
@@ -55,11 +87,5 @@
 
 .c33{
   float: left;
-  color: #000
-}
-
-contact-button{
-  position: relative;
-  left:-50px;
-  opacity: 0;
+  color: #000;
 }

@@ -31,6 +31,12 @@ Page({
     lastcat: [],
     course: []
   },
+  gotop:function(){
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
+  },
   swiperChange: function (e) {
     this.setData({
       swiperCurrent: e.detail.current

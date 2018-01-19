@@ -1,0 +1,25 @@
+
+<view class='up'>
+  <view class="img">
+  </view>
+  <view class="name">
+  <text>小白店商城</text>
+  </view>
+  <view class="dec">
+  <text>每一个小白的中国梦!</text>
+  </view>
+</view>
+<view class="down">
+<view class="row"><view class='left'>服务类目</view><view class='right'>服装/鞋/箱包/日百</view></view>
+<view class="row"><view class='left'>主体信息</view><view class='right'>北京力扬泛海科技有限公司</view><text decode="{{true}}" style='color:#808a94;'>&gt;</text></view>
+<view class="row"><view class='left'>相关公众号</view><view class='right'><image src='../../images/33.png'></image>
+<image src='../../images/33.png'></image> <image src='../../images/33.png'></image> <image src='../../images/33.png'></image> <image src='../../images/33.png'></image>
+<image src='../../images/33.png'></image>
+</view>
+
+<text decode="{{true}}" style='color:#808a94;'>&gt;</text></view>
+</view>
+<view class="btn">
+<button   type='primary' bindtap='backhome' >进入小程序</button>
+<button type='defult' open-type='share'>推荐给朋友</button>
+</view>

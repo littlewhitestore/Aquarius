@@ -45,6 +45,9 @@ Page( {
   onShow:function(){
     this.loadOrderStatus();
   },
+
+
+  
   loadOrderStatus:function(){
     //获取用户订单数据
     var that = this;
@@ -80,16 +83,30 @@ Page( {
       }
     });
   },
-  onShareAppMessage: function () {
-    return {
-      title: '宠物美容学校',
-      path: '/pages/index/index',
-      success: function (res) {
-        // 分享成功
-      },
-      fail: function (res) {
-        // 分享失败
-      }
-    }
+
+  add:function(){
+     wx:wx.chooseAddress({
+       success: function(res) {
+         console.log(JSON.stringify(res))
+       },
+       fail: function(res) {
+
+         console.log(JSON.stringify(err))
+       },
+     
+     })
+
+  },
+  about:function(){
+     wx:wx.navigateTo({
+       url: 'about',
+      
+     })
+
+  },
+  chat:function(){
+    
   }
+
+  
 })
