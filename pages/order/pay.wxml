@@ -1,19 +1,8 @@
 <!--pay.wxml-->
 <view class="w100">
-  <view class="p_all bg_white df item" wx:for="{{productData}}">
-    <view class="cp_photo">
-      <image src="{{item.photo_x}}"></image>
-    </view>
-    <view class="df_1">
-      <view class="font_14 mt5 ovh1">
-        {{item.name}}
-      </view>
-      <text class="gm_ovh_1h red pt10">¥{{item.price}}</text>
-      <text class="gm_ovh_1h pt10">数量：{{item.num}}</text>
-    </view>
-  </view>
 
-  <view class="p_all bg_white mt10 font_14" wx:if="{{addemt==0}}">
+
+  <view class="p_all bg_hui mt10 font_14" wx:if="{{addemt==0}}">
     <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
       <view class="df">
         <view class="df_1 c6">
@@ -26,13 +15,41 @@
       </view>
     </navigator>
   </view>
-  <view class="p_all bg_white mt10 font_14" wx:else>
+  <view class="p_all bg_hui mt10 font_14" wx:else>
     <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
-      <view class="df">
+      <view class="df text_aligncenter">
         添加收货地址
       </view>
     </navigator>
   </view>
+  <view class='bbe list_title p_all'>
+    <image class="i_n_image" src='/images/icons/slice 2.png'></image>
+    <text class='font_16'>商品清单</text>
+  </view>
+  <view class="p_all bg_white df item bbe" wx:for="{{productData}}">
+    <view class="cp_photo">
+      <image src="{{item.photo_x}}"></image>
+    </view>
+    <view class="columb_sbtw">
+      <view class="font_15 mt5 ovh1">
+        {{item.name}}
+      </view>
+      <view class="pn"> 
+        <text class="gm_ovh_1h red pt10">¥{{item.price}}</text>
+        <text class="gm_ovh_1h pt10">X{{item.num}}</text>
+      </view>
+      
+    </view>
+    
+  </view>
+  <view class="p_all bg_white item bbe e_rpx">
+    <view class='pn'>
+      <text class='font_14 c6'>支付金额总计(免运费)</text>
+      <text class='font_16 red'>¥ {{total}}</text>     
+    </view>
+  </view>
+  
+
 
   <view class="xuan" wx:if="{{vou!=''}}">
     <view class="hui">可使用优惠券：</view>
@@ -57,11 +74,11 @@
     <span class="font_20 red">¥ {{total}}</span>
   </view>
   <view class="p_all mt10">
-    <view class="btnGreen">
-      <button class="wx_pay_submit" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="settlement">
-        去支付
-      </button>    
-    </view>
+    
+    <button class="wx_pay_btn" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="settlement">
+      支付订单
+    </button>    
+    
   </view>
 
 </view>

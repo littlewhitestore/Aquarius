@@ -3,12 +3,15 @@ App({
   globalData: {
     session: null,
     userInfo: null,
+    picUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516107456424&di=fa76e77ada13337b47b711d45f05edf3&imgtype=0&src=http%3A%2F%2Fimage.tupian114.com%2F20121029%2F11381052.jpg.238.jpg"
   },
   header: {
     session_id: null,
   },
   config: {
-    host: 'https://www.xiaobaidiandev.com/api'
+    host: 'https://www.xiaobaidiandev.com/api',
+    appId: "wxd4eae843e18ff7da",//小程序APPid
+    mchId: "1495032292"//微信商户id
   },
   onLaunch: function () {
     this.confirmUserLogin();

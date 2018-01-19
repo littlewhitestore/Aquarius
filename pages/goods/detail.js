@@ -395,7 +395,7 @@ Page({
   addFavorites: function (e) {
     var that = this;
     wx.request({
-      url: app.d.ceshiUrl + '/Api/Product/col',
+      url: app.config.url + '/Api/Product/col',
       method: 'post',
       data: {
         uid: app.d.userId,
@@ -433,49 +433,54 @@ Page({
 
   addShopCart: function (e) { //添加到购物车
     var that = this;
-    wx.request({
-      url: app.cn.ceshiUrl + '/Api/Shopping/add',
-      method: 'post',
-      data: {
-        uid: app.d.userId,
-        pid: that.data.goodsId,
-        num: that.data.buynum,
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        // //--init data        
-        var data = res.data;
-        if (data.status == 1) {
-          var ptype = e.currentTarget.dataset.type;
-          if (ptype == 'buynow') {
-            wx.redirectTo({
-              url: '../order/pay?cartId=' + data.cart_id
+    //假跳转
+    wx.redirectTo({
+              url: '../order/pay?cartId=' + "123"
             });
-            return;
-          } else {
-            wx.showToast({
-              title: '加入购物车成功',
-              icon: 'success',
-              duration: 2000
-            });
-          }
-        } else {
-          wx.showToast({
-            title: data.err,
-            duration: 2000
-          });
-        }
-      },
-      fail: function () {
-        // fail
-        wx.showToast({
-          title: '网络异常！',
-          duration: 2000
-        });
-      }
-    });
+    // wx.request({
+    //   url: app.config.host + '/Api/Shopping/add',
+    //   method: 'post',
+    //   data: {
+    //     // uid: app.d.userId,
+    //     session: app.globalData.session,
+    //     pid: that.data.goodsId,
+    //     num: that.data.buynum,
+    //   },
+    //   header: {
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   },
+    //   success: function (res) {
+    //     // //--init data        
+    //     var data = res.data;
+    //     if (data.status == 1) {
+    //       var ptype = e.currentTarget.dataset.type;
+    //       if (ptype == 'buynow') {
+    //         wx.redirectTo({
+    //           url: '../order/pay?cartId=' + data.cart_id
+    //         });
+    //         return;
+    //       } else {
+    //         wx.showToast({
+    //           title: '加入购物车成功',
+    //           icon: 'success',
+    //           duration: 2000
+    //         });
+    //       }
+    //     } else {
+    //       wx.showToast({
+    //         title: data.err,
+    //         duration: 2000
+    //       });
+    //     }
+    //   },
+    //   fail: function () {
+    //     // fail
+    //     wx.showToast({
+    //       title: '网络异常！',
+    //       duration: 2000
+    //     });
+    //   }
+    // });
   },
   bindChange: function (e) {//滑动切换tab 
     var that = this;

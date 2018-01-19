@@ -3,16 +3,21 @@ var app = getApp();
 Page({
   data: {
     itemData: {},
-    userId: 0,
+    userId: 123,
     paytype: 'weixin',//0线下1微信
     remark: '',
     cartId: 0,
     addrId: 0,//收货地址//测试--
     btnDisabled: false,
-    productData: [],
+    productData: [{
+      photo_x: app.globalData.picUrl,
+      name: "小白客测试商品",
+      price: 0.01,
+      num: 1,
+    }],
     address: {},
-    total: 0,
-    vprice: 0,
+    total: 0.01,
+    vprice: 0.01,
     vid: 0,
     addemt: 1,
     vou: []
@@ -226,6 +231,7 @@ Page({
       }
     })
   },
+  
 
 
 });

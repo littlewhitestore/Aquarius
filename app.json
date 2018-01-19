@@ -1,10 +1,10 @@
 {
   "pages":[
     "pages/home/home",
-    "pages/goods/detail",
     "pages/search/search",
     "pages/user/user",
     "pages/user/dingdan",
+    "pages/goods/detail",
     "pages/user/tuihuo",
     "pages/user/about",
     "pages/order/pay",

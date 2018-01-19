@@ -127,6 +127,7 @@
         </view>
       </view>
     </view>
+
      <view class="footc" bindtap="gobuy" data-type="buynow" data-status="1">
       立即购买
     </view> 
