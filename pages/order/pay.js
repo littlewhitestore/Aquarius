@@ -13,7 +13,28 @@ Page({
   },
   onLoad: function (options) {
     console.log("=======支付页面=========");
-    
+    console.log(!options.hasOwnProperty("goodsId") + "|" + (options.goodsId != ""))
+    if (!options.hasOwnProperty("goodsId") || options.goodsId ==""){
+      wx.showModal({
+        title: '错误提示',
+        content: '信息有误，返回详情',
+        showCancel: false,
+        confirmText: "返回",
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.navigateBack({
+
+            });
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      });
+      
+      return;
+
+    }
     var goodsId = parseInt(options.goodsId);
 
     var sessionId = app.globalData.session;
@@ -69,9 +90,15 @@ Page({
   //提交订单
   submitOrder: function(){
     var that = this;
+    //订单信息验证
     if (that.data.receiver){
-
+      wx.showToast({
+        title: '请完善收货地址信息',
+      })
+      return;
     }
+      
+    
     wx.showLoading({
       title: "正在提交订单。。",
       mask: true
@@ -318,12 +345,14 @@ Page({
           wx.authorize({
             scope: 'scope.address',
             success: (data) =>{
-              getAuth = true;
+              console.info("=======授权地址=======");
+              
               that.setAddressData();
               return;
             },
             fail: () =>{
               //用户拒绝使用微信地址 弹出
+              console.info("=======用户拒绝授权地址=======");
               wx.showModal({
                 title: '提示',
                 content: '您未搜权小程序使用微信收货地址(通讯地址)，将无法下单，请点击确定按钮重新授权登录',
@@ -332,7 +361,7 @@ Page({
                     wx.openSetting({
                       success: (res) => {
                         if (res.authSetting["scope.address"]){
-                          getAuth = true;
+                         
                           that.setAddressData()
                           return;
                         }
@@ -344,6 +373,7 @@ Page({
             }
           })
         }else{
+          console.info("=======用户已经授权地址=======");
           that.setAddressData();
         }
         
