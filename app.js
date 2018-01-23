@@ -31,7 +31,7 @@ App({
       try {
         var value = wx.getStorageSync('session');
         if (value) {
-          this.globalData.sessionn = value;
+          this.globalData.session = value;
         }
         else {
           reload = true;
@@ -70,12 +70,16 @@ App({
             'Content-Type': 'application/x-www-form-urlencoded'
           },
           success: function (res) {
-            that.globalData.session = res.data.session;
-            that.header.session_id = res.data.session;
-            console.info("服务器接口返回的session=" + res.data.session);
+            
+            console.log("=========login ======");
+            
+            that.globalData.session = res.data.data.session;
+            that.header.session_id = res.data.data.session;
+            
+            console.log("服务器接口返回的session=" + res.data.data.session);
             wx.setStorage({
               key: 'session',
-              data: res.data.session,
+              data: res.data.data.session,
             })
           }
         })

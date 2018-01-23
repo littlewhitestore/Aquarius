@@ -1,69 +1,118 @@
 var app = getApp();
-// pages/order/downline.js
+// pages/order/pay.js
 Page({
   data: {
-    itemData: {},
-    userId: 123,
-    paytype: 'weixin',//0线下1微信
-    remark: '',
-    cartId: 0,
-    addrId: 0,//收货地址//测试--
-    btnDisabled: false,
-    productData: [{
-      photo_x: app.globalData.picUrl,
-      name: "小白客测试商品",
-      price: 0.01,
-      num: 1,
-    }],
-    address: {},
-    total: 0.01,
-    vprice: 0.01,
-    vid: 0,
-    addemt: 1,
-    vou: []
+    goods_id: 1,
+    buy_number: 1,
+    session: "",
+    postage: "",
+    items: [],
+    total_amount: "",
+    amount_payable: "",
+    receiver: null
   },
   onLoad: function (options) {
-    var uid = app.d.userId;
+    console.log("=======支付页面=========");
+    
+    var goodsId = parseInt(options.goodsId);
+
+    var sessionId = app.globalData.session;
     this.setData({
-      cartId: options.cartId,
-      userId: uid
+      session: sessionId,
+      goods_id: goodsId
     });
-    this.loadProductDetail();
+    
+    this.loadDataAndSettlement({});
   },
-  loadProductDetail: function () {
+  loadDataAndSettlement: function (address) {
     var that = this;
+    wx.showLoading({
+      title: '刷新中。。。',
+      mask: true
+    })
     wx.request({
-      url: app.d.ceshiUrl + '/Api/Payment/buy_cart',
+      url: app.config.host + '/settlement?session='+app.globalData.session,
       method: 'post',
       data: {
-        cart_id: that.data.cartId,
-        uid: that.data.userId,
+        product_id: that.data.goods_id,
+        number: that.data.buy_number,        
+        receiver: address
       },
       header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
       },
       success: function (res) {
         //that.initProductData(res.data);
-        var adds = res.data.adds;
-        if (adds) {
-          var addrId = adds.id;
-          that.setData({
-            address: adds,
-            addrId: addrId
-          });
-        }
+        // var adds = res.data.adds;
+        // if (adds) {
+        //   var addrId = adds.id;
+        //   that.setData({
+        //     address: adds,
+        //     addrId: addrId
+        //   });
+        // }
+        console.log(res.data);
+        if ("success"===res.data.status)
+          console.log(res.data.data);
         that.setData({
-          addemt: res.data.addemt,
-          productData: res.data.pro,
-          total: res.data.price,
-          vprice: res.data.price,
-          vou: res.data.vou,
+          total_amount: res.data.data.total_amount,
+          items: res.data.data.items,
+          amount_payable: res.data.data.amount_payable
         });
         //endInitData
       },
+      complete: function(){
+        wx.hideLoading()
+      }
     });
   },
+  //提交订单
+  submitOrder: function(){
+    var that = this;
+    if (that.data.receiver){
 
+    }
+    wx.showLoading({
+      title: "正在提交订单。。",
+      mask: true
+    })
+    wx.request({
+      url: app.config.host + '/order/buynow?session=' + app.globalData.session,
+      method: 'post',
+      data: {
+        product_id: that.data.goods_id,
+        number: that.data.buy_number,
+        receiver: address
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        //that.initProductData(res.data);
+        // var adds = res.data.adds;
+        // if (adds) {
+        //   var addrId = adds.id;
+        //   that.setData({
+        //     address: adds,
+        //     addrId: addrId
+        //   });
+        // }
+        console.log(res.data);
+        if ("success" === res.data.status)
+          console.log(res.data.data);
+        that.setData({
+          total_amount: res.data.data.total_amount,
+          items: res.data.data.items,
+          amount_payable: res.data.data.amount_payable
+        });
+        //endInitData
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+    });  
+  },
+  
   remarkInput: function (e) {
     this.setData({
       remark: e.detail.value,
@@ -91,7 +140,7 @@ Page({
     //创建订单
     var that = this;
     wx.request({
-      url: app.d.ceshiUrl + '/Api/Payment/payment',
+      url: app.config.host + '/Api/Payment/payment',
       method: 'post',
       data: {
         uid: that.data.userId,
@@ -231,7 +280,84 @@ Page({
       }
     })
   },
-  
+  //请求地址
+  setAddressData: function(){
+    console.log("========进入选择地址==========");
+    var that = this;
+    wx.chooseAddress({      
+      success: function (res) {
+        var addressData = { 
+          province: res.provinceName,
+          city: res.cityName,
+          district: res.countyName,
+          address: res.detailInfo,
+          name: res.userName,
+          mobile: res.telNumber,
+          postalCode: res.postalCode,
+          nationalCode: res.nationalCode
+          }; 
+        that.setData({
+          receiver: addressData
+        });
+        console.log(that.data.receiver);
+        console.log("地址添加后=====" + (that.data.receiver == null));
+        that.loadDataAndSettlement(that.data.receiver)
+      }
+    })
+  },
+
+  //让用户选择地址
+  getWxAddress: function(){
+    console.info("=======进入调用地址方法=======");
+    var that = this;
+    wx.getSetting({
+      success: (res) =>{
+                //如果没有地址权限
+        if (!res.authSetting.hasOwnProperty("scope.address")){
+          console.info("=======进入地址权限校验失败=======");
+          wx.authorize({
+            scope: 'scope.address',
+            success: (data) =>{
+              getAuth = true;
+              that.setAddressData();
+              return;
+            },
+            fail: () =>{
+              //用户拒绝使用微信地址 弹出
+              wx.showModal({
+                title: '提示',
+                content: '您未搜权小程序使用微信收货地址(通讯地址)，将无法下单，请点击确定按钮重新授权登录',
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.openSetting({
+                      success: (res) => {
+                        if (res.authSetting["scope.address"]){
+                          getAuth = true;
+                          that.setAddressData()
+                          return;
+                        }
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          })
+        }else{
+          that.setAddressData();
+        }
+        
+        // for(var i=0; i<res.authSetting.length;++i){
+        //   console.info(res.authSetting[i]);
+        //   console.info(item);
+        //   console.info(res.authSetting[i].key);
+        //   console.info(res.authSetting[i].value);
+        // }
+      }
+    
+
+    })
+  }
 
 
 });

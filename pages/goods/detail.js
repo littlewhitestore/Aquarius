@@ -1,4 +1,5 @@
 var app = getApp();
+//goods/detail.js
 Page({
   firstIndex: -1,
   data: {
@@ -431,11 +432,11 @@ Page({
     });
   },
 
-  addShopCart: function (e) { //添加到购物车
+  gobuy: function (e) { //添加到购物车
     var that = this;
     //假跳转
-    wx.redirectTo({
-              url: '../order/pay?cartId=' + "123"
+    wx.navigateTo({
+              url: '../order/pay?goodsId=' + "1000"
             });
     // wx.request({
     //   url: app.config.host + '/Api/Shopping/add',

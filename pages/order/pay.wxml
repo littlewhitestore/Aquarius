@@ -2,33 +2,31 @@
 <view class="w100">
 
 
-  <view class="p_all bg_hui mt10 font_14" wx:if="{{addemt==0}}">
-    <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
-      <view class="df">
+  <view class="p_all bg_hui mt10 font_14" wx:if="{{receiver != null}}">
+      <view class="df" bindtap="getWxAddress">
         <view class="df_1 c6">
-          <view class="l_h20">收货人：{{address.name}}
-            <text class="fl_r mr10">{{address.tel}}</text>
+          <view class="l_h20">收货人：{{receiver.name}}
+            <text class="fl_r mr10">{{receiver.mobile}}</text>
           </view>
-          <view class="l_h20 mt5">地址：{{address.address_xq}}</view>
+          <view class="l_h20 mt5">地址：{{receiver.province}} {{receiver.city}} {{receiver.district}} {{receiver.address}}</view>
         </view>
         <image class="x_right mt15" src="/images/x_right.png"></image>
       </view>
-    </navigator>
   </view>
   <view class="p_all bg_hui mt10 font_14" wx:else>
-    <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none">
-      <view class="df text_aligncenter">
+    <!-- <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none"> -->
+      <view class="df text_aligncenter" bindtap="getWxAddress">
         添加收货地址
       </view>
-    </navigator>
+    <!-- </navigator> -->
   </view>
   <view class='bbe list_title p_all'>
-    <image class="i_n_image" src='/images/icons/slice 2.png'></image>
+    <image class="i_n_image" src='/images/icons/order.png'></image>
     <text class='font_16'>商品清单</text>
   </view>
-  <view class="p_all bg_white df item bbe" wx:for="{{productData}}">
+  <view class="p_all bg_white df item bbe" wx:for="{{items}}">
     <view class="cp_photo">
-      <image src="{{item.photo_x}}"></image>
+      <image src="{{item.thumbnail}}"></image>
     </view>
     <view class="columb_sbtw">
       <view class="font_15 mt5 ovh1">
@@ -36,7 +34,7 @@
       </view>
       <view class="pn"> 
         <text class="gm_ovh_1h red pt10">¥{{item.price}}</text>
-        <text class="gm_ovh_1h pt10">X{{item.num}}</text>
+        <text class="gm_ovh_1h pt10">X{{item.number}}</text>
       </view>
       
     </view>
@@ -45,7 +43,7 @@
   <view class="p_all bg_white item bbe e_rpx">
     <view class='pn'>
       <text class='font_14 c6'>支付金额总计(免运费)</text>
-      <text class='font_16 red'>¥ {{total}}</text>     
+      <text class='font_16 red'>¥ {{total_amount}}</text>     
     </view>
   </view>
   
@@ -71,7 +69,7 @@
   </view>
 
   <view class="zhifu mt10 tc">应共支付：
-    <span class="font_20 red">¥ {{total}}</span>
+    <span class="font_20 red">¥ {{amount_payable}}</span>
   </view>
   <view class="p_all mt10">
     
