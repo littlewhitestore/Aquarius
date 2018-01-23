@@ -41,8 +41,8 @@
   <view class="bottom">
     <view class='share'>
       <button open-type='share' class="btn">
-        <image src='../../images/icons/share.png'></image>
-        分享</button>
+        <image src='../../images/icons/share_white.png'></image>
+        <view>分享</view></button>
     </view>
     <view class='money'>
       <text decode='true'>运费:0 &nbsp; &nbsp;</text>

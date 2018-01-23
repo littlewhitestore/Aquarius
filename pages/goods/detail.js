@@ -9,11 +9,13 @@ Page({
     goodsId: 0,
     detailData: {},
  
+    
     slider: [
       { url: '../../images/44.png' },
       { url: '../../images/44.png' },
       { url: '../../images/44.png' }
     ],
+
     swiperCurrent: 0,
 
  
