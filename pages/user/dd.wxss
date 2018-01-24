@@ -1,0 +1,262 @@
+.header{
+  width: 750rpx;
+	height: 125rpx;
+	background-color: #fe6e1f;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #ffffff;
+
+}
+.h_left{
+  line-height: 42rpx;
+  padding: 26rpx 30rpx;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+}
+.h_right{
+  padding: 36rpx 50rpx;
+  font-size: 16px;
+  border-left: solid 1rpx #ffffff;
+  	font-weight: 500;
+}
+.info{
+  padding-top: 36rpx;
+  display: flex;
+  flex-direction: row;
+  width: 750rpx;
+	height: 125rpx;
+}
+.in_left{
+  padding-left: 16rpx;
+}
+.in_left image{
+  padding-top: 10rpx;
+  width: 60rpx;
+  height: 60rpx;
+  vertical-align: middle;
+}
+.in_right{
+font-size: 13px;
+padding-left: 16rpx;
+padding-right:28rpx;
+display: flex;
+flex-direction: column;
+line-height: 42rpx;
+color: #43484c;
+}
+.in_right_title{
+ padding-left:5rpx;
+  /* padding-right:50rpx;  */
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+}
+.address{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.base{
+  	width: 745rpx;
+	height: 30rpx;
+	background-color: #fafafa;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 8rpx;
+  font-size: 14px;
+}
+
+.num {
+  display: flex;
+  flex-direction: row;
+  /* justify-content:flex-start; */
+}
+.listimg{
+  width: 34rpx;
+  height: 40rpx;
+margin-top: 2rpx;
+}
+
+
+.line {
+  border-bottom: solid 1rpx #e1dfdf;
+  margin: 10rpx 0;
+  position: relative;
+}
+.liner{
+border-bottom:  dashed 1rpx #e1dfdf;
+}
+
+.li {
+  position: absolute;
+  left: 10rpx;
+  top: -1rpx;
+  width: 140rpx;
+  border: solid 3rpx #ff9e9e;
+}
+.line2 {
+  border-bottom: solid 1rpx #e1dfdf;
+  margin: 10rpx 0;
+  position: relative;
+}
+.lili {
+  position: absolute;
+  left: 10rpx;
+  top: -1rpx;
+  width: 180rpx;
+  border: solid 3rpx #ff9e9e;
+}
+
+.con {
+  padding-top: 10rpx;
+  height: 210rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.img {
+  height: 200rpx;
+  width: 200rpx;
+}
+
+.font {
+  display: flex;
+  flex-direction: column;
+  width: 480rpx;
+   margin-right: 40rpx;
+}
+
+.name {
+  font-size: 15px;
+  color: rgba(129, 129, 129, 0.87);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.number{
+  color:#48434c; 
+  font-size:15px;
+  margin: 15rpx ;
+}
+
+
+
+.bottom{
+  margin: 20rpx 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+.pay{
+  color: #565656;
+}
+.pay image{
+  width: 46rpx;
+  height: 46rpx;
+  vertical-align: middle;
+
+}
+.z{
+    font-size: 15px;
+  	color: rgba(67, 72, 76, 0.87);
+}
+
+.money{
+ color:rgba(64, 64, 64, 0.87);
+}
+.pri{
+  color:  #fe6e1f;
+  font-size: 16px;
+}
+.space{
+  height: 20rpx;
+    background-color: #f7f7f7;
+}
+.car{
+  width: 44rpx;
+  height: 44rpx;
+}
+.wl{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color: rgba(67, 72, 76, 0.87);
+font-size: 12px;
+padding: 25rpx 0;
+}
+.row{
+  width: 694rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color:  #b8b8b8;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid  #e5e5e5;
+}
+.logistics{
+  display: flex;
+  flex-direction: row;
+ padding-top:20rpx;
+}
+.vertical{
+  height: 70rpx;
+  border-left:1rpx solid #ddd;
+  margin: 0 30rpx;
+}
+.tu{
+  margin-top: -6rpx;
+  display: flex;
+  flex-direction: column;
+align-items: center;
+  
+}
+.one{
+  width: 40rpx;
+  height: 40rpx;
+}
+.foot{
+  width: 750rpx;
+  height: 90rpx;
+  position: fixed;
+  bottom: 0;
+}
+.wuliu{
+  display:flex;
+flex-direction:column;
+padding:10rpx 8rpx;
+font-size:14px;
+margin-bottom: 90rpx;
+}
+.btnshare{
+  width: 230rpx;
+	height: 90rpx;
+  line-height: 90rpx;
+	border-radius: 2rpx;
+	background-color: #fe6e1f;
+  color: #fff;
+  position: absolute;
+  font-size: 15px;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+
+}
+.btnshare image{
+  width: 46rpx;
+  height: 46rpx;
+  vertical-align:middle;
+}
+
+.btnshare::after{
+  border: 0;
+}

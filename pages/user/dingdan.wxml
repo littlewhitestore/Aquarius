@@ -3,46 +3,25 @@
     <view class="no">订单号：2018939393939</view>
     <view class="status">待发货</view>
   </view>
-
-
   <view class="line">
     <view class='li'></view>
   </view>
-
-  <view class="con">
+  <view class="con" bindtap='dddetail'>
     <view>
       <image class='img' src="../../images/44.png"></image>
     </view>
     <view class='font'>
       <view class='name'>春季北京新款女式风衣女款高领毛衣女2017冬季新款宽松拉底毛衫针织衫</view>
-      <view class="info">
-        <view>
-          <text decode='true'>颜色:卡其色 &nbsp; &nbsp;</text>
-          <text>尺码:XL</text>
-        </view>
-        <view style='color:#48434c; font-size:14px'> X2 </view>
-      </view>
-      <view class="price">
-        ￥1000.00
-      </view>
-
-
-
-
-
+      <view class='number'> X2 </view>
     </view>
-
-
-  </view>
-
-
-  <view class="liner"></view>
-
-  <view class="bottom">
+</view>
+<view class="liner"></view>
+ <view class="bottom">
     <view class='share'>
       <button open-type='share' class="btn">
         <image src='../../images/icons/share_white.png'></image>
-        <view>分享</view></button>
+        <view>分享</view>
+      </button>
     </view>
     <view class='money'>
       <text decode='true'>运费:0 &nbsp; &nbsp;</text>

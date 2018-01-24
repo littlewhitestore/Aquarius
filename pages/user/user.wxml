@@ -76,14 +76,14 @@
   <view class="row add" bindtap='add'>
     <view class="font">
       <image src="../../images/icons/add.png"></image> 收货地址</view>
-    <view>></view>
+    <view><image  src="../../images/icons/more-black.png"></image></view>
   </view>
   <view class="space"></view>
 
   <view class="row about" bindtap='about'>
     <view class="font">
       <image src="../../images/icons/about.png"></image> 关于小白店商城</view>
-    <view>></view>
+<view><image  src="../../images/icons/more-black.png"></image></view>
   </view>
   <view class="space"></view>
 
@@ -91,12 +91,10 @@
     <view class="font">
       <image src="../../images/icons/support.png"></image> 联系客服</view>
 
-    <view class="conbt">
-      <contact-button type='default-light'></contact-button>
-      <contact-button  type='default-light'></contact-button>
-      <contact-button  type='default-light'></contact-button>
-      <contact-button  type='default-light'>></contact-button>
- 
+    <view class="gochat">
+      <contact-button class='chater' size="27"></contact-button>
+      <image src="../../images/icons/more-black.png"></image>
+
     </view>
   </view>
   <view class="space"></view>

@@ -456,15 +456,17 @@ swiper-container {
 }
 
 .swiper-container .dots {
+  width: 200rpx;
+  height: 40rpx;
   position: absolute;
   top: 710rpx;
-  left: 300rpx;
+  left: 275rpx;
   display: flex;
   justify-content: center;
 }
 
 .swiper-container .dots .dot {
-  margin: 0 20rpx;
+  margin: 0 6rpx;
   width: 20rpx;
   height: 20rpx;
   background: #dfdfdf;
@@ -533,12 +535,12 @@ swiper-container {
 }
 
 .info {
-  padding: 15rpx 30rpx;
+  padding: 4rpx auto;
   color: #43484c;
   font-size: 14px;
   line-height: 40rpx;
   letter-spacing: 0.2rpx;
-  margin-bottom: 60px;
+
 }
 
 .fb_r {

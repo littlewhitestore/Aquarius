@@ -1,0 +1,137 @@
+<view class="header">
+  <view class='h_left'>
+    <view>订单编号: 1801014829002882</view>
+    <view style='padding-left:2rpx'> 下单时间: 2018-01-01 12:23:34</view>
+
+  </view>
+  <view class='h_right'>待收货</view>
+
+</view>
+
+<view class="info">
+  <view class="in_left">
+    <image src="../../images/icons/add.png"> </image>
+  </view>
+  <view class="in_right">
+    <view class="in_right_title">
+      <view>收货人: 王雷</view>
+      <view>18911263314</view>
+
+    </view>
+    <view class='address'>收货地址: 北京市 北京市 朝阳区 红磨坊1路12号 君天大厦5层502</view>
+  </view>
+</view>
+<view class='base'>
+</view>
+<view class='list'>
+  <view class="num">
+    <image class="listimg" src='../../images/icons/goods-list.png'></image>
+    <text class='z'> 商品清单</text>
+
+  </view>
+  <view class="line">
+    <view class='li'></view>
+  </view>
+  <view class="con" bindtap='dddetail'>
+    <view>
+      <image class='img' src="../../images/44.png"></image>
+    </view>
+    <view class='font'>
+      <view class='name'>春季北京新款女式风衣女款高领毛衣女2017冬季新款宽松拉底毛衫针织衫</view>
+      <view class='number'> X2 </view>
+      <view class='pri'> ￥1000.00</view>
+
+    </view>
+  </view>
+  <view class="liner"></view>
+  <view class="bottom">
+    <view class='pay'>
+
+      <image src='../../images/icons/wechat.png'></image>
+      <text>微信支付</text>
+
+    </view>
+    <view class='money'>
+      <text decode='true'>运费:0 &nbsp; &nbsp;</text>
+      <text>实际总计: <text style="color:#d0021b;">￥2000.00</text></text>
+    </view>
+  </view>
+
+
+</view>
+<view class='base'> </view>
+
+<view class='wuliu'>
+  <view class="num">
+    <image class="car" src='../../images/icons/logistics-title.png'></image>
+    <text style="color: rgba(0, 0, 0, 0.87);font-size:16px">物流跟踪</text>
+
+  </view>
+  <view class="line2">
+    <view class='lili'></view>
+  </view>
+  <view class="wl">
+    <view>物流公司：中通快递</view>
+    <view>运单编号：238755903</view>
+  </view>
+  <view class='line'></view>
+
+  <view class='logistics'>
+
+    <view class="tu">
+      <image class='one' src="../../images/icons/logistics-current.png"></image>
+      <view class="vertical">
+      </view>
+
+    </view>
+
+    <view class="row">
+      <view>成都市【新都】，【王富贵/18911263314】已揽收</view>
+      <view>2017-11-11 12:21:34</view>
+
+    </view>
+  </view>
+
+  <view class='logistics'>
+
+    <view class="tu">
+      <image class='one' src="../../images/icons/logistics-history.png"></image>
+      <view class="vertical">
+      </view>
+
+    </view>
+
+    <view class="row">
+      <view>成都市【新都】，【王富贵/18911263314】已揽收</view>
+      <view>2017-11-11 12:21:34</view>
+
+    </view>
+  </view>
+
+  <view class='logistics'>
+
+    <view class="tu">
+      <image class='one' src="../../images/icons/logistics-history.png"></image>
+      <view class="vertical">
+      </view>
+
+    </view>
+
+    <view class="row">
+      <view>成都市【新都】，【王富贵/18911263314】已揽收</view>
+      <view>2017-11-11 12:21:34</view>
+
+    </view>
+  </view>
+
+
+
+
+</view>
+
+
+<view class="foot">
+  <button class="btnshare" open-type='share'>
+    <image src='../../images/icons/share_white.png'></image>
+  分享给好友</button>
+</view>

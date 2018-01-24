@@ -8,22 +8,12 @@ Page({
     winHeight: 0,
     currentTab: 0, //tab切换  
     goodsId: 0,
-    detailData: {},
- 
-    
-    slider: [
-      { url: '../../images/44.png' },
-      { url: '../../images/44.png' },
-      { url: '../../images/44.png' }
-    ],
-
+    slider: [],
     swiperCurrent: 0,
-
- 
     detailImageList: [],
     buynum: 1,
 
-  
+
     // 属性选择
     firstIndex: -1,
     //准备数据
@@ -43,7 +33,7 @@ Page({
     this.setData({
       swiperCurrent: e.detail.current
     })
-  } ,
+  },
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
       // 来自页面内转发按钮
@@ -131,44 +121,27 @@ Page({
   },
   // 传值
   onLoad: function (option) {
-    //this.initNavHeight();
+    console.log(option)
     var that = this;
     that.setData({
-      goodsId: option.goodsId,
-    });
-    // that.loadGoodsDetail();
-    that.setData({
-      detailData: {
-        brand: "小白客品牌",
-        name: "小白客测试商品",
-        price_yh: 0.01
-      }
+      goods_id: option.goods_id,
     });
 
-  },
-  // 商品详情数据获取
-  loadGoodsDetail: function () {
-    var that = this;
     wx.request({
-      url: app.backend.host + '/goods/' + that.data.goodsId + '/detail',
+      url: "https://www.xiaobaidiandev.com/api/goods/1/detail",
       method: 'get',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        //--init data 
-        console.log(res);
-        var goods_info = res.data.goods_info;
-        console.log(goods_info.detail_image_list)
-        // that.setData({
-        //   bannerList: goods_info.banner_list,
-        //   detailData: {
-        //     brand: goods_info.brand,
-        //     name: goods_info.name
-        //   },
-        //   detailImageList: goods_info.detail_image_list
-        // });
-        //使用假数据
+
+        that.setData({
+          goods_info: res.data.data,
+          slider: res.data.data.banner_img_list,
+          services: res.data.data.services,
+          detailImageList: res.data.data.goods_detail_img_list
+        });
+
 
 
       },
@@ -180,6 +153,11 @@ Page({
       },
     });
   },
+
+
+
+
+
   // 属性选择
   onShow: function () {
     this.setData({
@@ -438,8 +416,8 @@ Page({
     var that = this;
     //假跳转
     wx.navigateTo({
-              url: '../order/pay?goodsId=' + "1000"
-            });
+      url: '../order/pay?goodsId=' + "1000"
+    });
     // wx.request({
     //   url: app.config.host + '/Api/Shopping/add',
     //   method: 'post',

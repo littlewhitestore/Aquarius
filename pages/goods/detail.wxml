@@ -1,71 +1,63 @@
 <!--pages/index/detail.wxml-->
 <!--内容开始-->
 <view class="cont">
-  
-      <view class="swiper-container">  
-      <swiper autoplay="auto" circular="true" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">  
-        <block wx:for="{{slider}}" wx:key="unique">  
-          <swiper-item>  
-            <image src="{{item.url}}" class="img"></image>  
-          </swiper-item>  
-        </block>  
-      </swiper>  
-       
-      <view class="dots">  
-        <block wx:for="{{slider}}" wx:key="unique">  
-          <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>  
-        </block>  
-      </view>  
-    </view>  
 
-    <view class="title mt_10">{{detailData.name}}</view>
+  <view class="swiper-container">
+    <swiper autoplay="auto" circular="true" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
+      <block wx:for="{{slider}}" wx:key="unique">
+        <swiper-item>
+          <image src="{{item}}" class="img"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="dots">
+      <block wx:for="{{slider}}" wx:key="unique">
+        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+
+  <view class="title mt_10">{{goods_info.goods_name}}</view>
   <view class="fb_r ">
-    <view class="price">￥{{detailData.price_yh}}</view>
+    <view class="price">￥{{goods_info.goods_price}}</view>
     <view class="oldprice">
-      <text style="text-decoration:line-through">￥1000.00</text>
+      <text style="text-decoration:line-through">￥{{goods_info.market_price}}</text>
     </view>
     <!-- <view class="postage">免邮费</view> -->
   </view>
 
 
   <view class="gmxx">
+    <view class="fb_row" wx:for="{{services}}">
+      <view>
+        <image class="circle" src="/images/icons/rond.png"></image>
+      </view>
+      <view style='color:#43484c'>{{item.desc}}</view>
+    </view>
+
     <view class="fb_row">
       <view>
         <image class="circle" src="/images/icons/rond.png"></image>
       </view>
-      <view style='color:#43484c'>正品保证</view>
+      <view style='color:#43484c'>{{goods_info.postage_desc}}</view>
     </view>
-    <view class="fb_row">
-      <view>
-        <image class="circle" src="/images/icons/rond.png"></image>
-      </view>
-      <view style='color:#43484c'>发货&售后</view>
-    </view>
-    <view class="fb_row">
-      <view>
-        <image class="circle" src="/images/icons/rond.png"></image>
-      </view>
-      <view style='color:#43484c'>七天退换</view>
-    </view>
-     <view class="fb_row">
-      <view>
-        <image class="circle" src="/images/icons/rond.png"></image>
-      </view>
-      <view style='color:#43484c'>免邮费</view>
-    </view>
+
   </view>
 
   <view class="font">商品详情</view>
-  <view class="line"><view class="liner"></view></view>
+  <view class="line">
+    <view class="liner"></view>
+  </view>
   <view class="info">
-    <text>#90%白鸭绒，超保暖##双层高密防钻绒里布，不跑毛##刺绣丝绒领，复古风# 这款羽绒服结合了汉服的元素，领部采用经典的斜襟交叉来衬托颈部线条。不同之处在于领圈一周拼接了丝绒材质，更具精致感，而且不同材质面料的碰撞也让整件衣服更富鲜活。领口的古典纹样绣花线条流畅细腻，为整件衣服带来了一丝传统的韵味。</text>
-  </view>
-  <view wx:for="{{detailImageList}}">
-    <view>
-      <image src="{{item}}" mode="widthFix" style="width:375px" />
-    </view>
-  </view>
 
+    <view wx:for="{{detailImageList}}">
+      <view>
+        <image src="{{item}}" mode="widthFix" style="width:375px" />
+      </view>
+    </view>
+
+  </view>
 
 </view>
 <view class="footfixed tc">
@@ -82,18 +74,18 @@
     </view>
     <view class="df_1 l_h15 pt5 bre ke">
 
-      <contact-button   size="27" session-from="productId_{{detailData.id}}" class="bt">
-       </contact-button>
+      <contact-button size="27" session-from="productId_{{detailData.id}}" class="bt">
+      </contact-button>
 
-        <image class="icon_kf" src="/images/icons/support.png" ></image>
-        <view class="dbtext" >联系客服</view>
-   
+      <image class="icon_kf" src="/images/icons/support.png"></image>
+      <view class="dbtext">联系客服</view>
+
     </view>
-    <button class=" btshare df_1 l_h15 pt5"  open-type="share">
-     
+    <button class=" btshare df_1 l_h15 pt5" open-type="share">
+
       <image class="icon_kf" src="/images/icons/share.png"></image>
       <view class="dbtext" style='margin-top:6rpx'>好友分享</view>
-  </button>
+    </button>
   </view>
   <view class="fl_l w40 b1">
     <!-- <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view> -->

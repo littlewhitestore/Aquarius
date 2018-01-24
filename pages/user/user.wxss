@@ -89,3 +89,12 @@
   float: left;
   color: #000;
 }
+.chater{
+ position: absolute;
+ right: 0;
+ opacity: 0;
+ 
+}
+.gochat{
+  position: relative;
+}

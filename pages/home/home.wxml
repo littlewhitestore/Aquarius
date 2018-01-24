@@ -5,134 +5,109 @@
     <swiper autoplay="auto" circular="true" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
       <block wx:for="{{slider}}" wx:key="unique">
         <swiper-item>
-          <image src="{{item.url}}" class="img"></image>
+          <image src="{{item.img}}" class="img"></image>
         </swiper-item>
       </block>
     </swiper>
 
-    <view class="dots">
-      <block wx:for="{{slider}}" wx:key="unique">
-        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
-      </block>
-    </view>
+  <view class="dots">
+    <block wx:for="{{slider}}" wx:key="unique">
+      <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+    </block>
   </view>
+</view>
 
-  <view class="space">
-    <view class="line"></view>
-    <view class="font">好物精选</view>
-    <view class="line"></view>
-  </view>
+<view class="space">
+  <view class="line"></view>
+  <view class="font">好物精选</view>
+  <view class="line"></view>
+</view>
 
 
 <view class="content">
-  <view class="box"  wx:for="{{productData}}">
-    <view class="left">
-      <image src="../../images/33.png"></image>
-    </view>
-    <view class="right">
-      <view class="title">
-        <text>{{item.name}}</text>
+
+
+  <view wx:for="{{productData}}">
+    <view class="box">
+      <view class="left">
+        <image src="{{item.goods_img}}"></image>
       </view>
-      <view class="price">
-        <view class='money'>
-          <view class="now"> ￥{{item.price_yh}}</view>
-          <view class="old">￥{{item.price}} </view>
+      <view class="right">
+        <view class="title">
+          <text>{{item.goods_name}}</text>
         </view>
-        <view class='buy' bindtap='godetail'>
-          <text >立即抢购 </text> <image class='moreimg'  src="../../images/icons/more.png"></image> </view>
+        <view class="price">
+          <view class='money'>
+            <view class="now"> ￥{{item.goods_price}}</view>
+            <view class="old">￥{{item.market_price}} </view>
+          </view>
+          <view class='buy' bindtap='godetail'>
+            <text>立即抢购 </text>
+            <image class='moreimg' src="../../images/icons/more.png"></image>
+          </view>
+        </view>
       </view>
     </view>
+    <view class="base"></view>
+
   </view>
-  <view class="base"> </view>
 
 
 
-  <view class="box"  wx:for="{{productData}}">
-    <view class="left">
-      <image src="../../images/33.png"></image>
-    </view>
-    <view class="right">
-      <view class="title">
-        <text>{{item.name}}</text>
-      </view>
-      <view class="price">
-        <view class='money'>
-          <view class="now"> ￥{{item.price_yh}}</view>
-          <view class="old">￥{{item.price}} </view>
-        </view>
-        <view class='buy' bindtap='godetail'>
-          <text >立即抢购 </text> <image class='moreimg'  src="../../images/icons/more.png"></image> </view>
-      </view>
-    </view>
-  </view>
-  <view class="base"> </view>
-    <view class="box"  wx:for="{{productData}}">
-    <view class="left">
-      <image src="../../images/33.png"></image>
-    </view>
-    <view class="right">
-      <view class="title">
-        <text>{{item.name}}</text>
-      </view>
-      <view class="price">
-        <view class='money'>
-          <view class="now"> ￥{{item.price_yh}}</view>
-          <view class="old">￥{{item.price}} </view>
-        </view>
-        <view class='buy' bindtap='godetail'>
-          <text >立即抢购 </text> <image class='moreimg'  src="../../images/icons/more.png"></image> </view>
-      </view>
-    </view>
-  </view>
-  <view class="base"> </view>
-
-    <view class="box"  wx:for="{{productData}}">
-    <view class="left">
-      <image src="../../images/33.png"></image>
-    </view>
-    <view class="right">
-      <view class="title">
-        <text>{{item.name}}</text>
-      </view>
-      <view class="price">
-        <view class='money'>
-          <view class="now"> ￥{{item.price_yh}}</view>
-          <view class="old">￥{{item.price}} </view>
-        </view>
-        <view class='buy' bindtap='godetail'>
-          <text >立即抢购 </text> <image class='moreimg'  src="../../images/icons/more.png"></image> </view>
-      </view>
-    </view>
-  </view>
-  <view class="base"> </view>
-  <view class="box"  wx:for="{{productData}}">
-    <view class="left">
-      <image src="../../images/33.png"></image>
-    </view>
-    <view class="right">
-      <view class="title">
-        <text>{{item.name}}</text>
-      </view>
-      <view class="price">
-        <view class='money'>
-          <view class="now"> ￥{{item.price_yh}}</view>
-          <view class="old">￥{{item.price}} </view>
-        </view>
-        <view class='buy' bindtap='godetail'>
-          <text >立即抢购 </text> <image class='moreimg'  src="../../images/icons/more.png"></image> </view>
-      </view>
-    </view>
-  </view>
-  <view class="base"> </view>
 </view>
 
 
 
-  <view class="gotop" bindtap='gotop'> 
-  <view><image style='width:30rpx; height:40rpx' src="../../images/icons/up.png"></image></view>
-   <view style='margin-top:-8rpx'>顶部</view>
+<view class="content">
+
+
+  <view wx:for="{{productData}}">
+    <view class="box">
+      <view class="left">
+        <image src="{{item.goods_img}}"></image>
+      </view>
+      <view class="right">
+        <view class="title">
+          <text>{{item.goods_name}}</text>
+        </view>
+        <view class="price">
+          <view class='money'>
+            <view class="now"> ￥{{item.goods_price}}</view>
+            <view class="old">￥{{item.market_price}} </view>
+          </view>
+          <view class='buy' bindtap='godetail'>
+            <text>立即抢购 </text>
+            <image class='moreimg' src="../../images/icons/more.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="base"></view>
+
   </view>
-  <!-- <view class="cont">
+
+
+
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+<view class="gotop" bindtap='gotop'>
+  <view>
+    <image style='width:30rpx; height:40rpx' src="../../images/icons/up.png"></image>
+  </view>
+  <view style='margin-top:-8rpx'>顶部</view>
+</view>
+<!-- <view class="cont">
     <navigator class="pr" url="../goods/detail?goodsId={{item.id}}" hover-class="changestyle" wx:for="{{productData}}">
       <image class="photo" src="{{item.photo_x}}"></image>
       <view class="title">{{item.name}}</view>
@@ -151,4 +126,21 @@
     </navigator>
   </view>
   <view class="clear mt10" bindtap="getMore">点击查看更多</view> -->
+  </view>
+
+  <view class="weui-loadmore"  hidden="{{isHideLoadMore}}" >
+  <view class="loadEffect">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
 </view>
+
+
+   
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>

@@ -5,22 +5,11 @@ Page({
     imgUrls: [],
     circular: true,
     slider: [
-      { url: '../../images/44.png' },
-      { url: '../../images/44.png' },
-      { url: '../../images/44.png' }
+     
     ],
     swiperCurrent: 0,
 
-    productData: [
-      {
-        id: 1,
-        is_show: 1,
-        name: "测试商品",
-        price: 18.88,
-        price_yh: 20,
-        shiyong: 100
-      }
-    ],
+    productData: [],
     proCat: [],
     page: 2,
     index: 2,
@@ -44,10 +33,35 @@ Page({
   },
   godetail: function () {
     wx.navigateTo({
-      // url:"../goods/detail?goodsId="+goodsId,
-         url:"../goods/detail",
+      url:"../goods/detail?goods_id="+1234,
+       
     })
 
+  },
+
+//下拉刷新
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+
+    //模拟加载
+    setTimeout(function () {
+      // complete
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+    }, 1500);
+  },
+
+  //加载更多
+  onReachBottom: function () {
+    console.log('正在加载')
+    setTimeout(() => {
+      this.setData({
+        isHideLoadMore: true,
+        // productData: [
+       
+        // ],
+      })
+    }, 1000)
   },
 
   //跳转商品列表页   
@@ -194,10 +208,16 @@ Page({
     })
   },
 
+
+
   onLoad: function (options) {
     var that = this;
+    var sessionId = app.globalData.session;
+    that.setData({
+      sessionId: sessionId,
+    });
     wx.request({
-      url: app.config.host + '/home',
+      url:"https://www.xiaobaidiandev.com/api/home?sessionId="+sessionId ,
       method: 'get',
       data: {},
       header: {
@@ -205,20 +225,16 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        var ggtop = res.data.ggtop;
-        var procat = res.data.procat;
-        var prolist = res.data.product_data_list;
-        var brand = res.data.brand;
-        var course = res.data.course;
-        //that.initProductData(data);
+        var bannerimg = res.data.data.banner_img_list;
+        var productlist=res.data.data.goods_list;
+        
+        
         that.setData({
-          imgUrls: ggtop,
-          proCat: procat,
-          productData: prolist,
-          brand: brand,
-          course: course
+          slider: bannerimg,
+          productData: productlist
+         
         });
-        //endInitData
+       
       },
       fail: function (e) {
         wx.showToast({
