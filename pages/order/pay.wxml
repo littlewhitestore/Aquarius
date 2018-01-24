@@ -2,80 +2,81 @@
 <view class="w100">
 
 
-  <view class="p_all bg_hui mt10 font_14" wx:if="{{receiver != null}}">
-      <view class="df" bindtap="getWxAddress">
-        <view class="df_1 c6">
-          <view class="l_h20">收货人：{{receiver.name}}
-            <text class="fl_r mr10">{{receiver.mobile}}</text>
-          </view>
-          <view class="l_h20 mt5">地址：{{receiver.province}} {{receiver.city}} {{receiver.district}} {{receiver.address}}</view>
-        </view>
-        <image class="x_right mt15" src="/images/x_right.png"></image>
+  <view class="addr addr2 grey font_14"  bindtap="getWxAddress" wx:if="{{receiver != null}}">
+    <image class="ic_addr" src="../../images/icons/icon_white_addr.png"></image>
+    <view class="addr_detail c6">
+      <view class="width_fill white">收货人：{{receiver.name}}
+        <text class="fl_r mr10 mr20 white">{{receiver.mobile}}</text>
       </view>
+      <view class=" mt5 white">
+      地址：{{receiver.province}} {{receiver.city}} {{receiver.district}} {{receiver.address}}
+      </view>
+    </view>
+    <image class="arrow" src="/images/icons/icon_white_r_arrow.png"></image>
   </view>
-  <view class="p_all bg_hui mt10 font_14" wx:else>
-    <!-- <navigator url="../address/user-address/user-address?cartId={{cartId}}" hover-class="none"> -->
-      <view class="df text_aligncenter" bindtap="getWxAddress">
+  <view class="addr grey  font_14" bindtap="getWxAddress" wx:else>
+    <view class="addr_add_item">
+      <image class="d_plus" src="/images/icons/icon_white_plus.png"></image>
+      <view class="df text_aligncenter white" >
         添加收货地址
       </view>
-    <!-- </navigator> -->
+    </view>
+    <image class="arrow" src="/images/icons/icon_white_r_arrow.png"></image> 
   </view>
-  <view class='bbe list_title p_all'>
+  <!--商品列表  -->
+  <view class='bbe list_title p_all bg_grey_fafbfc'>
     <image class="i_n_image" src='/images/icons/order.png'></image>
-    <text class='font_16'>商品清单</text>
+    <text class='font_16 ml20 font_75_87'>商品清单</text>
   </view>
-  <view class="p_all bg_white df item bbe" wx:for="{{items}}">
+  <view class="p_all_goods bg_grey_fafbfc df item bbe" wx:for="{{items}}">
     <view class="cp_photo">
       <image src="{{item.thumbnail}}"></image>
     </view>
     <view class="columb_sbtw">
-      <view class="font_15 mt5 ovh1">
+      <view class="font_14 mt5 ovh1 font_75_87">
         {{item.name}}
       </view>
       <view class="pn"> 
-        <text class="gm_ovh_1h red pt10">¥{{item.price}}</text>
-        <text class="gm_ovh_1h pt10">X{{item.number}}</text>
+        <text class="gm_ovh_1h theme_color pt10 price">¥{{item.price}}</text>
+
+        <image class="minus" src="/images/icons/ic_minus_dis.png" wx:if="{{buy_number == 1}}"></image>
+        <image class="minus" src="/images/icons/ic_minus.png" bindtap="minus" wx:else></image>
+        <text class="gm_ovh_1h pt10">{{buy_number}}</text>
+        <image class="plus"  src="/images/icons/ic_plus.png" bindtap="plus" ></image>
       </view>
       
     </view>
-    
+  <!--金额  -->
   </view>
-  <view class="p_all bg_white item bbe e_rpx">
+  <view class="p_all bg_grey_fafbfc item">
     <view class='pn'>
-      <text class='font_14 c6'>支付金额总计(免运费)</text>
-      <text class='font_16 red'>¥ {{total_amount}}</text>     
+      <text class='font_14 c6 w_160rpx font_75_87'>支付金额总计</text>
+      <text class='font_14 margin_l font_75_87'>¥ {{total_amount}}</text>     
+    </view>
+    <view class='pn'>
+      <text class='font_14 c6 w_160rpx font_75_87'>运费</text>
+      <text class='font_14 margin_l font_75_87'>{{postage}}</text>     
+    </view>
+    <view class='pn'>
+      <text class='font_16 theme_color w_160rpx'>需付款金额</text>
+      <text class='font_16 theme_color margin_l'>¥ {{amount_payable}}</text>     
     </view>
   </view>
-  
-
-
-  <view class="xuan" wx:if="{{vou!=''}}">
-    <view class="hui">可使用优惠券：</view>
-    <!--设置监听器，当点击radio时调用-->
-    <radio-group bindchange="listenerRadioGroup" class="hui">
-      <!--label通常与radio和checkbox结合使用-->
-      <label style="display: flex" wx:for="{{vou}}" class="xuan" bindtap="getvou" data-id="{{item.vid}}" data-price="{{item.amount}}">
-        <radio value="{{item.vid}}" />满{{item.full_money}}立减{{item.amount}}元
-      </label>
-      <label style="display: flex" class="xuan" bindtap="getvou" data-id="0" data-price="0">
-        <radio value="0" />不使用优惠券
-      </label>
-    </radio-group>
-
-
-  </view>
-  <view class="p_all bg_white mt10 font_14">
-    <textarea class="min_60" auto-height name="remark" placeholder="备注" bindinput="remarkInput" value="{{remark}}" />
+  <!--支付选项  -->
+  <view class="bg_grey_fafbfc mt15 font_14 payitem">
+    <image class='ic_wx ml20 mr28' src="/images/icons/ic_wx.png"></image>
+    <text class='df_1 font_16 font_75_87'>微信支付</text>
+    <image class='ic_selected mr28' src="/images/icons/ic_selected.png"></image>
   </view>
 
-  <view class="zhifu mt10 tc">应共支付：
-    <span class="font_20 red">¥ {{amount_payable}}</span>
+  <view class="mt20 ml20 font_10">
+      注：目前仅支持微信支付
   </view>
   <view class="p_all mt10">
     
-    <button class="wx_pay_btn" type="primary" id="wxPay" disabled="{{btnDisabled}}" formType="submit" bindtap="settlement">
-      支付订单
-    </button>    
+    <view class="wx_pay_btn white font_16" bindtap="settlement">
+      立即支付
+    </view>    
     
   </view>
 

@@ -43,9 +43,9 @@ Page({
       goods_id: goodsId
     });
     
-    this.loadDataAndSettlement({});
+    this.loadDataAndSettlement();
   },
-  loadDataAndSettlement: function (address) {
+  loadDataAndSettlement: function () {
     var that = this;
     wx.showLoading({
       title: '刷新中。。。',
@@ -57,7 +57,7 @@ Page({
       data: {
         product_id: that.data.goods_id,
         number: that.data.buy_number,        
-        receiver: address
+        receiver: that.data.receiver
       },
       header: {
         'Content-Type': 'application/json'
@@ -73,16 +73,24 @@ Page({
         //   });
         // }
         console.log(res.data);
-        if ("success"===res.data.status)
+        if ("success"===res.data.status){
           console.log(res.data.data);
-        that.setData({
+          that.setData({
           total_amount: res.data.data.total_amount,
           items: res.data.data.items,
-          amount_payable: res.data.data.amount_payable
-        });
+          amount_payable: "0.01",
+          postage: res.data.data.postage
+          });
+        }else{
+          wx.showToast({
+            title: res.data.message,
+          })
+        }  
+
         //endInitData
       },
       complete: function(){
+        console.log(that.data.items);
         wx.hideLoading()
       }
     });
@@ -91,13 +99,19 @@ Page({
   submitOrder: function(){
     var that = this;
     //订单信息验证
-    if (that.data.receiver){
+    if (!that.data.receiver){
       wx.showToast({
         title: '请完善收货地址信息',
       })
       return;
-    }
-      
+    };
+
+    if (!that.data.amount_payable) {
+      wx.showToast({
+        title: '请刷新',
+      })
+      return;
+    };  
     
     wx.showLoading({
       title: "正在提交订单。。",
@@ -125,13 +139,18 @@ Page({
         //   });
         // }
         console.log(res.data);
-        if ("success" === res.data.status)
+        if ("success" === res.data.status){
           console.log(res.data.data);
-        that.setData({
-          total_amount: res.data.data.total_amount,
-          items: res.data.data.items,
-          amount_payable: res.data.data.amount_payable
-        });
+          console.log("测试===========" + that.data.postag);
+          that.setData({
+            total_amount: res.data.data.total_amount,
+            items: res.data.data.items,
+            postage: res.data.data.postage,
+            amount_payable: "0.01"
+          });
+         
+        }
+          
         //endInitData
       },
       complete: function () {
@@ -140,78 +159,10 @@ Page({
     });  
   },
   
-  remarkInput: function (e) {
-    this.setData({
-      remark: e.detail.value,
-    })
-  },
 
-  //选择优惠券
-  getvou: function (e) {
-    var vid = e.currentTarget.dataset.id;
-    var price = e.currentTarget.dataset.price;
-    var zprice = this.data.vprice;
-    var cprice = parseFloat(zprice) - parseFloat(price);
-    this.setData({
-      total: cprice,
-      vid: vid
-    })
-  },
+  
 
-  //确认订单
-  createProductOrder: function () {
-    this.setData({
-      btnDisabled: false,
-    })
-
-    //创建订单
-    var that = this;
-    wx.request({
-      url: app.config.host + '/Api/Payment/payment',
-      method: 'post',
-      data: {
-        uid: that.data.userId,
-        cart_id: that.data.cartId,
-        type: that.data.paytype,
-        aid: that.data.addrId,//地址的id
-        remark: that.data.remark,//用户备注
-        price: that.data.total,//总价
-        vid: that.data.vid,//优惠券ID
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        //--init data        
-        var data = res.data;
-        if (data.status == 1) {
-          //创建订单成功
-          if (data.arr.pay_type == 'cash') {
-            wx.showToast({
-              title: "请自行联系商家进行发货!",
-              duration: 3000
-            });
-            return false;
-          }
-          if (data.arr.pay_type == 'weixin') {
-            //微信支付
-            that.wxpay(data.arr);
-          }
-        } else {
-          wx.showToast({
-            title: "下单失败!",
-            duration: 2500
-          });
-        }
-      },
-      fail: function (e) {
-        wx.showToast({
-          title: '网络异常！err:createProductOrder',
-          duration: 2000
-        });
-      }
-    });
-  },
+ 
 
   settlement: function () {
     wx.request({
@@ -328,7 +279,7 @@ Page({
         });
         console.log(that.data.receiver);
         console.log("地址添加后=====" + (that.data.receiver == null));
-        that.loadDataAndSettlement(that.data.receiver)
+        that.loadDataAndSettlement();
       }
     })
   },
@@ -387,7 +338,27 @@ Page({
     
 
     })
-  }
+  },
+  //减购买数量
+  minus: function(){
+    var that = this;
+
+    if (that.data.buy_number>1){
+      this.setData({
+        buy_number: that.data.buy_number - 1
+      })
+      this.loadDataAndSettlement();
+    }
+      
+  },
+  //加购买数量
+  plus: function(){
+    var that = this;
+    this.setData({
+      buy_number: that.data.buy_number + 1
+    })
+    this.loadDataAndSettlement();
+  } 
 
 
 });
