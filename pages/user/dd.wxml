@@ -1,10 +1,10 @@
 <view class="header">
   <view class='h_left'>
-    <view>订单编号: 1801014829002882</view>
-    <view style='padding-left:2rpx'> 下单时间: 2018-01-01 12:23:34</view>
+    <view>订单编号: {{orderinfo.order_sn}}</view>
+    <view style='padding-left:2rpx'> 下单时间: {{time}}</view>
 
   </view>
-  <view class='h_right'>待收货</view>
+  <view class='h_right'>{{orderinfo.status_desc}}</view>
 
 </view>
 
@@ -14,11 +14,11 @@
   </view>
   <view class="in_right">
     <view class="in_right_title">
-      <view>收货人: 王雷</view>
-      <view>18911263314</view>
+      <view>收货人: {{orderinfo.receiver.name}}</view>
+      <view>{{orderinfo.receiver.mobile}}</view>
 
     </view>
-    <view class='address'>收货地址: 北京市 北京市 朝阳区 红磨坊1路12号 君天大厦5层502</view>
+    <view class='address'>收货地址: {{orderinfo.receiver.address}}</view>
   </view>
 </view>
 <view class='base'>
@@ -37,9 +37,9 @@
       <image class='img' src="../../images/44.png"></image>
     </view>
     <view class='font'>
-      <view class='name'>春季北京新款女式风衣女款高领毛衣女2017冬季新款宽松拉底毛衫针织衫</view>
-      <view class='number'> X2 </view>
-      <view class='pri'> ￥1000.00</view>
+      <view class='name'>{{orderinfo.items[0].product_name}}</view>
+      <view class='number'> X{{orderinfo.items[0].number}}</view>
+      <view class='pri'> ￥{{orderinfo.items[0].sale_price}}</view>
 
     </view>
   </view>
@@ -52,8 +52,8 @@
 
     </view>
     <view class='money'>
-      <text decode='true'>运费:0 &nbsp; &nbsp;</text>
-      <text>实际总计: <text style="color:#d0021b;">￥2000.00</text></text>
+      <text decode='true'>运费:{{orderinfo.postage}}&nbsp; &nbsp;</text>
+      <text>实际总计: <text style="color:#d0021b;">￥{{orderinfo.amount_payable}}</text></text>
     </view>
   </view>
 
@@ -72,60 +72,66 @@
   </view>
   <view class="wl">
     <view>物流公司：中通快递</view>
-    <view>运单编号：238755903</view>
+    <view>运单编号：{{orderinfo.order_sn}}</view>
   </view>
   <view class='line'></view>
 
-  <view class='logistics'>
+  <view class="log">
 
-    <view class="tu">
-      <image class='one' src="../../images/icons/logistics-current.png"></image>
-      <view class="vertical">
+    <view class='logistics'>
+
+      <view class="tu">
+        <image class='one' src="../../images/icons/logistics-current.png"></image>
+        <view class="vertical">
+        </view>
+
       </view>
 
+      <view class="row zi">
+        <view>成都市【新都】，【王富贵/18911263314】已揽收</view>
+        <view>2017-11-11 12:21:34</view>
+
+      </view>
     </view>
 
-    <view class="row">
-      <view>成都市【新都】，【王富贵/18911263314】已揽收</view>
-      <view>2017-11-11 12:21:34</view>
 
-    </view>
-  </view>
 
-  <view class='logistics'>
 
-    <view class="tu">
-      <image class='one' src="../../images/icons/logistics-history.png"></image>
-      <view class="vertical">
+
+    <view class='logistics'>
+
+      <view class="tu">
+        <image class='one' src="../../images/icons/logistics-history.png"></image>
+        <view class="vertical">
+        </view>
+
       </view>
 
+      <view class="row ">
+        <view>到成都市【成都西南转运中心】</view>
+        <view>2017-11-11 12:21:34</view>
+
+      </view>
     </view>
 
-    <view class="row">
-      <view>成都市【新都】，【王富贵/18911263314】已揽收</view>
-      <view>2017-11-11 12:21:34</view>
+    <view class='logistics'>
 
-    </view>
-  </view>
+      <view class="tu">
+        <image class='one' src="../../images/icons/logistics-history.png"></image>
+        <view class="vertical">
+        </view>
 
-  <view class='logistics'>
-
-    <view class="tu">
-      <image class='one' src="../../images/icons/logistics-history.png"></image>
-      <view class="vertical">
       </view>
 
+      <view class="row">
+        <view>成都市【双流县】，【李富贵/18911263314】正在前往商家揽件</view>
+        <view>2017-11-11 12:21:34</view>
+
+      </view>
     </view>
 
-    <view class="row">
-      <view>成都市【新都】，【王富贵/18911263314】已揽收</view>
-      <view>2017-11-11 12:21:34</view>
 
-    </view>
   </view>
-
-
-
 
 </view>
 
@@ -133,5 +139,5 @@
 <view class="foot">
   <button class="btnshare" open-type='share'>
     <image src='../../images/icons/share_white.png'></image>
-  分享给好友</button>
+    分享给好友</button>
 </view>

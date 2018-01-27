@@ -217,7 +217,7 @@ Page({
       sessionId: sessionId,
     });
     wx.request({
-      url:"https://www.xiaobaidiandev.com/api/home?sessionId="+sessionId ,
+      url: app.config.host + '/home?sessionId=' + app.globalData.session,
       method: 'get',
       data: {},
       header: {

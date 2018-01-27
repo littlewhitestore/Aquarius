@@ -33,7 +33,7 @@ border-bottom: solid 1rpx #e1dfdf;
   position: absolute;
   left: 10rpx;
   top: -1rpx;
-  width: 330rpx;
+  width: 422rpx;
   border: solid 3rpx #ff9e9e;
 }
 
