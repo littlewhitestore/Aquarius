@@ -1,4 +1,4 @@
-var app = getApp();
+ var app = getApp();
 
 Page({
   data: {
@@ -224,6 +224,7 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        console.log("=====首页数据请求成功=======");
         console.log(res);
         var bannerimg = res.data.data.banner_img_list;
         var productlist=res.data.data.goods_list;
@@ -238,9 +239,11 @@ Page({
       },
       fail: function (e) {
         wx.showToast({
-          title: '网络异常！',
+          title: '网络异常！'+e,
           duration: 2000
         });
+        console.log("=====首页数据请求失败=======");
+        console.log(e);
       },
     })
 

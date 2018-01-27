@@ -60,6 +60,7 @@ App({
     wx.login({
       success: function (res) {
         var code = res.code;
+        console.log("code ="+code);
         wx.request({
           url: that.config.host + '/login',
           method: 'get',
@@ -81,6 +82,10 @@ App({
               key: 'session',
               data: res.data.data.session,
             })
+          },
+          fail: function(res){
+            console.log("=========login 请求失败 ======");
+            console.log(res);
           }
         })
         wx.getUserInfo({

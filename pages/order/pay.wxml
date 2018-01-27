@@ -74,8 +74,8 @@
   </view>
   <view class="p_all mt10">
     
-    <view class="wx_pay_btn white font_16" bindtap="settlement">
-      立即支付
+    <view class="wx_pay_btn white font_16" bindtap="submitOrder">
+      立即支付 
     </view>    
     
   </view>

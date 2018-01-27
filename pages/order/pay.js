@@ -9,7 +9,8 @@ Page({
     items: [],
     total_amount: "",
     amount_payable: "",
-    receiver: null
+    receiver: null,
+    pay_data:null
   },
   onLoad: function (options) {
     console.log("=======支付页面=========");
@@ -85,7 +86,7 @@ Page({
           wx.showToast({
             title: res.data.message,
           })
-        }  
+        }   
 
         //endInitData
       },
@@ -123,31 +124,64 @@ Page({
       data: {
         product_id: that.data.goods_id,
         number: that.data.buy_number,
-        receiver: address
+        // receiver: that.data.receiver,
+        receiver: {
+          province: "beijing",
+          city: "beijing",
+          district: "chaoyang",
+          address: "3litun",
+          name: "xiaobai",
+          mobile: "16612345678",
+          postalCode: "ddsadsad",
+          nationalCode: "086"
+        }
+
       },
       header: {
         'Content-Type': 'application/json'
       },
-      success: function (res) {
-        //that.initProductData(res.data);
-        // var adds = res.data.adds;
-        // if (adds) {
-        //   var addrId = adds.id;
-        //   that.setData({
-        //     address: adds,
-        //     addrId: addrId
-        //   });
-        // }
-        console.log(res.data);
+      success: function (res) {      
+        console.log(res.data)
         if ("success" === res.data.status){
           console.log(res.data.data);
-          console.log("测试===========" + that.data.postag);
+          var pay_data_loc = {
+            package: res.data.data.package,
+            signType: res.data.data.signType,
+            paySign: res.data.data.paySign,
+            nonceStr: res.data.data.nonceStr,
+            timeStamp: res.data.data.timeStamp,            
+          };
           that.setData({
-            total_amount: res.data.data.total_amount,
-            items: res.data.data.items,
-            postage: res.data.data.postage,
-            amount_payable: "0.01"
+            pay_data: pay_data_loc
           });
+          console.log("setPayData成功=========")
+          console.log(that.data.pay_data)
+          console.log("setPayData成功=========")
+          wx.requestPayment({
+            timeStamp: that.data.pay_data.timeStamp+"",
+            nonceStr: that.data.pay_data.nonceStr,
+            package: that.data.pay_data.package,
+            signType: that.data.pay_data.signType,
+            paySign: that.data.pay_data.paySign,
+            success: function (res) {
+              wx.showToast({
+                title: "支付成功!",
+                duration: 2000,
+              });
+              setTimeout(function () {
+                wx.navigateTo({
+                  url: '../user/dingdan',
+                });
+              }, 2500);
+            },
+            fail: function (res) {
+              wx.showToast({
+                title: res.requestPayment,
+                duration: 3000
+              })
+            }
+          })
+         
          
         }
           
@@ -164,100 +198,9 @@ Page({
 
  
 
-  settlement: function () {
-    wx.request({
-      url: app.config.host + '/settlement',
-      method: 'GET',
-      data: {},
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        paymentInfo = res.data.payment_info
-        wx.requestPayment({
-          timeStamp: paymentInfo.time_stamp,
-          nonceStr: paymentInfo.nonce_str,
-          package: paymentInfo.package,
-          signType: paymentInfo.sign_type,
-          paySign: paymentInfo.sign,
-          success: function (res) {
-            wx.showToast({
-              title: "支付成功!",
-              duration: 2000,
-            });
-            setTimeout(function () {
-              wx.navigateTo({
-                url: '../user/dingdan?currentTab=1&otype=deliver',
-              });
-            }, 2500);
-          },
-          fail: function (res) {
-            wx.showToast({
-              title: res,
-              duration: 3000
-            })
-          }
-        })
-      }
-    })
-  },
+  
 
-  //调起微信支付
-  wxpay: function (order) {
-    wx.request({
-      url: app.d.ceshiUrl + '/Api/Wxpay/wxpay',
-      data: {
-        order_id: order.order_id,
-        order_sn: order.order_sn,
-        uid: this.data.userId,
-      },
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }, // 设置请求的 header
-      success: function (res) {
-        if (res.data.status == 1) {
-          var order = res.data.arr;
-          wx.requestPayment({
-            timeStamp: order.timeStamp,
-            nonceStr: order.nonceStr,
-            package: order.package,
-            signType: 'MD5',
-            paySign: order.paySign,
-            success: function (res) {
-              wx.showToast({
-                title: "支付成功!",
-                duration: 2000,
-              });
-              setTimeout(function () {
-                wx.navigateTo({
-                  url: '../user/dingdan?currentTab=1&otype=deliver',
-                });
-              }, 2500);
-            },
-            fail: function (res) {
-              wx.showToast({
-                title: res,
-                duration: 3000
-              })
-            }
-          })
-        } else {
-          wx.showToast({
-            title: res.data.err,
-            duration: 2000
-          });
-        }
-      },
-      fail: function () {
-        // fail
-        wx.showToast({
-          title: '网络异常！err:wxpay',
-          duration: 2000
-        });
-      }
-    })
-  },
+  
   //请求地址
   setAddressData: function(){
     console.log("========进入选择地址==========");
