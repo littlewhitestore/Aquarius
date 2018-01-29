@@ -2,6 +2,7 @@ var app = getApp();
 // pages/order/pay.js
 Page({
   data: {
+    orderid: "4",
     goods_id: 1,
     buy_number: 1,
     session: "",
@@ -153,10 +154,7 @@ Page({
           };
           that.setData({
             pay_data: pay_data_loc
-          });
-          console.log("setPayData成功=========")
-          console.log(that.data.pay_data)
-          console.log("setPayData成功=========")
+          });        
           wx.requestPayment({
             timeStamp: that.data.pay_data.timeStamp+"",
             nonceStr: that.data.pay_data.nonceStr,
@@ -169,10 +167,10 @@ Page({
                 duration: 2000,
               });
               setTimeout(function () {
-                wx.navigateTo({
-                  url: '../user/dingdan',
+                wx.redirectTo({
+                  url: '../user/dd?orderid=' + that.data.orderid,
                 });
-              }, 2500);
+              }, 3000);
             },
             fail: function (res) {
               wx.showToast({
