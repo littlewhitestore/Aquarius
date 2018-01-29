@@ -177,12 +177,12 @@ Page({
 
   onLoad: function (options) {
     var that = this;
-    var sessionId = app.globalData.session;
+    var token = app.globalData.token;
     that.setData({
-      sessionId: sessionId,
+      token: token,
     });
     wx.request({
-      url: app.config.host + '/home?sessionId=' + app.globalData.session,
+      url: app.config.host + '/home?token=' + app.globalData.token,
       method: 'get',
       data: {},
       header: {

@@ -2,7 +2,7 @@ var app = getApp();
 // pages/order/pay.js
 Page({
   data: {
-    orderid: "4",
+    orderid: "",
     goods_id: 1,
     buy_number: 1,
     token: "",
@@ -65,17 +65,8 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        //that.initProductData(res.data);
-        // var adds = res.data.adds;
-        // if (adds) {
-        //   var addrId = adds.id;
-        //   that.setData({
-        //     address: adds,
-        //     addrId: addrId
-        //   });
-        // }
         console.log(res.data);
-        if ("success"===res.data.status){
+        if (res.data.status_code && res.data.status_code == 1){
           console.log(res.data.data);
           that.setData({
           total_amount: res.data.data.total_amount,
@@ -83,10 +74,12 @@ Page({
           amount_payable: "0.01",
           postage: res.data.data.postage
           });
-        }else{
+        } else if (res.data.status_code == 0){
           wx.showToast({
             title: res.data.message,
           })
+        } else if (res.data.status_code == 2){
+          app.confirmUserLogin();
         }   
 
         //endInitData
@@ -125,17 +118,17 @@ Page({
       data: {
         product_id: that.data.goods_id,
         number: that.data.buy_number,
-        // receiver: that.data.receiver,
-        receiver: {
-          province: "beijing",
-          city: "beijing",
-          district: "chaoyang",
-          address: "3litun",
-          name: "xiaobai",
-          mobile: "16612345678",
-          postalCode: "ddsadsad",
-          nationalCode: "086"
-        }
+        receiver: that.data.receiver,
+        // receiver: {
+        //   province: "beijing",
+        //   city: "beijing",
+        //   district: "chaoyang",
+        //   address: "3litun",
+        //   name: "xiaobai",
+        //   mobile: "16612345678",
+        //   postalCode: "ddsadsad",
+        //   nationalCode: "086"
+        // }
 
       },
       header: {
@@ -143,17 +136,19 @@ Page({
       },
       success: function (res) {      
         console.log(res.data)
-        if ("success" === res.data.status){
+        if (res.data.status_code && res.data.status_code ==1){
           console.log(res.data.data);
           var pay_data_loc = {
-            package: res.data.data.package,
-            signType: res.data.data.signType,
-            paySign: res.data.data.paySign,
-            nonceStr: res.data.data.nonceStr,
-            timeStamp: res.data.data.timeStamp,            
+            package: res.data.data.mina_payment.package,
+            signType: res.data.data.mina_payment.signType,
+            paySign: res.data.data.mina_payment.paySign,
+            nonceStr: res.data.data.mina_payment.nonceStr,
+            timeStamp: res.data.data.mina_payment.timeStamp,  
+                    
           };
           that.setData({
-            pay_data: pay_data_loc
+            pay_data: pay_data_loc,
+            orderid: res.data.data.order_id
           });        
           wx.requestPayment({
             timeStamp: that.data.pay_data.timeStamp+"",
@@ -170,18 +165,28 @@ Page({
                 wx.redirectTo({
                   url: '../user/dd?orderid=' + that.data.orderid,
                 });
+                console.log(that.data);
               }, 2500);
             },
             fail: function (res) {
-              wx.showToast({
-                title: res.requestPayment,
-                duration: 3000
-              })
+              if (res.errMsg == "requestPayment:fail cancel"){
+                wx.showToast({
+                  title: "用户取消的支付",
+                  duration: 3000,
+                  
+                })
+              }
+              
             }
+          })     
+         
+        } else if (res.data.status_code == 0) {
+          wx.showToast({
+            title: res.data.message,
           })
-         
-         
-        }
+        } else if (res.data.status_code == 2) {
+          app.confirmUserLogin();
+        }   
           
         //endInitData
       },
