@@ -1,16 +1,26 @@
-
-
 var app = getApp();
-function gettoken(){
-  
-if (!app.globalData.token){
+function gettoken() {
+
+  if (!app.globalData.token) {
     var token = app.globalData.token;
+    console.log(token);
     return token;
-  }else{
+  } else {
+    wx.getStorage({
+      key: 'token',
+      success: function (res) {
+        var token = res.data
+        app.globalData.token = token;
+      }
+    })
+
+    console.log(token);
 
     return token;
   }
- return false;
+
+
+  return false;
 }
 
 
@@ -34,11 +44,11 @@ function formatNumber(n) {
 
 module.exports = {
   formatTime: formatTime,
-  gettoken:gettoken
+  gettoken: gettoken
 }
 
-function checkStringEmpty(data){
-  if(null == data || "" == data){
+function checkStringEmpty(data) {
+  if (null == data || "" == data) {
     return false;
   }
   return true;

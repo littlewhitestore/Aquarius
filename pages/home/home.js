@@ -43,12 +43,10 @@ Page({
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
 
-    //模拟加载
-    setTimeout(function () {
-      // complete
-      wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
-    }, 1500);
+   this.ol();
+
+     
+
   },
 
   //加载更多
@@ -143,7 +141,7 @@ Page({
         });
         //endInitData
       },
-      fail: function (e) {
+      fail: function(e){
         wx.showToast({
           title: '网络异常！',
           duration: 2000
@@ -173,45 +171,52 @@ Page({
     })
   },
 
+ol:function (){
+  var that = this;
+  var token = app.globalData.token;
+  that.setData({
+    token: token,
+  });
+  wx.request({
+    url: app.config.host + '/home?sessionId=' + app.globalData.token,
+    method: 'get',
+    data: {},
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    success: function (res) {
+      console.log("=====首页数据请求成功=======");
+      console.log(res);
+      var bannerimg = res.data.data.banner_img_list;
+      var productlist = res.data.data.goods_list;
 
 
-  onLoad: function (options) {
-    var that = this;
-    var sessionId = app.globalData.session;
-    that.setData({
-      sessionId: sessionId,
-    });
-    wx.request({
-      url: app.config.host + '/home?sessionId=' + app.globalData.session,
-      method: 'get',
-      data: {},
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        console.log("=====首页数据请求成功=======");
-        console.log(res);
-        var bannerimg = res.data.data.banner_img_list;
-        var productlist=res.data.data.goods_list;
-        
-        
-        that.setData({
-          slider: bannerimg,
-          productData: productlist
-         
-        });
-       
-      },
-      fail: function (e) {
-        wx.showToast({
-          title: '网络异常！'+e,
-          duration: 2000
-        });
-        console.log("=====首页数据请求失败=======");
-        console.log(e);
-      },
-    })
+      that.setData({
+        slider: bannerimg,
+        productData: productlist
 
+      });
+
+    },
+    fail: function (e) {
+      wx.showToast({
+        title: '网络异常！' + e,
+        duration: 2000
+      });
+      console.log("=====首页数据请求失败=======");
+      console.log(e);
+    },
+    complete:function(){
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+    
+    }
+  })
+
+},
+
+  onLoad: function () {
+    this.ol();
   },
   onShareAppMessage: function () {
     return {
