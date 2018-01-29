@@ -1,3 +1,19 @@
+
+
+var app = getApp();
+function gettoken(){
+  
+if (!app.globalData.token){
+    var token = app.globalData.token;
+    return token;
+  }else{
+
+    return token;
+  }
+ return false;
+}
+
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -17,7 +33,8 @@ function formatNumber(n) {
 }
 
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  gettoken:gettoken
 }
 
 function checkStringEmpty(data){

@@ -53,7 +53,7 @@ Page({
 
   //加载更多
   onReachBottom: function () {
-    console.log('正在加载')
+   
     setTimeout(() => {
       this.setData({
         isHideLoadMore: true,
