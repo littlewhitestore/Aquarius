@@ -4,7 +4,8 @@ App({
     token: null,
     token: "",
     userInfo: null,
-    picUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516107456424&di=fa76e77ada13337b47b711d45f05edf3&imgtype=0&src=http%3A%2F%2Fimage.tupian114.com%2F20121029%2F11381052.jpg.238.jpg"
+    picUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516107456424&di=fa76e77ada13337b47b711d45f05edf3&imgtype=0&src=http%3A%2F%2Fimage.tupian114.com%2F20121029%2F11381052.jpg.238.jpg",
+    login_fail_time: 0,
   },
   header: {
     token_id: null,
@@ -16,6 +17,7 @@ App({
   },
   onLaunch: function () {
     this.confirmUserLogin();
+    this.data.login_fail_time = 0;
   },
   confirmUserLogin() {
     var reload = false;
@@ -92,7 +94,8 @@ App({
         wx.getUserInfo({
           success: function (res) {
             that.globalData.userInfo = res.userInfo;
-            console.info("用户信息-》", res)
+            that.uploadUserInfo(res);
+            console.info("用户信息-》", res);
             wx.setStorage({
               key: 'userInfo',
               data: res.userInfo,
@@ -100,36 +103,74 @@ App({
           },
           fail: function () {
             wx.showModal({
-              title: '警告',
+              title: '提示',
               content: '您未搜权登录小程序，将无法使用部分功能，请点击确定按钮重新授权登录',
               success: function (res) {
                 if (res.confirm) {
                   wx.openSetting({
+                    data: {
+                      withCredentials: true
+                    },
                     success: (res) => {
                       if (res.authSetting["scope.userInfo"])
                         wx.getUserInfo({
                           success: function (res) {
                             that.globalData.userInfo = res.userInfo;
-                            console.info("用户信息-》", res)
+                            console.info("用户信息-》", res);
+                            that.uploadUserInfo(res);
                             wx.setStorage({
                               key: 'userInfo',
                               data: res.userInfo,
                             })
                           }
                         })
+                    },
+                    fail: (res) =>{
+
                     }
                   })
                 }
               }
             })
-
-
           }
         });
       }
     });
   },
+  //上传用户信息
+  uploadUserInfo:function(res){
+    var that = this;
+    var login_fail_time = that.globalData.login_fail_time;
+    if (login_fail_time >5){
+      console.log("=======上传用户信息 错误超过5次=====");
+      return;
+    }
+    console.log("=======u校验用户信息=====");
+    wx.request({
+      url: that.config.host + '/userinfo',
+      method: 'post',
+      data: {
+        'userInfo': res.userInfo,
+        'rawData': res.rawData,
+        'signature': res.signature,
+        'encryptedData': res.encryptedData,
+        'iv': res.iv
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success:(res) =>{
+        if ("success" == res.data.message){
+          console.log("=======u用户信息校验成功=====");
 
+        }
+      },
+      fail:() => {
+        login_fail_time ++;
+        this.confirmUserLogin();
+      }
+    })
+  }
 
 
   
