@@ -5,7 +5,7 @@ Page({
     orderid: "4",
     goods_id: 1,
     buy_number: 1,
-    session: "",
+    token: "",
     postage: "",
     items: [],
     total_amount: "",
@@ -39,9 +39,9 @@ Page({
     }
     var goodsId = parseInt(options.goodsId);
 
-    var sessionId = app.globalData.session;
+    var tokenId = app.globalData.token;
     this.setData({
-      session: sessionId,
+      token: tokenId,
       goods_id: goodsId
     });
     
@@ -54,7 +54,7 @@ Page({
       mask: true
     })
     wx.request({
-      url: app.config.host + '/settlement?session='+app.globalData.session,
+      url: app.config.host + '/settlement?token='+app.globalData.token,
       method: 'post',
       data: {
         product_id: that.data.goods_id,
@@ -120,7 +120,7 @@ Page({
       mask: true
     })
     wx.request({
-      url: app.config.host + '/order/buynow?session=' + app.globalData.session,
+      url: app.config.host + '/order/buynow?token=' + app.globalData.token,
       method: 'post',
       data: {
         product_id: that.data.goods_id,
@@ -170,7 +170,7 @@ Page({
                 wx.redirectTo({
                   url: '../user/dd?orderid=' + that.data.orderid,
                 });
-              }, 3000);
+              }, 2500);
             },
             fail: function (res) {
               wx.showToast({

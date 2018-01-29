@@ -42,7 +42,7 @@ Page({
   onLoad:function(){
     var that = this;
     wx.request({
-      url: app.config.host + '/orders?sessionId=' + app.globalData.session,
+      url: app.config.host + '/orders?token=' + app.globalData.token,
       method: 'get',
       data: {},
       header: {

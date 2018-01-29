@@ -6,7 +6,7 @@
     <image class="ic_addr" src="../../images/icons/icon_white_addr.png"></image>
     <view class="addr_detail c6">
       <view class="width_fill white">收货人：{{receiver.name}}
-        <text class="fl_r mr10 mr20 white">{{receiver.mobile}}</text>
+        <text class="fl_r mr10 mr20 white ellipsis">{{receiver.mobile}}</text>
       </view>
       <view class=" mt5 white">
       地址：{{receiver.province}} {{receiver.city}} {{receiver.district}} {{receiver.address}}
