@@ -217,6 +217,7 @@ ol:function (){
 
   onLoad: function () {
     this.ol();
+
   },
   onShareAppMessage: function () {
     return {

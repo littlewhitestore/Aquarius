@@ -1,7 +1,6 @@
 // app.js
 App({
   globalData: {
-    token: null,
     token: "",
     userInfo: null,
     picUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516107456424&di=fa76e77ada13337b47b711d45f05edf3&imgtype=0&src=http%3A%2F%2Fimage.tupian114.com%2F20121029%2F11381052.jpg.238.jpg",
@@ -17,7 +16,7 @@ App({
   },
   onLaunch: function () {
     this.confirmUserLogin();
-    this.data.login_fail_time = 0;
+    this.globalData.login_fail_time = 0;
   },
   confirmUserLogin() {
     var reload = false;
@@ -73,18 +72,21 @@ App({
           header: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
-          success: function (res) {
+          success: function (res) {            
+            console.log("=========login ======");            
+            if(res.data.status_code == 1){
+              that.globalData.token = res.data.data.token;
+              that.header.token_id = res.data.data.token;
+              wx.setStorage({
+                key: 'token',
+                data: res.data.data.token,
+              })
+            } else if (res.data.status_code == 0){
+              wx.showToast({
+                title: res.data.message,
+              })
+            }
             
-            console.log("=========login ======");
-            
-            that.globalData.token = res.data.data.token;
-            that.header.token_id = res.data.data.token;
-            
-            console.log("服务器接口返回的token=" + res.data.data.token);
-            wx.setStorage({
-              key: 'token',
-              data: res.data.data.token,
-            })
           },
           fail: function(res){
             console.log("=========login 请求失败 ======");
@@ -147,7 +149,7 @@ App({
     }
     console.log("=======u校验用户信息=====");
     wx.request({
-      url: that.config.host + '/userinfo',
+      url: that.config.host + '/userinfo?token' + that.globalData.token,
       method: 'post',
       data: {
         'userInfo': res.userInfo,
