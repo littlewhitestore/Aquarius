@@ -143,17 +143,9 @@ swiper-container {
   position: fixed;
   bottom: 10rpx;
   right: 14rpx;
-  width: 80rpx;
-  height: 84rpx;
-  padding:0 4rpx 8rpx 4rpx;
-  border-radius: 50%;
-  color: #ffffff;
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  background-color: rgba(67, 72, 76, 0.5);
+  width: 77rpx;
+  height: 79rpx;
+ 
 }
 .moreimg{
   width:46rpx; 
@@ -161,7 +153,6 @@ swiper-container {
   vertical-align: middle;
   margin-top: -4rpx;
   margin-right: -6rpx;
-  
   
 }
 .nav {
@@ -603,95 +594,4 @@ icon {
 .content{
   padding: 10rpx 20rpx ;
 }
-/*  加载更多   */
-
-.weui-loadmore {
-  width: 65%;
-  margin: 10rpx auto;
-  line-height: 30rpx;
-  font-size: 14px;
-  text-align: center;
-}
-.weui-loadmore__tips {
-  color:#999;
-  margin: 8rpx 0;
-  display: inline-block;
-  vertical-align: middle;
-}
-.loadEffect{
-            width: 100rpx;
-            height: 100rpx;
-            position: relative;
-            margin: 0 auto;
-            margin-top:10rpx;
-        }
-        .loadEffect span{
-            display: inline-block;
-            width: 30rpx;
-            height: 10rpx;
-            border-top-left-radius: 5rpx;
-            border-bottom-left-radius: 5rpx;
-            background: #d4d4d4;
-            position: absolute;
-            -webkit-animation: load 1.04s ease infinite;
-        }
-        @-webkit-keyframes load{
-            0%{
-                opacity: 1;
-            }
-            100%{
-                opacity: 0.2;
-            }
-        }
-        .loadEffect span:nth-child(1){
-            left: 0;
-            top: 50%;
-            margin-top:-5rpx;
-            -webkit-animation-delay:0.13s;
-        }
-        .loadEffect span:nth-child(2){
-            left: 10rpx;
-            top: 20rpx;
-            -webkit-transform: rotate(45deg);
-            -webkit-animation-delay:0.26s;
-        }
-        .loadEffect span:nth-child(3){
-            left: 50%;
-            top: 10rpx;
-            margin-left: -15rpx;
-            -webkit-transform: rotate(90deg);
-            -webkit-animation-delay:0.39s;
-        }
-        .loadEffect span:nth-child(4){
-            top: 20rpx;
-            right:10rpx;
-            -webkit-transform: rotate(135deg);
-            -webkit-animation-delay:0.52s;
-        }
-        .loadEffect span:nth-child(5){
-            right: 0;
-            top: 50%;
-            margin-top:-5rpx;
-            -webkit-transform: rotate(180deg);
-            -webkit-animation-delay:0.65s;
-        }
-        .loadEffect span:nth-child(6){
-            right: 10rpx;
-            bottom:20rpx;
-            -webkit-transform: rotate(225deg);
-            -webkit-animation-delay:0.78s;
-        }
-        .loadEffect span:nth-child(7){
-            bottom: 10rpx;
-            left: 50%;
-            margin-left: -15rpx;
-            -webkit-transform: rotate(270deg);
-            -webkit-animation-delay:0.91s;
-        }
-        .loadEffect span:nth-child(8){
-            bottom: 20rpx;
-            left: 10rpx;
-            -webkit-transform: rotate(315deg);
-            -webkit-animation-delay:1.04s;
-        }
 

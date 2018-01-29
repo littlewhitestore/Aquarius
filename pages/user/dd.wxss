@@ -78,7 +78,6 @@ color: #43484c;
 .listimg{
   width: 34rpx;
   height: 40rpx;
-margin-top: 2rpx;
 }
 
 

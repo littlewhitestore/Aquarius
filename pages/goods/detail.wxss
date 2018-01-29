@@ -535,6 +535,7 @@ swiper-container {
 }
 
 .info {
+  margin: 10rpx auto 100rpx ;
   padding: 4rpx auto;
   color: #43484c;
   font-size: 14px;

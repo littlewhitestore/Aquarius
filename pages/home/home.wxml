@@ -101,12 +101,9 @@
 
 
 
-<view class="gotop" bindtap='gotop'>
-  <view>
-    <image style='width:30rpx; height:40rpx' src="../../images/icons/up.png"></image>
-  </view>
-  <view style='margin-top:-8rpx'>顶部</view>
-</view>
+
+  <image  class='gotop' bindtap='gotop' src="../../images/icons/back-to-top.png"></image>
+
 <!-- <view class="cont">
     <navigator class="pr" url="../goods/detail?goodsId={{item.id}}" hover-class="changestyle" wx:for="{{productData}}">
       <image class="photo" src="{{item.photo_x}}"></image>
@@ -142,5 +139,5 @@
 
 
    
-    <view class="weui-loadmore__tips">正在加载</view>
+   
   </view>
