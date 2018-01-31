@@ -51,13 +51,21 @@ ol:function(){
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     success: function (res) {
-      console.log(res);
-      that.setData({
-        orderlist: res.data.data,
-        length:res.data.data.length
+    if (res.data.status_code && res.data.status_code == 1) {
+       console.log(res);
+       that.setData({
+       orderlist: res.data.data,
+       length:res.data.data.length
 
       });
-      console.log(that.data.orderlist);
+      } else if (res.data.status_code == 0) {
+        wx.showToast({
+          title: res.data.message,
+        })
+      } else if (res.data.status_code == 2) {
+        app.confirmUserLogin();
+      }   
+      
     },
     fail: function (e) {
       wx.showToast({

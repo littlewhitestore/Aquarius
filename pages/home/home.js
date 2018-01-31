@@ -126,6 +126,7 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        if (res.data.status_code == 1) {
         var prolist = res.data.prolist;
         if (prolist == '') {
           wx.showToast({
@@ -140,6 +141,12 @@ Page({
           productData: that.data.productData.concat(prolist)
         });
         //endInitData
+        } else if (res.data.status_code == 0) {
+          wx.showToast({
+            title: res.data.message,
+          })
+        }
+
       },
       fail: function(e){
         wx.showToast({

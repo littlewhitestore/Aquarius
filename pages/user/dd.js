@@ -44,12 +44,21 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-      
+       if (res.data.status_code && res.data.status_code == 1) {
         that.setData({
           orderinfo: res.data.data,
           timestamp: res.data.timestamp
 
         });
+     
+  } else if (res.data.status_code == 0) {
+    wx.showToast({
+      title: res.data.message,
+    })
+  } else if (res.data.status_code == 2) {
+    app.confirmUserLogin();
+  }   
+     
         
         var times = (that.data.timestamp)*1000;
 
