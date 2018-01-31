@@ -4,6 +4,7 @@
 var app = getApp();
 var common = require("../../utils/common.js");
 var util = require("../../utils/util.js");
+var Promisify = require('../../utils/httpsPromisify')
 Page({
   data: {
     winWidth: 0,
