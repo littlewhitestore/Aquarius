@@ -89,56 +89,56 @@ App({
                 title: res.data.message,
               })
             }
-            
+            wx.getUserInfo({
+              success: function (res) {
+                that.globalData.userInfo = res.userInfo;
+                that.uploadUserInfo(res);
+                console.info("用户信息-》", res);
+                wx.setStorage({
+                  key: 'userInfo',
+                  data: res.userInfo,
+                })
+              },
+              fail: function () {
+                wx.showModal({
+                  title: '提示',
+                  content: '您未搜权登录小程序，将无法使用部分功能，请点击确定按钮重新授权登录',
+                  success: function (res) {
+                    if (res.confirm) {
+                      wx.openSetting({
+                        data: {
+                          withCredentials: true
+                        },
+                        success: (res) => {
+                          if (res.authSetting["scope.userInfo"])
+                            wx.getUserInfo({
+                              success: function (res) {
+                                that.globalData.userInfo = res.userInfo;
+                                console.info("用户信息-》", res);
+                                that.uploadUserInfo(res);
+                                wx.setStorage({
+                                  key: 'userInfo',
+                                  data: res.userInfo,
+                                })
+                              }
+                            })
+                        },
+                        fail: (res) => {
+
+                        }
+                      })
+                    }
+                  }
+                })
+              }
+            });
           },
           fail: function(res){
             console.log("=========login 请求失败 ======");
             console.log(res);
           }
         })
-        wx.getUserInfo({
-          success: function (res) {
-            that.globalData.userInfo = res.userInfo;
-            that.uploadUserInfo(res);
-            console.info("用户信息-》", res);
-            wx.setStorage({
-              key: 'userInfo',
-              data: res.userInfo,
-            })
-          },
-          fail: function () {
-            wx.showModal({
-              title: '提示',
-              content: '您未搜权登录小程序，将无法使用部分功能，请点击确定按钮重新授权登录',
-              success: function (res) {
-                if (res.confirm) {
-                  wx.openSetting({
-                    data: {
-                      withCredentials: true
-                    },
-                    success: (res) => {
-                      if (res.authSetting["scope.userInfo"])
-                        wx.getUserInfo({
-                          success: function (res) {
-                            that.globalData.userInfo = res.userInfo;
-                            console.info("用户信息-》", res);
-                            that.uploadUserInfo(res);
-                            wx.setStorage({
-                              key: 'userInfo',
-                              data: res.userInfo,
-                            })
-                          }
-                        })
-                    },
-                    fail: (res) =>{
-
-                    }
-                  })
-                }
-              }
-            })
-          }
-        });
+        
       }
     });
   },
@@ -152,14 +152,15 @@ App({
     }
     console.log("=======u校验用户信息=====");
     wx.request({
-      url: that.config.host + '/userinfo?token' + that.globalData.token,
+      url: that.config.host + '/wechat/user/info/upload',
       method: 'post',
       data: {
-        'userInfo': res.userInfo,
-        'rawData': res.rawData,
+        'user_info': res.userInfo,
+        'raw_data': res.rawData,
         'signature': res.signature,
-        'encryptedData': res.encryptedData,
-        'iv': res.iv
+        'encrypted_data': res.encryptedData,
+        'iv': res.iv,
+        'token': that.globalData.token
       },
       header: {
         'Content-Type': 'application/json'
