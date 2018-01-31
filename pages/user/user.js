@@ -40,11 +40,11 @@ Page( {
       this.setData({
         userInfo: app.globalData.userInfo
       })
-      this.loadOrderStatus();
+      // this.loadOrderStatus();
   },
-  onShow:function(){
-    this.loadOrderStatus();
-  },
+  // onShow:function(){
+  //   this.loadOrderStatus();
+  // },
 
 
   

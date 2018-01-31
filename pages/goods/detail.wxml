@@ -94,8 +94,8 @@
   </view>
 </view>
 
-<!--弹窗-->
-<!-- <view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
+
+ <view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
 <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
   <view class="close_icon" bindtap="setModalStatus" data-status="0">x</view>
   <view class="drawer_attr_content">
@@ -124,4 +124,4 @@
       立即购买
     </view> 
   </view>
-</view> -->
+</view>  

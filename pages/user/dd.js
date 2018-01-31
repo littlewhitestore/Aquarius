@@ -37,7 +37,7 @@ Page({
     var orderid = options.orderid;
     var that = this;
     wx.request({
-      url: app.config.host + '/orders/' + orderid + '?token=' + app.globalData.token,
+      url: app.config.host + '/orders/' + orderid + '?token=' + util.gettoken(),
       method: 'get',
       data: {},
       header: {
@@ -57,6 +57,7 @@ Page({
     })
   } else if (res.data.status_code == 2) {
     app.confirmUserLogin();
+    
   }   
      
         

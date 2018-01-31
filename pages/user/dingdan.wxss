@@ -128,6 +128,19 @@ border-bottom: solid 1rpx #e1dfdf;
   height: 20rpx;
     background-color: #f7f7f7;
 }
+.gohome{
+  width: 378rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 80rpx;
+  background-color: #fe6e1f;
+  border-radius: 5rpx;
+  color: #fff;
+  border: 0
+}
+.gohome::after{
+  border: 0;
+}
 /* pages/user/dingdan.wxss 
 .swiper-tab{  
     width: 100%;  

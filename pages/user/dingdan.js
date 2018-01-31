@@ -50,20 +50,37 @@ Page({
   loadOrderList: function (offset) {
     var that = this;
     wx.request({
-      url: app.config.host + '/orders?token=' + app.globalData.token + "&offset=" + offset + "&count=" + that.data.count,
+      url: app.config.host + '/orders?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count,
       method: 'get',
       data: {},
       header: {
         'ContentType': 'application/xwwwformurlencoded'
       },
       success: function (res) {
-        console.log("订单请求: " + app.config.host + '/orders?token=' + app.globalData.token + "&offset=" + offset + "&count=" + that.data.count);
+        console.log(res.data.status_code);
+        if (res.data.status_code && res.data.status_code == 1) {
+        console.log("订单请求: " + app.config.host + '/orders?token=' + util.gettoken(),+ "&offset=" + offset + "&count=" + that.data.count);
+        } else if (res.data.status_code == 0) {
+          wx.showToast({
+            title: res.data.message,
+          })
+        } else if (res.data.status_code == 2) {
+          app.confirmUserLogin();
+          
+     
+        }
 
-
-        console.log(res);
-        that.setData({
-          orderlist: res.data.data,
-        });
+        if (offset == 0){
+          that.setData({
+            orderlist: res.data.data,
+          });
+          
+        } else if (offset > 0){
+          that.setData({
+            orderlist: that.data.orderList.concat(res.data.data),
+          });
+        }
+        
         console.log(that.data.orderlist);
       },
       fail: function (e) {
@@ -87,42 +104,57 @@ Page({
     wx.showNavigationBarLoading(); //在标题栏中显示加载
     this.loadOrderList(0);
   },
-
-
-  ol: function () {
-    var that = this;
-    wx.request({
-      url: app.config.host + '/orders?token=' + app.globalData.token,
-      method: 'get',
-      data: {},
-      header: {
-        'ContentType': 'application/xwwwformurlencoded'
-      },
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          orderlist: res.data.data,
-          length: res.data.data.length
-
-        });
-        console.log(that.data.orderlist);
-      },
-      fail: function (e) {
-        wx.showToast({
-          title: '网络异常！',
-          duration: 2000
-        });
-      },
-      complete: function () {
-
-        // complete
-        wx.hideNavigationBarLoading() //完成停止加载
-        wx.stopPullDownRefresh() //停止下拉刷新
-
-      }
-    })
-
+  onReachBottom: function(){
+    this.loadOrderList(this.data.orderlist.length);
   },
+gohome:function(){
+  wx.reLaunch({
+    url: '../home/home',
+    success: function (res) {
+      console.log(e)
+    },
+    fail: function () {
+      // fail
+    },
+    complete: function () {
+      // complete
+    }
+  })
+},
+  // ol: function () {
+  //   var that = this;
+  //   wx.request({
+  //     url: app.config.host + '/orders?token=' + util.gettoken(),
+  //     method: 'get',
+  //     data: {},
+  //     header: {
+  //       'ContentType': 'application/xwwwformurlencoded'
+  //     },
+  //     success: function (res) {
+  //       console.log(res);
+  //       that.setData({
+  //         orderlist: res.data.data,
+  //         length: res.data.data.length
+
+  //       });
+  //       console.log(that.data.orderlist);
+  //     },
+  //     fail: function (e) {
+  //       wx.showToast({
+  //         title: '网络异常！',
+  //         duration: 2000
+  //       });
+  //     },
+  //     complete: function () {
+
+  //       // complete
+  //       wx.hideNavigationBarLoading() //完成停止加载
+  //       wx.stopPullDownRefresh() //停止下拉刷新
+
+  //     }
+  //   })
+
+  // },
   
 
   // onLoad: function (options) {

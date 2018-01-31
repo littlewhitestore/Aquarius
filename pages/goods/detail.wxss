@@ -1,6 +1,6 @@
 /* pages/index/detail.wxss */
 
-/* .ad{
+.ad{
     width: 100%;
     background: rgba(0,0,0,.6);
     padding: 3% 0;
@@ -34,7 +34,7 @@
     height: 16px;
     float: right;
     margin: 8px 10px;
-} */
+} 
 
 .cont {
   width: 100%;
