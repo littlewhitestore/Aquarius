@@ -73,14 +73,17 @@ App({
             'Content-Type': 'application/x-www-form-urlencoded'
           },
           success: function (res) {            
-            console.log("=========login ======");            
+            console.log("=========login ======"); 
+            console.log(res);           
             if(res.data.status_code == 1){
               that.globalData.token = res.data.data.token;
               that.header.token_id = res.data.data.token;
               wx.setStorage({
                 key: 'token',
                 data: res.data.data.token,
+                
               })
+           
             } else if (res.data.status_code == 0){
               wx.showToast({
                 title: res.data.message,

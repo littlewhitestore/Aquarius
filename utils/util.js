@@ -1,7 +1,8 @@
 var app = getApp();
+
 function gettoken() {
 
-  if (!app.globalData.token) {
+  if (app.globalData.token) {
     var token = app.globalData.token;
     console.log(token);
     return token;
@@ -11,12 +12,11 @@ function gettoken() {
       success: function (res) {
         var token = res.data
         app.globalData.token = token;
+        console.log(token);
+         return token;
       }
     })
-
-    console.log(token);
-
-    return token;
+   
   }
 
 

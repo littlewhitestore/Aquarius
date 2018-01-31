@@ -1,6 +1,7 @@
 <view class='o' wx:if="{{orderlist.length==0}}">
    <image class="noimg" src="../../images/icons/no-orders.png"></image>
     <view class="nofont">您还没有相关订单</view>
+    <button class="gohome">随便逛逛</button>
  
 </view>
 
