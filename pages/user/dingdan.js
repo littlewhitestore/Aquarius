@@ -3,6 +3,7 @@
 //获取应用实例  
 var app = getApp();
 var common = require("../../utils/common.js");
+var util= require("../../utils/util.js");
 Page({
   data: {
     winWidth: 0,
@@ -22,14 +23,11 @@ Page({
   //下拉刷新
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
-
-    //模拟加载
-    setTimeout(function () {
-      // complete
-      wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
-    }, 1500);
+    this.ol();
+  
+   
   },
+
   dddetail:function(event){
     var orderid = event.currentTarget.dataset.orderid
      console.log(event)
@@ -39,33 +37,43 @@ Page({
  
   },
 
-  onLoad:function(){
-    var that = this;
-    wx.request({
-      url: app.config.host + '/orders?token=' + app.globalData.token,
-      method: 'get',
-      data: {},
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        console.log(res);
-       that.setData({
-         orderlist:res.data.data,
 
-        });
+ol:function(){
+  var that = this;
+  wx.request({
+    url: app.config.host + '/orders?token=' + app.globalData.token,
+    method: 'get',
+    data: {},
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    success: function (res) {
+      console.log(res);
+      that.setData({
+        orderlist: res.data.data,
+        length:res.data.data.length
+
+      });
       console.log(that.data.orderlist);
-      },
-      fail: function (e) {
-        wx.showToast({
-          title: '网络异常！',
-          duration: 2000
-        });
-      },
-    })
+    },
+    fail: function (e) {
+      wx.showToast({
+        title: '网络异常！',
+        duration: 2000
+      });
+    },
+    complete:function(){
 
+      // complete
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
 
+    }
+  })
 
+},
+  onLoad:function(){
+    this.ol();
   },
   // onLoad: function (options) {
   //   this.initSystemInfo();

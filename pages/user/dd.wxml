@@ -135,9 +135,9 @@
 
 </view>
 
-
+<!-- 
 <view class="foot">
   <button class="btnshare" open-type='share'>
     <image src='../../images/icons/share_white.png'></image>
     分享给好友</button>
-</view>
+</view> -->

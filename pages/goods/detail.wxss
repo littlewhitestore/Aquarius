@@ -535,15 +535,17 @@ swiper-container {
 }
 
 .info {
-  margin: 10rpx auto 100rpx ;
-  padding: 4rpx auto;
+ margin-top: 10rpx;
+ margin-bottom: 100rpx;
   color: #43484c;
   font-size: 14px;
   line-height: 40rpx;
   letter-spacing: 0.2rpx;
 
 }
-
+.info image{
+  margin: 0 auto;
+}
 .fb_r {
   display: flex;
   flex-direction: row;

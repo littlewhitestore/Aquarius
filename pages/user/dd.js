@@ -1,5 +1,7 @@
 // user/dd.js
 var app = getApp();
+var common = require("../../utils/common.js");
+var util = require("../../utils/util.js");
 Page({
 
   /**

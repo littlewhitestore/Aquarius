@@ -87,6 +87,24 @@ border-bottom: solid 1rpx #e1dfdf;
   height: 46rpx;
 
 }
+.o{
+  margin:260rpx auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.nofont{
+  margin-top: 30rpx;
+  	color: #43484c;
+    font-size: 18px;
+}
+.noimg{
+  width: 160rpx;
+  height: 140rpx;
+
+}
 .btn{
   padding:4rpx 6rpx 4rpx 2rpx ;
   width: 150rpx;
