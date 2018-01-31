@@ -149,14 +149,15 @@ App({
     }
     console.log("=======u校验用户信息=====");
     wx.request({
-      url: that.config.host + '/userinfo?token' + that.globalData.token,
+      url: that.config.host + '/wechat/user/info/upload',
       method: 'post',
       data: {
-        'userInfo': res.userInfo,
-        'rawData': res.rawData,
+        'user_info': res.userInfo,
+        'raw_data': res.rawData,
         'signature': res.signature,
-        'encryptedData': res.encryptedData,
-        'iv': res.iv
+        'encrypted_data': res.encryptedData,
+        'iv': res.iv,
+        'token': that.globalData.token
       },
       header: {
         'Content-Type': 'application/json'
