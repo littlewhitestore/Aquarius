@@ -1,0 +1,38 @@
+/*pages/order/pay-success.wxss  */
+.ic_order_d{
+  position: absolute;
+  width: 172rpx;
+  height: 172rpx;
+  top: 953rpx;
+}
+.ic_pay_success{
+  position: absolute;
+  width: 320rpx;
+  height: 320rpx;
+  top: 170rpx;
+}
+.tx_pay_succ{
+  position: absolute;
+  top:450rpx;
+  text-align: center;
+}
+.tx_send{
+  position: absolute;
+  top:666rpx;
+  text-align: center;
+}
+.tx_tips{
+  position: absolute;
+  top:820rpx;
+  text-align: center;
+}
+
+.h_center{
+  left: 0;
+  right: 0;
+  
+  margin: auto;
+}
+page{
+  height: 100%;
+}

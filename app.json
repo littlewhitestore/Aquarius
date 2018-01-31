@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages":[    
     "pages/home/home",
     "pages/search/search",
     "pages/user/user",
@@ -13,6 +13,7 @@
     "pages/listdetail/listdetail",
     "pages/address/address",
     "pages/address/user-address/user-address",
+    "pages/order/pay-success",
     "pages/category/index",     
     "pages/ritual/ritual",   
     "pages/rituall/rituall", 

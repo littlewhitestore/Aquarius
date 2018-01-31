@@ -13,12 +13,14 @@ Page({
     isStatus: 'pay',//10待付款，20待发货，30待收货 40、50已完成
     page: 0,
     refundpage: 0,
+    orderlist: [],
+    // orderList0: [],
+    // orderList1: [],
+    // orderList2: [],
+    // orderList3: [],
+    // orderList4: [],
+    count: 3,
     
-    orderList0: [],
-    orderList1: [],
-    orderList2: [],
-    orderList3: [],
-    orderList4: [],
   },
   //下拉刷新
   onPullDownRefresh: function () {
@@ -36,6 +38,7 @@ Page({
     })
  
   },
+
 
 
 ol:function(){
@@ -74,7 +77,9 @@ ol:function(){
 },
   onLoad:function(){
     this.ol();
+
   },
+
   // onLoad: function (options) {
   //   this.initSystemInfo();
   //   this.setData({
