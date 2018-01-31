@@ -86,56 +86,56 @@ App({
                 title: res.data.message,
               })
             }
-            
+            wx.getUserInfo({
+              success: function (res) {
+                that.globalData.userInfo = res.userInfo;
+                that.uploadUserInfo(res);
+                console.info("用户信息-》", res);
+                wx.setStorage({
+                  key: 'userInfo',
+                  data: res.userInfo,
+                })
+              },
+              fail: function () {
+                wx.showModal({
+                  title: '提示',
+                  content: '您未搜权登录小程序，将无法使用部分功能，请点击确定按钮重新授权登录',
+                  success: function (res) {
+                    if (res.confirm) {
+                      wx.openSetting({
+                        data: {
+                          withCredentials: true
+                        },
+                        success: (res) => {
+                          if (res.authSetting["scope.userInfo"])
+                            wx.getUserInfo({
+                              success: function (res) {
+                                that.globalData.userInfo = res.userInfo;
+                                console.info("用户信息-》", res);
+                                that.uploadUserInfo(res);
+                                wx.setStorage({
+                                  key: 'userInfo',
+                                  data: res.userInfo,
+                                })
+                              }
+                            })
+                        },
+                        fail: (res) => {
+
+                        }
+                      })
+                    }
+                  }
+                })
+              }
+            });
           },
           fail: function(res){
             console.log("=========login 请求失败 ======");
             console.log(res);
           }
         })
-        wx.getUserInfo({
-          success: function (res) {
-            that.globalData.userInfo = res.userInfo;
-            that.uploadUserInfo(res);
-            console.info("用户信息-》", res);
-            wx.setStorage({
-              key: 'userInfo',
-              data: res.userInfo,
-            })
-          },
-          fail: function () {
-            wx.showModal({
-              title: '提示',
-              content: '您未搜权登录小程序，将无法使用部分功能，请点击确定按钮重新授权登录',
-              success: function (res) {
-                if (res.confirm) {
-                  wx.openSetting({
-                    data: {
-                      withCredentials: true
-                    },
-                    success: (res) => {
-                      if (res.authSetting["scope.userInfo"])
-                        wx.getUserInfo({
-                          success: function (res) {
-                            that.globalData.userInfo = res.userInfo;
-                            console.info("用户信息-》", res);
-                            that.uploadUserInfo(res);
-                            wx.setStorage({
-                              key: 'userInfo',
-                              data: res.userInfo,
-                            })
-                          }
-                        })
-                    },
-                    fail: (res) =>{
-
-                    }
-                  })
-                }
-              }
-            })
-          }
-        });
+        
       }
     });
   },
