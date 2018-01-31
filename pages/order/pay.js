@@ -163,10 +163,11 @@ Page({
               });
               setTimeout(function () {
                 wx.redirectTo({
-                  url: '../user/dd?orderid=' + that.data.orderid,
+                  url: '../order/pay-success?orderid=' + that.data.orderid,
+                  
                 });
                 console.log(that.data);
-              }, 2500);
+              }, 2300);
             },
             fail: function (res) {
               if (res.errMsg == "requestPayment:fail cancel"){

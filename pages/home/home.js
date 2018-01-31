@@ -1,5 +1,5 @@
  var app = getApp();
-
+// home/home.js
 Page({
   data: {
     imgUrls: [],

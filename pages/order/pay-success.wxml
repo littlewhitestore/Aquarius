@@ -1,0 +1,9 @@
+<!--pages/order/pay-success.wxml  -->
+<view class='w100 h100 theme_bg '>
+
+  <image class="ic_pay_success h_center" src='/images/icons/ic_p_succ.png'></image>
+  <image class="ic_order_d h_center" src='/images/icons/ic_suc_order.png' bindtap='go_dd'></image>
+  <text class='white font_16 tx_pay_succ h_center'>订单支付成功</text>
+  <text class='white font_14 tx_send h_center'>我们将为您安排发货！</text>
+  <text class='white font_12 tx_tips h_center'>*小白店商城不会以订单失效、付款异常为由，让您对订单进行退款、汇款、解冻等操作，请提高警惕。</text>
+</view>

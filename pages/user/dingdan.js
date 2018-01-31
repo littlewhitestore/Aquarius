@@ -12,12 +12,14 @@ Page({
     isStatus: 'pay',//10待付款，20待发货，30待收货 40、50已完成
     page: 0,
     refundpage: 0,
+    orderlist: [],
+    // orderList0: [],
+    // orderList1: [],
+    // orderList2: [],
+    // orderList3: [],
+    // orderList4: [],
+    count: 3,
     
-    orderList0: [],
-    orderList1: [],
-    orderList2: [],
-    orderList3: [],
-    orderList4: [],
   },
   //下拉刷新
   onPullDownRefresh: function () {
@@ -40,21 +42,26 @@ Page({
   },
 
   onLoad:function(){
+    this.loadOrderList(0);
+  },
+  loadOrderList: function(offset){
     var that = this;
     wx.request({
-      url: app.config.host + '/orders?token=' + app.globalData.token,
+      url: app.config.host + '/orders?token=' + app.globalData.token+"&offset="+offset+"&count="+that.data.count,
       method: 'get',
       data: {},
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        console.log("订单请求: " + app.config.host + '/orders?token=' + app.globalData.token + "&offset=" + offset + "&count=" + that.data.count);
+
         console.log(res);
-       that.setData({
-         orderlist:res.data.data,
+        that.setData({
+          orderlist: res.data.data,
 
         });
-      console.log(that.data.orderlist);
+        console.log(that.data.orderlist);
       },
       fail: function (e) {
         wx.showToast({
@@ -62,11 +69,27 @@ Page({
           duration: 2000
         });
       },
+      complete: function(){
+        if (offset ==0){
+          wx.stopPullDownRefresh()
+        } else if (offset > 0){
+          wx.stopPullDownRefresh()
+        }
+        wx.hideNavigationBarLoading() //完成停止加载
+        
+      }
     })
-
-
+  },
+  onPullDownRefresh:function(){
+    wx.showNavigationBarLoading(); //在标题栏中显示加载
+    this.loadOrderList(0);
 
   },
+
+  onReachBottom: function () {
+    this.loadOrderList(this.data.orderlist.length);
+  },
+
   // onLoad: function (options) {
   //   this.initSystemInfo();
   //   this.setData({

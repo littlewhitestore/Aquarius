@@ -15,6 +15,9 @@ page{
 .theme_color{
   color: #fe6e1f;
 }
+.theme_bg{
+  background-color: #fe6e1f;
+}
 .df{
   display: -webkit-box;
   display: -webkit-flex;
@@ -121,6 +124,9 @@ page{
 .w80{ width: 80%;}
 .w90{ width: 90%;}
 .w100{ width: 100%;}
+
+
+.h100{ height: 100%;}
 /*边框*/
 .bte{ border-top: 1px solid #eee;}
 .bbe{ border-bottom: solid 1px #eee;}
