@@ -3,7 +3,7 @@
 //获取应用实例  
 var app = getApp();
 var common = require("../../utils/common.js");
-var util= require("../../utils/util.js");
+var util = require("../../utils/util.js");
 Page({
   data: {
     winWidth: 0,
@@ -20,73 +20,110 @@ Page({
     // orderList3: [],
     // orderList4: [],
     count: 3,
-    
+
   },
   //下拉刷新
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
     this.ol();
-  
-   
+
+
   },
 
-  dddetail:function(event){
+  dddetail: function (event) {
     var orderid = event.currentTarget.dataset.orderid
-     console.log(event)
+    console.log(event)
     wx.navigateTo({
       url: 'dd?orderid=' + orderid
     })
- 
+
+  },
+
+
+  // 生命周期 onLoad
+  onLoad: function () {
+    this.loadOrderList(0);
   },
 
 
 
-ol:function(){
-  var that = this;
-  wx.request({
-    url: app.config.host + '/orders?token=' + app.globalData.token,
-    method: 'get',
-    data: {},
-    header: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    success: function (res) {
-    if (res.data.status_code && res.data.status_code == 1) {
-       console.log(res);
-       that.setData({
-       orderlist: res.data.data,
-       length:res.data.data.length
+  loadOrderList: function (offset) {
+    var that = this;
+    wx.request({
+      url: app.config.host + '/orders?token=' + app.globalData.token + "&offset=" + offset + "&count=" + that.data.count,
+      method: 'get',
+      data: {},
+      header: {
+        'ContentType': 'application/xwwwformurlencoded'
+      },
+      success: function (res) {
+        console.log("订单请求: " + app.config.host + '/orders?token=' + app.globalData.token + "&offset=" + offset + "&count=" + that.data.count);
 
-      });
-      } else if (res.data.status_code == 0) {
+
+        console.log(res);
+        that.setData({
+          orderlist: res.data.data,
+        });
+        console.log(that.data.orderlist);
+      },
+      fail: function (e) {
         wx.showToast({
-          title: res.data.message,
-        })
-      } else if (res.data.status_code == 2) {
-        app.confirmUserLogin();
-      }   
-      
-    },
-    fail: function (e) {
-      wx.showToast({
-        title: '网络异常！',
-        duration: 2000
-      });
-    },
-    complete:function(){
+          title: '网络异常！',
+          duration: 2000
+        });
+      },
+      complete: function () {
+        if (offset == 0) {
+          wx.stopPullDownRefresh()
+        } else if (offset > 0) {
+          wx.stopPullDownRefresh()
+        }
+        wx.hideNavigationBarLoading() //完成停止加载
 
-      // complete
-      wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
+      }
+    })
+  },
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading(); //在标题栏中显示加载
+    this.loadOrderList(0);
+  },
 
-    }
-  })
 
-},
-  onLoad:function(){
-    this.ol();
+  ol: function () {
+    var that = this;
+    wx.request({
+      url: app.config.host + '/orders?token=' + app.globalData.token,
+      method: 'get',
+      data: {},
+      header: {
+        'ContentType': 'application/xwwwformurlencoded'
+      },
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          orderlist: res.data.data,
+          length: res.data.data.length
+
+        });
+        console.log(that.data.orderlist);
+      },
+      fail: function (e) {
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      },
+      complete: function () {
+
+        // complete
+        wx.hideNavigationBarLoading() //完成停止加载
+        wx.stopPullDownRefresh() //停止下拉刷新
+
+      }
+    })
 
   },
+  
 
   // onLoad: function (options) {
   //   this.initSystemInfo();
@@ -122,10 +159,10 @@ ol:function(){
   //           type: 'cancel',
   //         },
   //         header: {
-  //           'Content-Type': 'application/x-www-form-urlencoded'
+  //           'ContentType': 'application/xwwwformurlencoded'
   //         },
   //         success: function (res) {
-  //           //--init data
+  //           //init data
   //           var status = res.data.status;
   //           if (status == 1) {
   //             wx.showToast({
@@ -141,7 +178,7 @@ ol:function(){
   //           }
   //         },
   //         fail: function () {
-           
+
   //           wx.showToast({
   //             title: '网络异常！',
   //             duration: 2000
@@ -169,10 +206,10 @@ ol:function(){
   //           type: 'receive',
   //         },
   //         header: {
-  //           'Content-Type': 'application/x-www-form-urlencoded'
+  //           'ContentType': 'application/xwwwformurlencoded'
   //         },
   //         success: function (res) {
-         
+
   //           var status = res.data.status;
   //           if (status == 1) {
   //             wx.showToast({
@@ -188,7 +225,7 @@ ol:function(){
   //           }
   //         },
   //         fail: function () {
-           
+
   //           wx.showToast({
   //             title: '网络异常！',
   //             duration: 2000
@@ -211,10 +248,10 @@ ol:function(){
   //       page: that.data.page,
   //     },
   //     header: {
-  //       'Content-Type': 'application/x-www-form-urlencoded'
+  //       'ContentType': 'application/xwwwformurlencoded'
   //     },
   //     success: function (res) {
-  //       //--init data        
+  //       //init data        
   //       var status = res.data.status;
   //       var list = res.data.ord;
   //       switch (that.data.currentTab) {
@@ -265,10 +302,10 @@ ol:function(){
   //       page: that.data.refundpage,
   //     },
   //     header: {
-  //       'Content-Type': 'application/x-www-form-urlencoded'
+  //       'ContentType': 'application/xwwwformurlencoded'
   //     },
   //     success: function (res) {
-  //       //--init data        
+  //       //init data        
   //       var data = res.data.ord;
   //       var status = res.data.status;
   //       if (status == 1) {
@@ -373,7 +410,7 @@ ol:function(){
   //     },
   //     method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
   //     header: {
-  //       'Content-Type': 'application/x-www-form-urlencoded'
+  //       'ContentType': 'application/xwwwformurlencoded'
   //     }, // 设置请求的 header
   //     success: function (res) {
   //       if (res.data.status == 1) {
