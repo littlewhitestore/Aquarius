@@ -128,12 +128,13 @@ Page({
     });
 
     wx.request({
-      url: "https://www.xiaobaidiandev.com/api/goods/1/detail",
+      url: app.config.host + '/goods/1/detail',
       method: 'get',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        console.log(res);
         if (res.data.status_code && res.data.status_code == 1) {
         that.setData({
           goods_info: res.data.data,

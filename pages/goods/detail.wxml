@@ -90,38 +90,66 @@
   <view class="fl_l w40 b1">
     <!-- <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view> -->
 
-    <view class="bg_cheng white w100 fl_l" bindtap="gobuy" data-status="1">立即抢购</view>
+    <view class="bg_cheng white w100 fl_l" bindtap="setModalStatus" data-status="1">立即抢购</view>
   </view>
 </view>
 
 
- <view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
+<view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
 <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
   <view class="close_icon" bindtap="setModalStatus" data-status="0">x</view>
   <view class="drawer_attr_content">
     <view class="text_center">
-      <image class="drawer_image" src="../../images/44.png"></image>
+    
+        <image class="drawer_image" src="../../images/33.png"></image>
+
       <view class="mingcheng">
-        <view style="font-size:18px;color:red">¥ {{detailData.price_yh}}</view>
-        <view style="font-size:16px;">卡其色/XL </view>
+        <view style="font-size:20px;color:red">¥1000.00</view>
+        <view style="font-size:16px;color:rgba(0, 0, 0, 0.87);">巧克力色/XL </view>
       </view>
     </view>
+    <view class='eline1'></view>
+
+    <view class="dec">
+      <view class="deci">{{goods_info.property_vector[1].key}}</view>
+      <view class="decd">
+        <view  wx:for="{{goods_info.property_vector[1].values}}" class="deca">{{item}}</view>
+
+      </view>
+
+    </view>
+
+    <view class='eline2'></view>
+
+    <view class="dec">
+      <view class="deci">{{goods_info.property_vector[0].key}}</view>
+      <view class="decd">
+        <view   wx:for="{{goods_info.property_vector[0].values}}"  class="decb">{{item}}</view>
+     
+
+      </view>
+
+    </view>
+
+
+
+    <view class='eline3'></view>
+
     <view class="shu">
       <text class="cun">购买数量</text>
       <view class="dian">
         <view class="stepper">
-       
+
           <text class="{{minusStatuses[index]}}" data-alpha-beta="0" bindtap="changeNum">-</text>
-       >
           <view class="nownum">{{buynum}}</view>
-        
+
           <text class="normal" data-alpha-beta="1" bindtap="changeNum">+</text>
         </view>
       </view>
     </view>
 
-     <view class="footc" bindtap="gobuy" data-type="buynow" data-status="1">
+    <view class="footc" bindtap="gobuy" data-type="buynow" data-status="1">
       立即购买
-    </view> 
+    </view>
   </view>
-</view>  
+</view>
