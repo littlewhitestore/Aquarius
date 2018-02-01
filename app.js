@@ -18,7 +18,7 @@ App({
     this.confirmUserLogin();
     this.globalData.login_fail_time = 0;
   },
-  confirmUserLogin() {
+  confirmUserLogin(resolve, reject) {
     var reload = false;
     wx.checkSession({
       fail: function () {
@@ -54,10 +54,13 @@ App({
       }
     }
     if (reload) {
-      this.loginUser();
+      this.loginUser(resolve, reject);
     }
   },
-  loginUser: function () {
+  loginUser: function (resolve, reject) {
+    console.log("=========33测试resolve===========");
+    console.log(resolve);
+    console.log(reject);
     var that = this;
     wx.login({
       success: function (res) {
@@ -78,26 +81,38 @@ App({
             if(res.data.status_code == 1){
               that.globalData.token = res.data.data.token;
               that.header.token_id = res.data.data.token;
-              wx.setStorage({
-                key: 'token',
-                data: res.data.data.token,
-                
-              })
-           
+              wx.setStorageSync('token', res.data.data.token);
+              try {
+                var value = wx.getStorageSync('token')
+                if (value) {
+                  console.log("setStorage成功=" + value);
+                  if (resolve) {
+                    resolve("resolve 登录大逻辑完成")
+                  }
+                  // Do something with return value
+                }
+              } catch (e) {
+                // Do something when catch error
+                if (reject) {
+                  reject("reject 登录大逻辑fail!!")
+                }
+                console.log("setStoragefail");
+              }          
+              console.log("setStorage方法执行顺序后");
+              
             } else if (res.data.status_code == 0){
               wx.showToast({
                 title: res.data.message,
               })
+              
             }
             wx.getUserInfo({
               success: function (res) {
                 that.globalData.userInfo = res.userInfo;
-                that.uploadUserInfo(res);
+                that.uploadUserInfo(resolve, reject,res);
                 console.info("用户信息-》", res);
-                wx.setStorage({
-                  key: 'userInfo',
-                  data: res.userInfo,
-                })
+                console.log(JSON.stringify(res.userInfo));
+                wx.setStorageSync('userInfo', "JSON.stringify(res.userInfo)")
               },
               fail: function () {
                 wx.showModal({
@@ -115,10 +130,10 @@ App({
                               success: function (res) {
                                 that.globalData.userInfo = res.userInfo;
                                 console.info("用户信息-》", res);
-                                that.uploadUserInfo(res);
-                                wx.setStorage({
+                                that.uploadUserInfo(resolve, reject,res);
+                                wx.setStorageSync({
                                   key: 'userInfo',
-                                  data: res.userInfo,
+                                  data: "res.userInfo",
                                 })
                               }
                             })
@@ -143,9 +158,10 @@ App({
     });
   },
   //上传用户信息
-  uploadUserInfo:function(res){
+  uploadUserInfo: function (resolve, reject,res){
     var that = this;
     var login_fail_time = that.globalData.login_fail_time;
+    
     if (login_fail_time >5){
       console.log("=======上传用户信息 错误超过5次=====");
       return;
@@ -168,12 +184,13 @@ App({
       success:(res) =>{
         if ("success" == res.data.message){
           console.log("=======u用户信息校验成功=====");
-
+          
         }
       },
       fail:() => {
         login_fail_time ++;
         this.confirmUserLogin();
+        
       }
     })
   }

@@ -4,6 +4,8 @@
 var app = getApp();
 var common = require("../../utils/common.js");
 var util = require("../../utils/util.js");
+var Promise = require('../../libs/es6-promise.min')
+var fail_count =0;
 Page({
   data: {
     winWidth: 0,
@@ -49,6 +51,7 @@ Page({
 
   loadOrderList: function (offset) {
     var that = this;
+    console.log("请求订单url==" + app.config.host + '/orders?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count)
     wx.request({
       url: app.config.host + '/orders?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count,
       method: 'get',
@@ -58,28 +61,58 @@ Page({
       },
       success: function (res) {
         console.log(res.data.status_code);
+        if (fail_count ==0){
+          res.data.status_code = 2;
+        }        
         if (res.data.status_code && res.data.status_code == 1) {
-        console.log("订单请求: " + app.config.host + '/orders?token=' + util.gettoken(),+ "&offset=" + offset + "&count=" + that.data.count);
+          if (offset == 0) {
+            that.setData({
+              orderlist: res.data.data,
+            });
+
+          } else if (offset > 0) {
+            that.setData({
+              orderlist: that.data.orderList.concat(res.data.data),
+            });
+          }
         } else if (res.data.status_code == 0) {
           wx.showToast({
             title: res.data.message,
           })
         } else if (res.data.status_code == 2) {
-          app.confirmUserLogin();
+          //异步方法创建
+          function runAsyncLogin() {
+            var p = new Promise(function (resolve, reject) {
+              //做一些异步操作
+              app.confirmUserLogin(resolve, reject);
+              console.log("=========11测试resolve===========");
+              
+              console.log(resolve);
+              console.log(reject);
+              
+            });
+            return p;
+          }
           
-     
+          //执行异步方法
+          runAsyncLogin()
+          .then(function (results) {//异步方法
+            console.log(results); 
+            console.log(util.gettoken());
+            
+            
+            fail_count+=1;
+            if(fail_count < 5) {
+              that.loadOrderList(0);
+            }
+            
+          })
+          .catch(function (reason) {
+              console.log(reason); 
+          })  
         }
 
-        if (offset == 0){
-          that.setData({
-            orderlist: res.data.data,
-          });
-          
-        } else if (offset > 0){
-          that.setData({
-            orderlist: that.data.orderList.concat(res.data.data),
-          });
-        }
+        
         
         console.log(that.data.orderlist);
       },
@@ -121,40 +154,7 @@ gohome:function(){
     }
   })
 },
-  // ol: function () {
-  //   var that = this;
-  //   wx.request({
-  //     url: app.config.host + '/orders?token=' + util.gettoken(),
-  //     method: 'get',
-  //     data: {},
-  //     header: {
-  //       'ContentType': 'application/xwwwformurlencoded'
-  //     },
-  //     success: function (res) {
-  //       console.log(res);
-  //       that.setData({
-  //         orderlist: res.data.data,
-  //         length: res.data.data.length
-
-  //       });
-  //       console.log(that.data.orderlist);
-  //     },
-  //     fail: function (e) {
-  //       wx.showToast({
-  //         title: '网络异常！',
-  //         duration: 2000
-  //       });
-  //     },
-  //     complete: function () {
-
-  //       // complete
-  //       wx.hideNavigationBarLoading() //完成停止加载
-  //       wx.stopPullDownRefresh() //停止下拉刷新
-
-  //     }
-  //   })
-
-  // },
+ 
   
 
   // onLoad: function (options) {

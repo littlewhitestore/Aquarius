@@ -1,21 +1,23 @@
+// pages/utils/util.js
 var app = getApp();
 
 function gettoken() {
 
   if (app.globalData.token) {
     var token = app.globalData.token;
-    console.log(token);
     return token;
   } else {
-    wx.getStorage({
-      key: 'token',
-      success: function (res) {
-        var token = res.data
-        app.globalData.token = token;
-        console.log(token);
-         return token;
+    try {
+      var value = wx.getStorageSync('token');
+      if (value) {
+        console.log("utils=" + value);
+        app.globalData.token = value;
+        return token;
       }
-    })
+      
+    } catch (e) {
+      
+    }
    
   }
 
