@@ -100,32 +100,32 @@
   <view class="close_icon" bindtap="setModalStatus" data-status="0">x</view>
   <view class="drawer_attr_content">
     <view class="text_center">
-    
-        <image class="drawer_image" src="../../images/33.png"></image>
+
+      <image class="drawer_image" src="../../images/33.png"></image>
 
       <view class="mingcheng">
         <view style="font-size:20px;color:red">¥1000.00</view>
-        <view style="font-size:16px;color:rgba(0, 0, 0, 0.87);">巧克力色/XL </view>
+        <view style="font-size:16px;color:rgba(0, 0, 0, 0.87);">青/大</view>
       </view>
     </view>
     <view class='eline1'></view>
 
     <view class="dec">
-      <view class="deci">{{goods_info.property_vector[1].key}}</view>
-      <view class="decd">
-        <view  wx:for="{{goods_info.property_vector[1].values}}" class="deca">{{item}}</view>
-
+      <view class="deci">{{arr2[0].key}}</view>
+      <view class="decd"  >
+        <view wx:for="{{arr2}}" data-id="{{item.id}}" catchtap='click1'  class="deca {{item.selected==false?'select':' selected'}}">{{item.value}}</view>
+              
       </view>
 
     </view>
-
+   
     <view class='eline2'></view>
 
     <view class="dec">
-      <view class="deci">{{goods_info.property_vector[0].key}}</view>
+      <view class="deci">{{arr1[0].key}}</view>
       <view class="decd">
-        <view   wx:for="{{goods_info.property_vector[0].values}}"  class="decb">{{item}}</view>
-     
+        <view   wx:for="{{arr1}}"  data-id="{{item.id}}" class=" decb {{item.selected==false?'select':'selected'}}"  catchtap='click2' >{{item.value}}</view>
+
 
       </view>
 
@@ -147,7 +147,7 @@
         </view>
       </view>
     </view>
-
+           
     <view class="footc" bindtap="gobuy" data-type="buynow" data-status="1">
       立即购买
     </view>

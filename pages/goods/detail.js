@@ -1,3 +1,6 @@
+
+var Promisify = require('../../utils/httpsPromisify');
+
 var app = getApp();
 //goods/detail.js
 Page({
@@ -12,7 +15,8 @@ Page({
     swiperCurrent: 0,
     detailImageList: [],
     buynum: 1,
-
+    arr1: [],
+    arr2: [],
 
     // 属性选择
     firstIndex: -1,
@@ -119,6 +123,48 @@ Page({
       })
     };
   },
+  click1: function (res) {
+    var that=this;
+    console.log(res.currentTarget.dataset.id);
+    var postid1 = res.currentTarget.dataset.id;
+    console.log(that.data.arr2[postid1].selected)
+    var selected1 = that.data.arr2[postid1].selected;
+    if (selected1==false){
+      var newarr2 = that.data.arr2[postid1];
+          newarr2.selected=true;
+      that.setData({
+        arr2:newarr2
+      });
+
+    }else {
+      var newarr2 = arr2[postid1];
+      newarr2.selected = false;
+      that.setData({
+      arr2: newarr2
+      });
+    }
+  },
+
+  click2: function (res) {
+    var that = this;
+    console.log(res.currentTarget.dataset.id);
+    var postid2= res.currentTarget.dataset.id;
+    var selected2 = that.data.arr1[postid2].selected;
+    if (selected2 == false) {
+      var newarr1 = that.data.arr1[postid2];
+      newarr1.selected = true;
+      that.setData({
+        arr1: newarr1
+      });
+    }else{
+      var newarr1 = arr1[postid2];
+      newarr1.selected = true;
+      that.setData({
+        arr1: newarr1
+      });
+    }
+  },
+
   // 传值
   onLoad: function (option) {
     console.log(option)
@@ -126,38 +172,67 @@ Page({
     that.setData({
       goods_id: option.goods_id,
     });
-
-    wx.request({
+    Promisify.httpsPromisify(wx.request)({
       url: app.config.host + '/goods/1/detail',
       method: 'get',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function (res) {
-        console.log(res);
-        if (res.data.status_code && res.data.status_code == 1) {
+    }).then(function (res) {
+
+      console.log(res)
+      if (res.data.status_code && res.data.status_code == 1) {
         that.setData({
           goods_info: res.data.data,
           slider: res.data.data.banner_img_list,
           services: res.data.data.services,
           detailImageList: res.data.data.goods_detail_img_list
         });
-        } else if (res.data.status_code == 0) {
-          wx.showToast({
-            title: res.data.message,
+        console.log(that.data.goods_info);
+      } else if (res.data.status_code == 0) {
+        wx.showToast({
+          title: res.data.message,
+        })
+      }
+
+      for (var index in that.data.goods_info.property_vector) {
+        var property_list = []
+        for (var valueindex in that.data.goods_info.property_vector[index].values) {
+          var arr1_obj = {
+            key: "",
+            value: "",
+            id:valueindex,
+            selected: false,
+          }
+          arr1_obj.key = that.data.goods_info.property_vector[index].key
+          arr1_obj.value = that.data.goods_info.property_vector[index].values[valueindex]
+          property_list.push(arr1_obj)
+        }
+        if (index == 0) {
+          that.setData({
+            arr1: property_list
+          })
+        } else if (index == 1) {
+          that.setData({
+            arr2: property_list
           })
         }
 
+      }
+       console.log(that.data)
 
-      },
-      error: function (e) {
-        wx.showToast({
-          title: '网络异常！',
-          duration: 2000,
-        });
-      },
-    });
+
+     });
+
+
+
+
+
+
   },
+
+
+
 
 
 
@@ -165,6 +240,7 @@ Page({
 
   // 属性选择
   onShow: function () {
+
     this.setData({
       includeGroup: this.data.commodityAttr
     });
@@ -180,6 +256,7 @@ Page({
       });
     }
   },
+
   /* 获取数据 */
   distachAttrValue: function (commodityAttr) {
     /**

@@ -248,6 +248,24 @@
   color: rgba(0, 0, 0, 0.87);
   font-size: 16px;
 }
+.select{
+   background-color: #fff;
+   color: rgba(185, 185, 185, 0.87);
+   border: solid 1rpx #e4e4e4;
+}
+.selected{
+  background-color: #fe6e1f;
+  color: rgba(255, 255, 255, 0.87);
+  border: solid 1rpx #fe6e1f;
+}
+.disselect{
+	background-color: #979fa7;
+  color: rgba(255, 255, 255, 0.87);
+  border: solid 1rpx  #979fa7;
+
+
+}
+
 
 .deca {
   margin-right: 16rpx;
@@ -256,9 +274,7 @@
   line-height: 50rpx;
   text-align: center;
   border-radius: 8rpx;
-  background:#fe6e1f;
 
-  color: rgba(255, 255, 255, 0.87);
   font-size: 13px;
 }
 
@@ -269,9 +285,6 @@
   line-height: 46rpx;
   text-align: center;
   border-radius: 8rpx;
-  background:#fe6e1f;
-
-  color: rgba(255, 255, 255, 0.87);
   font-size: 13px;
 }
 
