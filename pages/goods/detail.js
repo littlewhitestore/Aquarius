@@ -42,10 +42,6 @@ Page({
     this.loadData(option)
   },
 
-
-
-
-
   swiperChange: function (e) {
     this.setData({
       swiperCurrent: e.detail.current
@@ -151,9 +147,15 @@ Page({
       that.setData({
         arr1: that.data.arr1
       });
+
       checkClickEv("down",0);
+
+
+      console.log(that.data.arr1)
+
     } else if (that.data.arr1[postid1].btn_class == "selected") {//判断为取消事件
       that.data.arr1[postid1].btn_class = "unselect";//改变选中样式     
+
       that.setData({
         arr1: that.data.arr1
       });
@@ -167,10 +169,12 @@ Page({
     var that = this;
     console.log(res.currentTarget.dataset.id);
     var postid2= res.currentTarget.dataset.id;
+
     if (that.data.arr2[postid2].btn_class == "unselect") {//判断为选中事件
 
       that.unselecteRowBtn(that.data.arr2, 1)
       that.data.arr2[postid2].btn_class = "selected";//改变选中样式
+
       that.setData({
         arr2: that.data.arr2
       });
@@ -300,7 +304,12 @@ Page({
         //说明是取消操作 且从选中1个取消到1个
       }
     }
-  },
+
+   },
+  
+ 
+
+
 
   //2个attr组合后与skulist比较
   compareSkuToSelected:function(array_arrt){
@@ -332,12 +341,13 @@ Page({
   },
   
   loadData: function(option){
+
     var that = this;
     that.setData({
       goods_id: option.goods_id,
     });
     Promisify.httpsPromisify(wx.request)({
-      url: app.config.host + '/goods/1/detail',
+      url: app.config.host + '/goods/'+that.data.goods_id+'/detail',
       method: 'get',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'

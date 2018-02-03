@@ -31,9 +31,11 @@ Page({
       swiperCurrent: e.detail.current
     })
   },
-  godetail: function () {
-    wx.navigateTo({
-      url:"../goods/detail?goods_id="+1234,
+  godetail: function (res) {
+ console.log(res)
+ var goods_id=res.currentTarget.dataset.id;
+wx.navigateTo({
+      url:"../goods/detail?goods_id="+goods_id,
        
     })
 

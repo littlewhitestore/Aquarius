@@ -114,7 +114,9 @@
     <view class="dec">
       <view class="deci">{{arr1[0].key}}</view>
       <view class="decd"  >
+
         <view wx:for="{{arr1}}" data-id="{{item.id}}" catchtap='click1'  class="deca {{item.btn_class}}">{{item.value}}</view>
+
               
       </view>
 

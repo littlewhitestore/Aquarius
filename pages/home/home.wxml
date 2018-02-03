@@ -41,7 +41,7 @@
             <view class="now"> ￥{{item.goods_price}}</view>
             <view class="old">￥{{item.market_price}} </view>
           </view>
-          <view class='buy' bindtap='godetail'>
+          <view class='buy' data-id="{{item.goods_id}}" bindtap='godetail'>
             <text>立即抢购 </text>
             <image class='moreimg' src="../../images/icons/more.png"></image>
           </view>
@@ -58,37 +58,7 @@
 
 
 
-<view class="content">
 
-
-  <view wx:for="{{productData}}">
-    <view class="box">
-      <view class="left">
-        <image src="{{item.goods_img}}"></image>
-      </view>
-      <view class="right">
-        <view class="title">
-          <text>{{item.goods_name}}</text>
-        </view>
-        <view class="price">
-          <view class='money'>
-            <view class="now"> ￥{{item.goods_price}}</view>
-            <view class="old">￥{{item.market_price}} </view>
-          </view>
-          <view class='buy' bindtap='godetail'>
-            <text>立即抢购 </text>
-            <image class='moreimg' src="../../images/icons/more.png"></image>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="base"></view>
-
-  </view>
-
-
-
-</view>
 
 
 
