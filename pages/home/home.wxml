@@ -1,6 +1,5 @@
 <!-- index.wxml -->
 <view class="page">
-
   <view class="swiper-container">
     <swiper autoplay="auto" circular="true" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
       <block wx:for="{{slider}}" wx:key="unique">
@@ -10,71 +9,54 @@
       </block>
     </swiper>
 
-  <view class="dots">
-    <block wx:for="{{slider}}" wx:key="unique">
-      <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
-    </block>
-  </view>
-</view>
-
-<view class="space">
-  <view class="line"></view>
-  <view class="font">好物精选</view>
-  <view class="line"></view>
-</view>
-
-
-<view class="content">
-
-
-  <view wx:for="{{productData}}">
-    <view class="box">
-      <view class="left">
-        <image src="{{item.goods_img}}"></image>
-      </view>
-      <view class="right">
-        <view class="title">
-          <text>{{item.goods_name}}</text>
-        </view>
-        <view class="price">
-          <view class='money'>
-            <view class="now"> ￥{{item.goods_price}}</view>
-            <view class="old">￥{{item.market_price}} </view>
-          </view>
-          <view class='buy' data-id="{{item.goods_id}}" bindtap='godetail'>
-            <text>立即抢购 </text>
-            <image class='moreimg' src="../../images/icons/more.png"></image>
-          </view>
-        </view>
-      </view>
+    <view wx:if="{{slider.length>1}}" class="dots">
+      <block wx:for="{{slider}}" wx:key="unique">
+        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+      </block>
     </view>
-    <view class="base"></view>
+  </view>
 
+  <view class="space">
+    <view class="line"></view>
+    <view class="font">好物精选</view>
+    <view class="line"></view>
   </view>
 
 
-
-</view>
-
+  <view class="content">
 
 
+    <view wx:for="{{productData}}">
+      <view class="box">
+        <view class="left">
+          <image src="{{item.goods_img}}"></image>
+        </view>
+        <view class="right">
+          <view class="title">
+            <text>{{item.goods_name}}</text>
+          </view>
+          <view class="price">
+            <view class='money'>
+              <view class="now"> ￥{{item.goods_price}}</view>
+              <view class="old">￥{{item.market_price}} </view>
+            </view>
+            <view class='buy' data-id="{{item.goods_id}}" bindtap='godetail'>
+              <text>立即抢购 </text>
+              <image class='moreimg' src="../../images/icons/more.png"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="base"></view>
+
+    </view>
 
 
 
+  </view>
+  <image class='gotop' bindtap='gotop' src="../../images/icons/back-to-top.png"></image>
 
-
-
-
-
-
-
-
-
-
-
-  <image  class='gotop' bindtap='gotop' src="../../images/icons/back-to-top.png"></image>
-
-<!-- <view class="cont">
+  <!-- <view class="cont">
     <navigator class="pr" url="../goods/detail?goodsId={{item.id}}" hover-class="changestyle" wx:for="{{productData}}">
       <image class="photo" src="{{item.photo_x}}"></image>
       <view class="title">{{item.name}}</view>
@@ -93,21 +75,21 @@
     </navigator>
   </view>
   <view class="clear mt10" bindtap="getMore">点击查看更多</view> -->
-  </view>
-
-  <view class="weui-loadmore"  hidden="{{isHideLoadMore}}" >
-  <view class="loadEffect">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
 </view>
 
-
-   
-   
+<view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+  <view class="loadEffect">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </view>
+
+
+
+
+</view>

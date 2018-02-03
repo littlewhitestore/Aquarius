@@ -1,6 +1,6 @@
 
 var Promisify = require('../../utils/httpsPromisify');
-
+var util = require("../../utils/util.js");
 var app = getApp();
 //goods/detail.js
 Page({
