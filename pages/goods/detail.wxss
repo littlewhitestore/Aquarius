@@ -264,13 +264,7 @@
   border: solid 1rpx #fe6e1f;
   
 }
-.disselect{
-	background-color: #979fa7;
-  color: rgba(255, 255, 255, 0.87);
-  border: solid 1rpx  #979fa7;
 
-
-}
 
 
 .deca {

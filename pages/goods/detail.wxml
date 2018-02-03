@@ -90,7 +90,7 @@
   <view class="fl_l w40 b1">
     <!-- <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view> -->
 
-    <view class="bg_cheng white w100 fl_l" bindtap="setModalStatus" data-status="1">立即抢购</view>
+    <view class="bg_cheng white w100 fl_l" bindtap="{{ goods_info.sku_list.length == 1 ? 'gobuy' :'setModalStatus'}}" data-status="1">立即抢购</view>
   </view>
 </view>
 
@@ -101,12 +101,11 @@
   <view class="drawer_attr_content">
     <view class="text_center">
 
-      <image class="drawer_image" src="{{currentSku ? currentSku.img : '123'}}"></image>
+      <image class="drawer_image" src="{{currentSku ? currentSku.img :slider[0]}}"></image>
 
       <view class="mingcheng">
         <view style="font-size:20px;color:red">{{curSkuPrice}}</view>
-        <view style="font-size:16px;color:rgba(0, 0, 0, 0.87);">{{currentSku.property_value_vector.length <= 1 ? currentSku.property_value_vector[0]:
-        (currentSku.property_value_vector[0]+"/"+currentSku.property_value_vector[1])}}</view>
+        <view style="font-size:16px;color:rgba(0, 0, 0, 0.87);">{{curSkuAttr}}</view>
       </view>
     </view>
     <view class='eline1'></view>
