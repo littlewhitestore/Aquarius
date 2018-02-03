@@ -248,15 +248,21 @@
   color: rgba(0, 0, 0, 0.87);
   font-size: 16px;
 }
-.select{
+.disable_select{
    background-color: #fff;
    color: rgba(185, 185, 185, 0.87);
    border: solid 1rpx #e4e4e4;
 }
+.unselect{
+   background-color: #979fa7;
+   color: rgba(255, 255, 255, 1);
+   border: solid 1rpx #e4e4e4;
+}
 .selected{
   background-color: #fe6e1f;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(255, 255, 255, 1);
   border: solid 1rpx #fe6e1f;
+  
 }
 .disselect{
 	background-color: #979fa7;
