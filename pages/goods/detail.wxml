@@ -113,7 +113,7 @@
     <view class="dec">
       <view class="deci">{{arr2[0].key}}</view>
       <view class="decd"  >
-        <view wx:for="{{arr2}}" data-id="{{item.id}}" catchtap='click1'  class="deca {{item.selected==false?'select':' selected'}}">{{item.value}}</view>
+        <view wx:for="{{arr2}}" data-id="{{item.id}}" catchtap='click1'  class="deca {{item.selected==false?'select':'selected'}}">{{item.value}}</view>
               
       </view>
 

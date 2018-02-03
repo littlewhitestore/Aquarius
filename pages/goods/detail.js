@@ -135,7 +135,6 @@ Page({
       that.setData({
         arr2:newarr2
       });
-
     }else {
       var newarr2 = arr2[postid1];
       newarr2.selected = false;
@@ -150,7 +149,7 @@ Page({
     console.log(res.currentTarget.dataset.id);
     var postid2= res.currentTarget.dataset.id;
     var selected2 = that.data.arr1[postid2].selected;
-    if (selected2 == false) {
+    if (selected2 == false){
       var newarr1 = that.data.arr1[postid2];
       newarr1.selected = true;
       that.setData({
@@ -163,8 +162,8 @@ Page({
         arr1: newarr1
       });
     }
-  },
-
+   },
+  
   // 传值
   onLoad: function (option) {
     console.log(option)

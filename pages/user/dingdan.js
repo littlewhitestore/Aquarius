@@ -15,7 +15,7 @@ Page({
     isStatus: 'pay',//10待付款，20待发货，30待收货 40、50已完成
     page: 0,
     refundpage: 0,
-    orderlist: [],
+    orderList: [],
     // orderList0: [],
     // orderList1: [],
     // orderList2: [],
@@ -24,13 +24,7 @@ Page({
     count: 3,
 
   },
-  //下拉刷新
-  onPullDownRefresh: function () {
-    wx.showNavigationBarLoading() //在标题栏中显示加载
-    this.ol();
 
-
-  },
 
   dddetail: function (event) {
     var orderid = event.currentTarget.dataset.orderid
@@ -45,15 +39,16 @@ Page({
   // 生命周期 onLoad
   onLoad: function () {
     this.loadOrderList(0);
+  
+
   },
 
-
-
-  loadOrderList: function (offset) {
+  
+   loadOrderList: function (offset) {
     var that = this;
     console.log("请求订单url==" + app.config.host + '/orders?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count)
     wx.request({
-      url: app.config.host + '/orders?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count,
+      url: app.config.host + '/orders?token=' + util.gettoken()+ "&offset=" + offset + "&count=" + that.data.count,
       method: 'get',
       data: {},
       header: {
@@ -61,20 +56,25 @@ Page({
       },
       success: function (res) {
         console.log(res.data.status_code);
-        if (fail_count ==0){
+        if (fail_count==0){
           res.data.status_code = 2;
         }        
         if (res.data.status_code && res.data.status_code == 1) {
-          if (offset == 0) {
+          if (offset == 0){
             that.setData({
-              orderlist: res.data.data,
+              orderList: res.data.data,
             });
-
           } else if (offset > 0) {
-            that.setData({
-              orderlist: that.data.orderList.concat(res.data.data),
+            console.log(res.data.data)
+            console.log(that.data.orderList)
+            that.data.orderList = that.data.orderList.concat(res.data.data);
+            console.log(that.data.orderList)
+            that.setData({ 
+              orderList: that.data.orderList
             });
           }
+
+           
         } else if (res.data.status_code == 0) {
           wx.showToast({
             title: res.data.message,
@@ -85,14 +85,13 @@ Page({
             var p = new Promise(function (resolve, reject) {
               //做一些异步操作
               app.confirmUserLogin(resolve, reject);
-              console.log("=========11测试resolve===========");
-              
+              console.log("=========11测试resolve========");
               console.log(resolve);
-              console.log(reject);
-              
+              console.log(reject); 
             });
             return p;
           }
+      
           
           //执行异步方法
           runAsyncLogin()
@@ -111,9 +110,7 @@ Page({
               console.log(reason); 
           })  
         }
-
-        
-        
+  
         console.log(that.data.orderlist);
       },
       fail: function (e) {
@@ -121,7 +118,9 @@ Page({
           title: '网络异常！',
           duration: 2000
         });
+  
       },
+
       complete: function () {
         if (offset == 0) {
           wx.stopPullDownRefresh()
@@ -133,13 +132,15 @@ Page({
       }
     })
   },
+
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading(); //在标题栏中显示加载
     this.loadOrderList(0);
   },
   onReachBottom: function(){
-    this.loadOrderList(this.data.orderlist.length);
+    this.loadOrderList(this.data.orderList.length);
   },
+
 gohome:function(){
   wx.reLaunch({
     url: '../home/home',
