@@ -1,4 +1,4 @@
-<view class='o' wx:if="{{orderlist.length==0}}">
+<view class='o' wx:if="{{orderList.length==0}}">
    <image class="noimg" src="../../images/icons/no-orders.png"></image>
     <view class="nofont">您还没有相关订单</view>
     <button class="gohome">随便逛逛</button>
@@ -7,7 +7,7 @@
 
 
 
-<view wx:if="{{orderlist.length>=1}}" class='list' wx:for="{{orderlist}}"  >
+<view wx:if="{{orderList.length>=1}}" class='list' wx:for="{{orderList}}"  >
   <view class="num">
     <view class="no">订单号：{{item.order_sn}}</view>
     <view class="status">{{item.status_desc}}</view>

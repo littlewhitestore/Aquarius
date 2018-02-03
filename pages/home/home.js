@@ -1,4 +1,5 @@
  var app = getApp();
+ var util = require("../../utils/util.js");
 // home/home.js
 Page({
   data: {
@@ -7,6 +8,8 @@ Page({
     slider: [
      
     ],
+    count: 3,
+
     swiperCurrent: 0,
 
     productData: [],
@@ -39,29 +42,6 @@ wx.navigateTo({
        
     })
 
-  },
-
-//下拉刷新
-  onPullDownRefresh: function () {
-    wx.showNavigationBarLoading() //在标题栏中显示加载
-
-   this.ol();
-
-     
-
-  },
-
-  //加载更多
-  onReachBottom: function () {
-   
-    setTimeout(() => {
-      this.setData({
-        isHideLoadMore: true,
-        // productData: [
-       
-        // ],
-      })
-    }, 1000)
   },
 
   //跳转商品列表页   
@@ -180,54 +160,90 @@ wx.navigateTo({
     })
   },
 
-ol:function (){
-  var that = this;
-  var token = app.globalData.token;
-  that.setData({
-    token: token,
-  });
-  wx.request({
-    url: app.config.host + '/home?sessionId=' + app.globalData.token,
-    method: 'get',
-    data: {},
-    header: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    success: function (res) {
-      console.log("=====首页数据请求成功=======");
-      console.log(res);
-      var bannerimg = res.data.data.banner_img_list;
-      var productlist = res.data.data.goods_list;
-
-
-      that.setData({
-        slider: bannerimg,
-        productData: productlist
-
-      });
-
-    },
-    fail: function (e) {
-      wx.showToast({
-        title: '网络异常！' + e,
-        duration: 2000
-      });
-      console.log("=====首页数据请求失败=======");
-      console.log(e);
-    },
-    complete:function(){
-      wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
-    
-    }
-  })
-
-},
 
   onLoad: function () {
-    this.ol();
+    this.loadList(0);
+
 
   },
+
+
+  loadList: function (offset) {
+    var that = this;
+    wx.request({
+      url: app.config.host + '/home?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count,
+      method: 'get',
+      data: {},
+      header: {
+        'ContentType': 'application/xwwwformurlencoded'
+      },
+      success: function (res) {
+        console.log(res.data.status_code);
+        if (res.data.status_code && res.data.status_code == 1) {
+          if (offset == 0) {
+            console.log("=====首页数据请求成功=======");
+            console.log(res);
+            var bannerimg = res.data.data.banner_img_list;
+            var productlist = res.data.data.goods_list;
+
+
+            that.setData({
+              slider: bannerimg,
+              productData: productlist
+
+            });
+
+           
+          } else if (offset > 0) {
+            that.data.productData = that.data.productData.concat(res.data.data.goods_list);
+
+            that.setData({
+              productData: that.data.productData
+            });
+          }
+
+
+        } else if (res.data.status_code == 0) {
+          wx.showToast({
+            title: res.data.message,
+          })
+        } 
+
+        console.log(that.data.productData);
+      },
+      fail: function (e) {
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+
+      },
+
+      complete: function () {
+        if (offset == 0) {
+          wx.stopPullDownRefresh()
+        } else if (offset > 0) {
+          wx.stopPullDownRefresh()
+        }
+        wx.hideNavigationBarLoading() //完成停止加载
+
+      }
+    })
+  },
+
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading(); //在标题栏中显示加载
+    this.loadList(0);
+  },
+  onReachBottom: function () {
+    this.loadList(this.data.productData.length);
+  },
+
+
+
+
+
+
   onShareAppMessage: function () {
     return {
       title: '宠物美容学校',

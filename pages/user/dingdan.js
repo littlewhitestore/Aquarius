@@ -56,6 +56,7 @@ Page({
       },
       success: function (res) {
         console.log(res.data.status_code);
+      
         if (fail_count==0){
           res.data.status_code = 2;
         }        
@@ -65,10 +66,8 @@ Page({
               orderList: res.data.data,
             });
           } else if (offset > 0) {
-            console.log(res.data.data)
-            console.log(that.data.orderList)
-            that.data.orderList = that.data.orderList.concat(res.data.data);
-            console.log(that.data.orderList)
+         that.data.orderList = that.data.orderList.concat(res.data.data);
+            
             that.setData({ 
               orderList: that.data.orderList
             });
@@ -111,7 +110,7 @@ Page({
           })  
         }
   
-        console.log(that.data.orderlist);
+        console.log(that.data.orderList);
       },
       fail: function (e) {
         wx.showToast({
