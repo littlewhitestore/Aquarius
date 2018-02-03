@@ -41,10 +41,6 @@ Page({
     this.loadData(option)
   },
 
-
-
-
-
   swiperChange: function (e) {
     this.setData({
       swiperCurrent: e.detail.current
@@ -245,7 +241,7 @@ Page({
   
  
 
- 
+
 
   //2个attr组合后与skulist比较
   compareSkuToSelected:function(array_arrt){
@@ -283,7 +279,7 @@ Page({
       goods_id: option.goods_id,
     });
     Promisify.httpsPromisify(wx.request)({
-      url: app.config.host + '/goods/1/detail',
+      url: app.config.host + '/goods/'+that.data.goods_id+'/detail',
       method: 'get',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
