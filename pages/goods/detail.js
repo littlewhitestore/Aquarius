@@ -24,10 +24,11 @@ Page({
     //数据结构：以一组一组来进行设定
     commodityAttr: [],
     attrValueList: [],
-    
+    currentSku:{},
+    curSkuPrice:""
   },
   // backshop:function(e){
-  //   console.log(e)
+  //   console.adlog(e)
   //   wx.navigateTo({
 
   //   //数据结构：以一组一组来进行设定
@@ -147,13 +148,18 @@ Page({
         arr1: that.data.arr1
       });
 
+      checkClickEv("down",0);
+
+
       console.log(that.data.arr1)
+
     } else if (that.data.arr1[postid1].btn_class == "selected") {//判断为取消事件
       that.data.arr1[postid1].btn_class = "unselect";//改变选中样式     
 
       that.setData({
         arr1: that.data.arr1
       });
+      checkClickEv("up",0);
     } else if (that.data.arr1[postid1].btn_class == "disselect") {//不可操作的按钮 事件不处理
 
     }
@@ -165,19 +171,20 @@ Page({
     var postid2= res.currentTarget.dataset.id;
 
     if (that.data.arr2[postid2].btn_class == "unselect") {//判断为选中事件
-     
+
       that.unselecteRowBtn(that.data.arr2, 1)
       that.data.arr2[postid2].btn_class = "selected";//改变选中样式
 
       that.setData({
         arr2: that.data.arr2
       });
-      
+      checkClickEv("down" ,1);
     } else if (that.data.arr2[postid2].btn_class == "selected") {//判断为取消事件
       that.data.arr2[postid2].btn_class = "unselect";//改变选中样式     
       that.setData({
         arr2: that.data.arr2
       });
+      checkClickEv("up", 1);
     } else if (that.data.arr2[postid2].btn_class == "disselect") {//不可操作的按钮 事件不处理
 
     }
@@ -201,38 +208,99 @@ Page({
     
   },
   getSelectedNum: function(){
-    var num = 0
-    for (var index in this.data.arr1){
-      if (this.data.arr1[index].btn_class == "selected"){
-        num ++
+    var selectedList = []
+    var that = this;    
+    if (that.data.aar1 && that.data.aar1.length >0){
+      for (var index in that.data.arr1) {
+        if (that.data.arr1[index].btn_class == "selected") {
+          selectedList.push(that.data.arr1[index].value)
+        }
       }
     }
-    for (var index in this.data.arr2) {
-      if (this.data.arr1[index].btn_class == "selected") {
-        num++
+    if (that.data.aar2 && that.data.aar2.length > 0) {
+      for (var index in that.data.arr2) {
+        if (that.data.arr2[index].btn_class == "selected") {
+          selectedList.push(that.data.arr2[index].value)
+        }
       }
     }
+    
     if(num <=2){
-      return num;
+      return selectedList;
     }
     
   },
   //点击事件后 检测点击结果与skulist比较，作出UI调整或者赋值
-  checkClickEv:function(press_ev){
-    var num = getSelectedNum()
+  checkClickEv:function(press_ev,index){
+    var that = this 
+    //事件发生后哪些item被选中了 返回 attr 数组
+    var selectedList = getSelectedNum()
+    var num = selectedList.length
     if (num == 1) {
       if(press_ev == "down"){
         //说明是选中操作 且刚选中1个
+        if (that.data.goods_info.property_vector.length == 1){
+          that.data.currentSku =  that.compareSkuToSelected(selectedList)
+          that.setData({
+            currentSku: that.data.currentSku
+          })
+           
+        } else if (that.data.goods_info.property_vector.length == 2){
+          if(index == 0){
+            // 假设选中的arr与另一组arr组合后，再与sku对比，筛选出不符合sku的
+            for(var i in that.data.arr2){
+              var arr_list =[]
+              arr_list.push(selectedList[0])
+              arr_list.push(that.data.arr2[i].value)
+              var sku = that.compareSkuToSelected(arr_list)
+              if (sku && sku.stock>0){
+                //如果有匹配的sku 且 sku的库存量大于0
+                that.data.arr2[i].btn_class = "unselect"
+                
+              }else{
+                //如果没有匹配的sku  或者 有匹配的sku的库存为0
+                that.data.arr2[i].btn_class = "disselect"
+              }
+            }
+            that.setData({
+              arr2: that.data.arr2
+            })
+          }else if (index == 1){
+            // 假设选中的arr与另一组arr组合后，再与sku对比，筛选出不符合sku的
+            for (var i in that.data.arr1) {
+              var arr_list = []
+              arr_list.push(selectedList[0])
+              arr_list.push(that.data.arr1[i].value)
+              var sku = that.compareSkuToSelected(arr_list)
+              if (sku && sku.stock > 0) {
+                //如果有匹配的sku 且 sku的库存量大于0
+                that.data.arr1[i].btn_class = "unselect"
 
+              } else {
+                //如果没有匹配的sku  或者 有匹配的sku的库存为0
+                that.data.arr1[i].btn_class = "disselect"
+              }
+            }
+            that.setData({
+              arr1: that.data.arr1
+            })
+          }
+        }
       }else if( press_ev == "up"){
         //说明是取消操作， 且从选中两个取消到1个
+        
+        that.caluMaxMinPrice()
+        that.setData({
+          currentSku: {}
+        })
+
       }
     } else if (num == 2){
       if (press_ev == "down") {
         //说明是选中操作 且刚选中2个
       }
     }else if (num == 0){
-      if (press_ev == "down") {
+      if (press_ev == "up") {
         //说明是取消操作 且从选中1个取消到1个
       }
     }
@@ -351,6 +419,9 @@ Page({
         ]
         res.data.data.sku_list = mock_sku_list
         res.data.data.property_vector = mock_property_vector
+
+       
+        
         that.setData({
           goods_info: res.data.data,
           slider: res.data.data.banner_img_list,
@@ -399,6 +470,8 @@ Page({
       
       //初始化sku attr按钮样式
       that.initAttritem()
+      //计算价格
+      that.caluMaxMinPrice()
     });
   },
 
@@ -431,7 +504,7 @@ Page({
           //因为确认此商品存在2个销售属性
           
           if (that.data.arr1[arrt_index].value == that.data.goods_info.sku_list[sku_index].property_value_vector[0]
-            || that.data.arr1[arrt_index] == that.data.goods_info.sku_list[sku_index].property_value_vector[1]){
+            || that.data.arr1[arrt_index].value == that.data.goods_info.sku_list[sku_index].property_value_vector[1]){
             match = true
             break;
           }
@@ -482,7 +555,21 @@ Page({
   },
 
 
-
+  caluMaxMinPrice:function(){
+    var sku_price_array = []
+    for (var index in this.data.goods_info.sku_list){
+      sku_price_array.push(this.data.goods_info.sku_list[index].price)
+    }
+    function sortNumber(a, b) {
+      return a - b
+    }
+    sku_price_array.sort(sortNumber);
+    
+    this.data.curSkuPrice = "¥" + sku_price_array[0] + " - " + sku_price_array[sku_price_array.length-1]
+    this.setData({
+      curSkuPrice: this.data.curSkuPrice
+    })
+  },
 
 
 

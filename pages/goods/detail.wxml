@@ -101,11 +101,12 @@
   <view class="drawer_attr_content">
     <view class="text_center">
 
-      <image class="drawer_image" src="../../images/33.png"></image>
+      <image class="drawer_image" src="{{currentSku ? currentSku.img : '123'}}"></image>
 
       <view class="mingcheng">
-        <view style="font-size:20px;color:red">¥1000.00</view>
-        <view style="font-size:16px;color:rgba(0, 0, 0, 0.87);">青/大</view>
+        <view style="font-size:20px;color:red">{{curSkuPrice}}</view>
+        <view style="font-size:16px;color:rgba(0, 0, 0, 0.87);">{{currentSku.property_value_vector.length <= 1 ? currentSku.property_value_vector[0]:
+        (currentSku.property_value_vector[0]+"/"+currentSku.property_value_vector[1])}}</view>
       </view>
     </view>
     <view class='eline1'></view>
