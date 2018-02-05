@@ -3,7 +3,8 @@ var app = getApp();
 Page({
   data: {
     orderid: "",
-    goods_id: 1,
+    goods_id: "",
+    sku_id:"",
     buy_number: 1,
     token: "",
     postage: "",
@@ -38,11 +39,15 @@ Page({
 
     }
     var goodsId = parseInt(options.goodsId);
-
+    var skuId = parseInt(options.skuId);
+    var num = parseInt(options.num);
     var tokenId = app.globalData.token;
+    console.log("==" + goodsId + "==" + skuId + "===" + num)
     this.setData({
       token: tokenId,
-      goods_id: goodsId
+      goods_id: goodsId,
+      sku_id: skuId,
+      buy_number: num
     });
     
     this.loadDataAndSettlement();
