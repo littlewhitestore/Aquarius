@@ -8,7 +8,7 @@ Page({
     slider: [
      
     ],
-    count: 3,
+    count: 4,
 
     swiperCurrent: 0,
 

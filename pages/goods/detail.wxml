@@ -18,14 +18,15 @@
     </view>
   </view>
 
-  <view class="title mt_10">{{goods_info.goods_name}}</view>
+  <view class="title">{{goods_info.goods_name}}</view>
   <view class="fb_r ">
-    <view class="price">￥{{goods_info.goods_price}}</view>
+    <view class="price"><text class='i'>￥</text>{{goods_info.goods_price}}</view>
     <view class="oldprice">
       <text style="text-decoration:line-through">￥{{goods_info.market_price}}</text>
     </view>
     <!-- <view class="postage">免邮费</view> -->
   </view>
+
 
 
   <view class="gmxx">
