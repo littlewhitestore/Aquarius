@@ -8,6 +8,8 @@ var Promise = require('../../libs/es6-promise.min')
 var fail_count =0;
 Page({
   data: {
+    show:-1,
+    showLoading: true,
     winWidth: 0,
     winHeight: 0,
     // tab切换  
@@ -55,8 +57,16 @@ Page({
         'ContentType': 'application/xwwwformurlencoded'
       },
       success: function (res) {
-        console.log(res.data.status_code);
-      
+
+      if(res.data.data.length>0){
+         that.setData({
+           show:1
+         })
+      }else{
+        that.setData({
+          show: 0
+        })
+      }
         if (fail_count==0){
           res.data.status_code = 2;
         }        
@@ -69,8 +79,8 @@ Page({
          that.data.orderList = that.data.orderList.concat(res.data.data);
             
             that.setData({ 
-              orderList: that.data.orderList
-            });
+              orderList: that.data.orderList,
+             });
           }
 
            
@@ -113,6 +123,9 @@ Page({
         console.log(that.data.orderList);
       },
       fail: function (e) {
+        that.setData({
+          show:0
+        })
         wx.showToast({
           title: '网络异常！',
           duration: 2000
@@ -127,7 +140,10 @@ Page({
           wx.stopPullDownRefresh()
         }
         wx.hideNavigationBarLoading() //完成停止加载
-
+       
+        that.setData({
+          showLoading: false
+        })
       }
     })
   },
@@ -375,6 +391,22 @@ gohome:function(){
   //     }
   //   });
   // },
+onShareAppMessage: function (res) {
+  if (res.from === 'button') {
+    // 来自页面内转发按钮
+    console.log(res.target)
+  }
+  return {
+    title: '小白店订单',
+    path: '/pages/user/dingdan',
+    success: function (res) {
+      // 转发成功
+    },
+    fail: function (res) {
+      // 转发失败
+    }
+  }
+},
   bindChange: function (e) {
     var that = this;
     that.setData({ currentTab: e.detail.current });

@@ -1,7 +1,7 @@
 <view class="header">
   <view class='h_left'>
-    <view>订单编号: {{orderinfo.order_sn}}</view>
-    <view style='padding-left:2rpx'> 下单时间: {{time}}</view>
+    <view>订单编号: <text selectable="true">{{orderinfo.order_sn}}</text></view>
+    <view style='margin-top:7rpx;padding-left:2rpx'> 下单时间: {{time}}</view>
 
   </view>
   <view class='h_right'>{{orderinfo.status_desc}}</view>
@@ -30,7 +30,7 @@
 
   </view>
   <view class="line">
-    <view class='li'></view>
+ 
   </view>
   <view class="con" bindtap='dddetail'>
     <view>
@@ -53,7 +53,7 @@
     </view>
     <view class='money'>
       <text decode='true'>运费:{{orderinfo.postage}}&nbsp; &nbsp;</text>
-      <text>实际总计: <text style="color:#d0021b;">￥{{orderinfo.amount_payable}}</text></text>
+      <text>支付总计: <text style="color:#d0021b;">￥{{orderinfo.amount_payable}}</text></text>
     </view>
   </view>
 
@@ -64,71 +64,50 @@
 <view class='wuliu'>
   <view class="num">
     <image class="car" src='../../images/icons/logistics-title.png'></image>
-    <text style="color: rgba(0, 0, 0, 0.87);font-size:16px">物流跟踪</text>
+    <text style="color:#43484c;font-size:14px">物流跟踪</text>
 
   </view>
-  <view class="line2">
-    <view class='lili'></view>
+  <view class="line">
+  
   </view>
   <view class="wl">
-    <view>物流公司：中通快递</view>
-    <view>运单编号：{{orderinfo.order_sn}}</view>
+    <view>物流公司：{{orderinfo.logistics.com}}</view>
+    <view>运单编号：<text selectable="true">{{orderinfo.logistics.nu}}</text> </view>
   </view>
   <view class='line'></view>
 
   <view class="log">
 
-    <view class='logistics'>
 
-      <view class="tu">
+    <view class='logistics' wx:for="{{orderinfo.logistics.data}}"  wx:for-index="index">
+
+      <view wx:if="{{index==0}}" class="tu">
         <image class='one' src="../../images/icons/logistics-current.png"></image>
         <view class="vertical">
         </view>
 
       </view>
 
-      <view class="row zi">
-        <view>成都市【新都】，【王富贵/18911263314】已揽收</view>
-        <view>2017-11-11 12:21:34</view>
-
-      </view>
-    </view>
-
-
-
-
-
-    <view class='logistics'>
-
-      <view class="tu">
+      <view wx:else class="tu">
         <image class='one' src="../../images/icons/logistics-history.png"></image>
         <view class="vertical">
         </view>
 
       </view>
 
-      <view class="row ">
-        <view>到成都市【成都西南转运中心】</view>
-        <view>2017-11-11 12:21:34</view>
+      <view  wx:if="{{index==0}}" class="row zi">
+        <view>{{item.context}}</view>
+        <view>{{item.time}}</view>
+
+      </view>
+       <view  wx:else class="row">
+        <view>{{item.context}}</view>
+        <view>{{item.time}}</view>
 
       </view>
     </view>
 
-    <view class='logistics'>
 
-      <view class="tu">
-        <image class='one' src="../../images/icons/logistics-history.png"></image>
-        <view class="vertical">
-        </view>
-
-      </view>
-
-      <view class="row">
-        <view>成都市【双流县】，【李富贵/18911263314】正在前往商家揽件</view>
-        <view>2017-11-11 12:21:34</view>
-
-      </view>
-    </view>
 
 
   </view>

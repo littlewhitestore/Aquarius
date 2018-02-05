@@ -12,23 +12,23 @@ Page({
   },
 
 
-  onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log("==========order detail====");
-      console.log(res.target);
-    }
-    return {
-      title: '小白店商品',
-      path: '/pages/user/dd',
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
-  },
+  // onShareAppMessage: function (res) {
+  //   if (res.from === 'button') {
+  //     // 来自页面内转发按钮
+  //     console.log("==========order detail====");
+  //     console.log(res.target);
+  //   }
+  //   return {
+  //     title: '小白店订单详情',
+  //     path: '/pages/user/dd',
+  //     success: function (res) {
+  //       // 转发成功
+  //     },
+  //     fail: function (res) {
+  //       // 转发失败
+  //     }
+  //   }
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -44,6 +44,7 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        console.log(res);
        if (res.data.status_code && res.data.status_code == 1) {
         that.setData({
           orderinfo: res.data.data,
