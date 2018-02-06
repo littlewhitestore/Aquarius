@@ -50,6 +50,7 @@ Page({
           timestamp: res.data.timestamp
 
         });
+        console.log(res)
      
   } else if (res.data.status_code == 0) {
     wx.showToast({

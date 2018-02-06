@@ -108,6 +108,7 @@ wx.navigateTo({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        console.log(res)
         if (res.data.status_code == 1) {
         var prolist = res.data.prolist;
         if (prolist == '') {
