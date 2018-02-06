@@ -43,19 +43,19 @@ swiper-container {
 }
 
 .space {
- padding: 20rpx;
+ padding-top:30rpx;
+ padding-bottom: 15rpx;
   height: 50rpx;
   line-height: 50rpx;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #fafbfc;
 }
 
 .line {
-  margin: 0 30rpx;
-  width: 150rpx;
+  margin: 0 50rpx;
+  width: 170rpx;
   border-bottom: solid 1rpx #fe6e1f;
 }
 
@@ -97,7 +97,7 @@ swiper-container {
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-size:14px;
-  color: rgba(67, 72, 76, 0.87);
+  color: rgba(67, 72, 76, 1);
   margin-bottom: 30rpx;
 }
 .right .price{
@@ -143,8 +143,8 @@ swiper-container {
   position: fixed;
   bottom: 10rpx;
   right: 14rpx;
-  width: 77rpx;
-  height: 79rpx;
+  width: 100rpx;
+  height: 100rpx;
  
 }
 .moreimg{
@@ -592,6 +592,53 @@ icon {
   opacity: 0;
 }
 .content{
-  padding: 10rpx 20rpx ;
+  padding: 10rpx 30rpx;
+}
+
+.con{
+  padding: 15rpx 0;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+
+ 
+}
+.pro{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15rpx;
+  margin-bottom: 15rpx;
+}
+.pro_img image{
+  height: 352rpx;
+  width: 352rpx;
+
+}
+.pro_title{
+  max-width: 352rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size:14px;
+  color: rgba(67, 72, 76, 1);
+}
+.pro_price{
+   max-width: 352rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.pro_price .oldprice{
+  color:#757f8a;
+  font-size:14px;
+  text-decoration:line-through;
+}
+.pro_price .nowprice{
+  color: #fe6e1f;
+  font-size:17px;
+
+  
 }
 

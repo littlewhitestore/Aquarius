@@ -54,7 +54,7 @@ Page({
       console.log(res.target)
     }
     return {
-      title: '小白店测试商品',
+      title: '小白店商品',
       path: '/pages/goods/detail',
       success: function (res) {
         // 转发成功

@@ -18,14 +18,15 @@
     </view>
   </view>
 
-  <view class="title mt_10">{{goods_info.goods_name}}</view>
+  <view class="title">{{goods_info.goods_name}}</view>
   <view class="fb_r ">
-    <view class="price">￥{{goods_info.goods_price}}</view>
+    <view class="price"><text class='i'>￥</text>{{goods_info.goods_price}}</view>
     <view class="oldprice">
       <text style="text-decoration:line-through">￥{{goods_info.market_price}}</text>
     </view>
     <!-- <view class="postage">免邮费</view> -->
   </view>
+
 
 
   <view class="gmxx">
@@ -90,7 +91,7 @@
   <view class="fl_l w40 b1">
     <!-- <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view> -->
 
-    <view class="bg_cheng white w100 fl_l" bindtap="{{ goods_info.sku_list.length == 1 ? 'gobuy' :'setModalStatus'}}" data-status="1">立即抢购</view>
+    <view class="bg_btn white w100 fl_l" bindtap="{{ goods_info.sku_list.length == 1 ? 'gobuy' :'setModalStatus'}}" data-status="1">立即抢购</view>
   </view>
 </view>
 

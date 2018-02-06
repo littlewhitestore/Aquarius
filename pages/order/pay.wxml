@@ -2,8 +2,8 @@
 <view class="w100">
 
 
-  <view class="addr addr2 grey font_14"  bindtap="getWxAddress" wx:if="{{receiver != null}}">
-    <image class="ic_addr" src="../../images/icons/icon_white_addr.png"></image>
+  <view class="ptb addr addr2 grey font_14"  bindtap="getWxAddress" wx:if="{{receiver != null}}">
+    <image class="ic_addr" src="../../images/icons/i-address-white.png"></image>
     <view class="addr_detail c6">
       <view class="width_fill white">收货人：{{receiver.name}}
         <text class="fl_r mr10 mr20 white ellipsis">{{receiver.mobile}}</text>
@@ -25,15 +25,15 @@
   </view>
   <!--商品列表  -->
   <view class='bbe list_title p_all bg_grey_fafbfc'>
-    <image class="i_n_image" src='/images/icons/order.png'></image>
-    <text class='font_16 ml20 font_75_87'>商品清单</text>
+    <image class="i_n_image" src='/images/icons/goods-list.png'></image>
+    <text class='font_14 ml20 font_444 '>商品清单</text>
   </view>
-  <view class="p_all_goods bg_grey_fafbfc df item bbe" wx:for="{{items}}">
+  <view class="p_all_goods bg_grey_fafbfc df item bbd" wx:for="{{items}}">
     <view class="cp_photo">
       <image src="{{item.thumbnail}}"></image>
     </view>
     <view class="columb_sbtw">
-      <view class="font_14 mt5 ovh1 font_75_87">
+      <view class="font_14 mt5 ovh1 font_444">
         {{item.name}}
       </view>
       <view class="pn"> 
@@ -50,26 +50,26 @@
   </view>
   <view class="p_all bg_grey_fafbfc item">
     <view class='pn'>
-      <text class='font_14 c6 w_160rpx font_75_87'>支付金额总计</text>
-      <text class='font_14 margin_l font_75_87'>¥ {{total_amount}}</text>     
+      <text class='font_14 c6 w_160rpx font_444'>商品金额</text>
+      <text class='font_14 margin_l font_444'>¥ {{total_amount}}</text>     
     </view>
     <view class='pn'>
-      <text class='font_14 c6 w_160rpx font_75_87'>运费</text>
-      <text class='font_14 margin_l font_75_87'>{{postage}}</text>     
+      <text class='font_14 c6 w_160rpx font_444'>运费</text>
+      <text class='font_14 margin_l font_444'>{{postage}}</text>     
     </view>
     <view class='pn'>
-      <text class='font_16 theme_color w_160rpx'>需付款金额</text>
-      <text class='font_16 theme_color margin_l'>¥ {{amount_payable}}</text>     
+      <text class='font_14 theme_color w_160rpx'>需付款金额</text>
+      <text class='font_14 theme_color margin_l'>¥ {{amount_payable}}</text>     
     </view>
   </view>
   <!--支付选项  -->
   <view class="bg_grey_fafbfc mt15 font_14 payitem">
-    <image class='ic_wx ml20 mr28' src="/images/icons/ic_wx.png"></image>
-    <text class='df_1 font_16 font_75_87'>微信支付</text>
+    <image class='ic_wx ml20 mr28' src="/images/icons/i-wechat.png"></image>
+    <text class='df_1 font_14 font_444'>微信支付</text>
     <image class='ic_selected mr28' src="/images/icons/ic_selected.png"></image>
   </view>
 
-  <view class="mt20 ml20 font_10">
+  <view class="mt20 ml20 font_12 color_757f8a" >
       注：目前仅支持微信支付
   </view>
   <view class="p_all mt10">

@@ -8,7 +8,7 @@ Page({
     slider: [
      
     ],
-    count: 3,
+    count: 4,
 
     swiperCurrent: 0,
 
@@ -247,7 +247,7 @@ wx.navigateTo({
 
   onShareAppMessage: function () {
     return {
-      title: '宠物美容学校',
+      title: '小白店商城',
       path: '/pages/home/home',
       success: function (res) {
         // 分享成功
