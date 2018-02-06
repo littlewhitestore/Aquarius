@@ -62,13 +62,13 @@
 }
 
 .gmxx {
-  margin-top: 20rpx;
-  height: 72rpx;
-  line-height: 72rpx;
+  margin-top: 10rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  font-size: 14px;
+  font-size: 12px;
   border-bottom: solid 15rpx #e9eaec;
   border-top: solid 15rpx #e9eaec;
 }
@@ -153,7 +153,7 @@
 }
 
 .fl_l {
-  font-weight: 700;
+ 
 }
 
 .footfixed {
@@ -168,7 +168,6 @@
   font-size: 14px;
   line-height: 50px;
   /*background: #dd2727;*/
-  font-weight: 700;
   color: snow;
 }
 
@@ -183,7 +182,6 @@
   font-size: 14px;
   border-top: 1px solid #eee;
   line-height: 50px;
-  font-weight: 700;
   color: snow;
   text-align: center;
 }
@@ -576,8 +574,11 @@ swiper-container {
 
 .oldprice {
   font-size: 16px;
-  color: #bebebe;
+  color: #757f8a;
   margin: 10rpx 50rpx;
+}
+.bg_btn{
+   background-color: #fe6e1f;
 }
 
 .postage {
@@ -589,7 +590,9 @@ swiper-container {
 .circle {
   width: 38rpx;
   height: 38rpx;
-  margin: 16rpx 6rpx 0 0;
+
+  margin: 26rpx 6rpx 0 0;
+
 }
 
 .font {

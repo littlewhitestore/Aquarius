@@ -43,7 +43,8 @@ swiper-container {
 }
 
 .space {
- padding: 20rpx;
+ padding-top:30rpx;
+ padding-bottom: 15rpx;
   height: 50rpx;
   line-height: 50rpx;
   display: flex;
@@ -595,7 +596,7 @@ icon {
 }
 
 .con{
-  padding: 10rpx 0;
+  padding: 15rpx 0;
   display:flex;
   flex-direction: row;
   flex-wrap: wrap; 
@@ -605,15 +606,16 @@ icon {
 .pro{
   display: flex;
   flex-direction: column;
-  margin-left: 32rpx;
+  margin-left: 15rpx;
+  margin-bottom: 15rpx;
 }
 .pro_img image{
-  height: 328rpx;
-  width: 328rpx;
+  height: 352rpx;
+  width: 352rpx;
 
 }
 .pro_title{
-  max-width: 328rpx;
+  max-width: 352rpx;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -622,17 +624,16 @@ icon {
   color: rgba(67, 72, 76, 1);
 }
 .pro_price{
-   max-width: 328rpx;
+   max-width: 352rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
 }
 .pro_price .oldprice{
-  color:rgba(67, 72, 76, 0.87);
+  color:#757f8a;
   font-size:14px;
   text-decoration:line-through;
-  margin-left: 4rpx;
 }
 .pro_price .nowprice{
   color: #fe6e1f;

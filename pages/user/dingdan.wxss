@@ -7,27 +7,28 @@
 .num {
   padding: 12rpx 30rpx 0 30rpx;
   height: 58rpx;
+  line-height: 58rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .no {
-color: #48434c;
+color: #757f8a;
 }
 
 .status {
-  color: rgba(254, 110, 31, 0.87);
+ color: #757f8a;
 }
 
 .line {
-  border-bottom: solid 1rpx #eee;
+  border-bottom: solid 1rpx #ddd;
   margin-bottom: 10rpx ;
 
 }
 .liner{
   margin-top:20rpx;
-	border-bottom:dashed 1rpx #eeeeee;
+	border-bottom:dashed 1rpx #ddd;
 
 }
 
@@ -54,14 +55,14 @@ color: #48434c;
 
 .name {
   font-size: 14px;
-  color: #48434c;
+  color: #757f8a;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .number{
-  color:#48434c; 
+  color:#757f8a;
   font-size:14px;
   padding-top:50rpx;
 }
@@ -80,6 +81,7 @@ color: #48434c;
 .share image{
   width: 46rpx;
   height: 46rpx;
+  margin-right: 4rpx;
 
 }
 .o{

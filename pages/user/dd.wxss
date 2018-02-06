@@ -1,69 +1,97 @@
-.header{
+.header {
   width: 750rpx;
-	height: 140rpx;
-	background-color: #fe6e1f;
+  height: 140rpx;
+  background-color: #fe6e1f;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #ffffff;
+  color: #fff;
 }
-.h_left{
+
+.addbtm_img {
+  width: 750rpx;
+  height: 10rpx;
+  padding: 0;
+  margin: 0;
+}
+
+.h_left {
   padding: 35rpx 30rpx;
   font-size: 14px;
   display: flex;
   flex-direction: column;
 }
-.h_right{
+
+.h_right {
   padding: 54rpx 50rpx;
   font-size: 14px;
-  border-left: solid 1rpx #ffffff;
+  border-left: solid 1rpx #fff;
   /* font-weight: 500; */
 }
-.info{
+
+.info {
   padding-top: 36rpx;
   display: flex;
   flex-direction: row;
   width: 750rpx;
-	height: 125rpx;
+  height: 125rpx;
   color: #43484c;
 }
-.in_left{
+
+.in_left {
   margin-left: 24rpx;
 }
-.in_left image{
+
+.in_left image {
   padding-top: 10rpx;
   width: 60rpx;
   height: 60rpx;
   vertical-align: middle;
 }
-.in_right{
-font-size: 14px;
-margin-left:25rpx;
-padding-right:28rpx;
-display: flex;
-flex-direction: column;
-line-height: 42rpx;
-color: #43484c;
-}
-.in_right_title{
 
-  /* padding-right:50rpx;  */
- display: flex;
- flex-direction: row;
- justify-content: space-between;
+.in_right {
+  font-size: 14px;
+  margin-left: 25rpx;
+  padding-right: 28rpx;
+  display: flex;
+  flex-direction: column;
+  line-height: 46rpx;
+  color: #43484c;
 }
-.address{
+
+.in_right_title {
+  /* padding-right:50rpx;  */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.address {
   padding-right: 28rpx;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.base{
-  	width: 750rpx;
-	height: 20rpx;
-background-color: #e9eaec;
+
+.base {
+  width: 750rpx;
+  height: 20rpx;
+  background-color: #e9eaec;
 }
+
+.baser {
+  width: 750rpx;
+  height: 10rpx;
+  background-color: #e9eaec;
+  margin-top: -10rpx;
+}
+
+.basetop {
+  width: 750rpx;
+  border-bottom: solid 1rpx #ccc;
+}
+
 .list {
   display: flex;
   flex-direction: column;
@@ -74,25 +102,26 @@ background-color: #e9eaec;
 .num {
   display: flex;
   flex-direction: row;
-  margin: 17rpx 30rpx;
+  margin: 17rpx 15rpx;
+  position: relative;
   /* justify-content:flex-start; */
 }
-.listimg{
+
+.listimg {
   width: 36rpx;
   height: 36rpx;
   margin-right: 12rpx;
   vertical-align: middle;
 }
 
-
 .line {
   border-bottom: solid 1rpx #eee;
-  margin-bottom: 14rpx ;
- 
+  margin-bottom: 14rpx;
 }
-.liner{
+
+.liner {
   margin: 24rpx 0;
-border-bottom:  dashed 1rpx #eee;
+  border-bottom: dashed 1rpx #eee;
 }
 
 .li {
@@ -103,10 +132,9 @@ border-bottom:  dashed 1rpx #eee;
   border: solid 3rpx #ff9e9e;
 }
 
-
 .con {
   padding-top: 10rpx;
-  margin-left: 38rpx;
+  margin-left: 15rpx;
   height: 210rpx;
   display: flex;
   flex-direction: row;
@@ -121,27 +149,29 @@ border-bottom:  dashed 1rpx #eee;
 .font {
   display: flex;
   flex-direction: column;
+justify-content: space-around;
   width: 480rpx;
-   margin-right: 40rpx;
+  margin-left: 20rpx;
+  margin-right: 40rpx;
+  /* padding-top:10rpx;  */
 }
 
 .name {
-  font-size: 15px;
-  color: rgba(129, 129, 129, 0.87);
+  font-size: 14px;
+  color: #43484c;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.number{
-  color:#48434c; 
-  font-size:15px;
-  margin: 15rpx ;
+
+.number {
+  color: #48434c;
+  font-size: 14px;
+  margin: 15rpx;
 }
 
-
-
-.bottom{
+.bottom {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -149,96 +179,108 @@ border-bottom:  dashed 1rpx #eee;
   font-size: 14px;
   margin: 0 36rpx 10rpx 36rpx;
 }
-.pay{
+
+.pay {
   color: #43484c;
 }
-.pay image{
-  width: 46rpx;
-  height: 46rpx;
+
+.pay image {
+   width: 36rpx;
+  height: 36rpx; 
   vertical-align: middle;
-
-}
-.z{
-   font-size: 14px;
-    color: #43484c;
-  
+  margin-right: 8rpx;
 }
 
-.money{
- color:rgba(64, 64, 64, 0.87);
+.z {
+  font-size: 14px;
+  color: #43484c;
 }
-.pri{
-  color:  #fe6e1f;
-  font-size: 16px;
+
+.money {
+  color: rgba(64, 64, 64, 0.87);
 }
-.space{
+
+.pri {
+  color: #fe6e1f;
+  font-size: 17px;
+}
+
+.space {
   height: 20rpx;
-    background-color: #f7f7f7;
+  background-color: #f7f7f7;
 }
-.car{
+
+.car {
   width: 44rpx;
   height: 44rpx;
   vertical-align: middle;
   margin-right: 10rpx;
 }
-.wl{
+
+.wl {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   color: #43484c;
-font-size: 14px;
-padding: 25rpx 0;
+  font-size: 14px;
+  padding: 25rpx 0;
 }
-.row{
+
+.row {
   width: 694rpx;
   display: flex;
   flex-direction: column;
   font-size: 14px;
-  color:  #b8b8b8;
+  color: #b8b8b8;
   padding-bottom: 20rpx;
-  border-bottom: 1rpx solid  #e5e5e5;
+  border-bottom: 1rpx solid #e5e5e5;
 }
-.logistics{
+
+.logistics {
   display: flex;
   flex-direction: row;
- padding-top:20rpx;
+  padding-top: 20rpx;
 }
-.vertical{
+
+.vertical {
   height: 70rpx;
-  border-left:1rpx solid #ddd;
+  border-left: 1rpx solid #ddd;
   margin: 0 30rpx;
 }
-.tu{
+
+.tu {
   margin-top: -6rpx;
   display: flex;
   flex-direction: column;
-align-items: center;
-  
+  align-items: center;
 }
-.one{
+
+.one {
   width: 40rpx;
   height: 40rpx;
 }
-.foot{
+
+.foot {
   width: 750rpx;
   height: 90rpx;
   position: fixed;
   bottom: 0;
 }
-.wuliu{
-  display:flex;
-flex-direction:column;
-padding:10rpx 8rpx;
-font-size:14px;
-margin-bottom: 20rpx;
 
+.wuliu {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 8rpx;
+  font-size: 14px;
+  margin-bottom: 20rpx;
 }
-.btnshare{
+
+.btnshare {
   width: 230rpx;
-	height: 90rpx;
+  height: 90rpx;
   line-height: 90rpx;
-	border-radius: 2rpx;
-	background-color: #fe6e1f;
+  border-radius: 2rpx;
+  background-color: #fe6e1f;
   color: #fff;
   position: absolute;
   font-size: 15px;
@@ -246,22 +288,35 @@ margin-bottom: 20rpx;
   margin: 0;
   padding: 0;
   font-weight: 300;
-
 }
-.btnshare image{
+
+.btnshare image {
   width: 46rpx;
   height: 46rpx;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
-.btnshare::after{
+.btnshare::after {
   border: 0;
 }
-.foot{
+
+.foot {
   position: relative;
 }
 
+.zi {
+  color: #fe6e1f;
+}
 
-.zi{
-   color:#fe6e1f;
+.chatimg_btn {
+  position: absolute;
+  right: 20rpx;
+  opacity: 0;
+}
+
+.chatimg_image {
+  position: absolute;
+  right: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
 }

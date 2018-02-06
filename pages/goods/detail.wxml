@@ -91,7 +91,7 @@
   <view class="fl_l w40 b1">
     <!-- <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view> -->
 
-    <view class="bg_cheng white w100 fl_l" bindtap="{{ goods_info.sku_list.length == 1 ? 'gobuy' :'setModalStatus'}}" data-status="1">立即抢购</view>
+    <view class="bg_btn white w100 fl_l" bindtap="{{ goods_info.sku_list.length == 1 ? 'gobuy' :'setModalStatus'}}" data-status="1">立即抢购</view>
   </view>
 </view>
 

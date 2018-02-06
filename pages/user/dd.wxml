@@ -1,4 +1,4 @@
-<view class="header">
+<!-- <view class="header">
   <view class='h_left'>
     <view>订单编号: <text selectable="true">{{orderinfo.order_sn}}</text></view>
     <view style='margin-top:7rpx;padding-left:2rpx'> 下单时间: {{time}}</view>
@@ -6,11 +6,11 @@
   </view>
   <view class='h_right'>{{orderinfo.status_desc}}</view>
 
-</view>
-
+</view> -->
+<view class='basetop'> </view>
 <view class="info">
   <view class="in_left">
-    <image src="../../images/icons/add.png"> </image>
+    <image src="../../images/icons/i-address.png"> </image>
   </view>
   <view class="in_right">
     <view class="in_right_title">
@@ -21,23 +21,29 @@
     <view class='address'>收货地址: {{orderinfo.receiver.address}}</view>
   </view>
 </view>
-<view class='base'>
+
+  <image class='addbtm_img' src="../../images/icons/addbtm.png"> </image>
+<view class='baser'>
 </view>
 <view class='list'>
   <view class="num">
     <image class="listimg" src='../../images/icons/goods-list.png'></image>
     <text class='z'> 商品清单</text>
+    <view>
+      <contact-button class="chatimg_btn" size="27"></contact-button>
+      <image class="chatimg_image" src='../../images/icons/order-chat.png'></image>
+    </view>
 
   </view>
   <view class="line">
- 
+
   </view>
   <view class="con" bindtap='dddetail'>
     <view>
       <image class='img' src="../../images/44.png"></image>
     </view>
     <view class='font'>
-      <view class='name'>{{orderinfo.items[0].product_name}}</view>
+      <view class='name'>{{orderinfo.items[0].sku_name}}</view>
       <view class='number'> X{{orderinfo.items[0].number}}</view>
       <view class='pri'> ￥{{orderinfo.items[0].sale_price}}</view>
 
@@ -47,7 +53,7 @@
   <view class="bottom">
     <view class='pay'>
 
-      <image src='../../images/icons/wechat.png'></image>
+      <image src='../../images/icons/i-wechat.png'></image>
       <text>微信支付</text>
 
     </view>
@@ -68,18 +74,19 @@
 
   </view>
   <view class="line">
-  
+
   </view>
   <view class="wl">
     <view>物流公司：{{orderinfo.logistics.com}}</view>
-    <view>运单编号：<text selectable="true">{{orderinfo.logistics.nu}}</text> </view>
+    <view>运单编号：
+      <text selectable="true">{{orderinfo.logistics.nu}}</text> </view>
   </view>
   <view class='line'></view>
 
   <view class="log">
 
 
-    <view class='logistics' wx:for="{{orderinfo.logistics.data}}"  wx:for-index="index">
+    <view class='logistics' wx:for="{{orderinfo.logistics.data}}" wx:for-index="index">
 
       <view wx:if="{{index==0}}" class="tu">
         <image class='one' src="../../images/icons/logistics-current.png"></image>
@@ -95,12 +102,12 @@
 
       </view>
 
-      <view  wx:if="{{index==0}}" class="row zi">
+      <view wx:if="{{index==0}}" class="row zi">
         <view>{{item.context}}</view>
         <view>{{item.time}}</view>
 
       </view>
-       <view  wx:else class="row">
+      <view wx:else class="row">
         <view>{{item.context}}</view>
         <view>{{item.time}}</view>
 
