@@ -75,7 +75,7 @@
   <view class="bigspace"></view>
   <view class="row add" bindtap='add'>
     <view class="font">
-      <image src="../../images/icons/add.png"></image> 收货地址</view>
+      <image src="../../images/icons/i-address.png"></image> 收货地址</view>
     <view><image  src="../../images/icons/more-black.png"></image></view>
   </view>
   <view class="space"></view>

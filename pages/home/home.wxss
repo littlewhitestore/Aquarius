@@ -60,7 +60,7 @@ swiper-container {
 }
 
 .font {
-  font-size: 15px;
+  font-size: 13px;
   color: #43484c;
 }
 
@@ -631,13 +631,13 @@ icon {
   align-items: baseline;
 }
 .pro_price .oldprice{
-  color:#757f8a;
+  color:#979fa7;
   font-size:14px;
   text-decoration:line-through;
 }
 .pro_price .nowprice{
   color: #fe6e1f;
-  font-size:17px;
+  font-size:14px;
 
   
 }
