@@ -2,21 +2,23 @@
 <view class="page">
 
 
-  
-    <view class="swiper-container">
-      <swiper autoplay="auto" circular="true" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
-        <block wx:for="{{slider}}" wx:key="unique">
-          <swiper-item>
-            <image src="../../images/banner.jpg" class="img"></image>
-          </swiper-item>
-        </block>
-      </swiper>
 
-      <view wx:if="{{slider.length>1}}" class="dots">
-        <block wx:for="{{slider}}" wx:key="unique">
-          <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
-        </block>
-      </view>
+  <view class="swiper-container">
+    <swiper autoplay="auto" circular="true" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
+      <block wx:for="{{slider}}" wx:key="unique">
+        <swiper-item>
+          <image src="../../images/banner.jpg" class="img"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+
+
+    <view wx:if="{{slider.length>1}}" class="dots">
+      <block wx:for="{{slider}}" wx:key="unique">
+        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+      </block>
+
+
     </view>
 
     <view class="space">
@@ -37,8 +39,11 @@
         </view>
       </view>
     </view>
+    <image class='gotop' bindtap='gotop' wx:if="{{floorstatus}}" src="../../images/icons/back-to-top.png"></image>
 
-<!-- <view class="content">
+  </view>
+  </view>
+  <!-- <view class="content">
 
 
     <view wx:for="{{productData}}">
@@ -71,10 +76,8 @@
   </view> -->
 
 
-<image class='gotop' bindtap='gotop' wx:if="{{floorstatus}}" src="../../images/icons/back-to-top.png"></image>
 
-</view>
-<!-- <view class="cont">
+  <!-- <view class="cont">
     <navigator class="pr" url="../goods/detail?goodsId={{item.id}}" hover-class="changestyle" wx:for="{{productData}}">
       <image class="photo" src="{{item.photo_x}}"></image>
       <view class="title">{{item.name}}</view>

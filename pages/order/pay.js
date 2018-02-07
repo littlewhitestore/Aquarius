@@ -62,7 +62,8 @@ Page({
       url: app.config.host + '/settlement',
       method: 'post',
       data: {
-        product_id: that.data.goods_id,
+        goods_id: that.data.goods_id,
+        sku_id: that.data.sku_id,
         number: that.data.buy_number,        
         receiver: that.data.receiver,
         token: app.globalData.token
@@ -77,7 +78,7 @@ Page({
           that.setData({
           total_amount: res.data.data.total_amount,
           items: res.data.data.items,
-          amount_payable: "0.01",
+          amount_payable: res.data.data.amount_payable,
           postage: res.data.data.postage
           });
         } else if (res.data.status_code == 0){
@@ -122,7 +123,8 @@ Page({
       url: app.config.host + '/order/buynow' ,
       method: 'post',
       data: {
-        product_id: that.data.goods_id,
+        goods_id: that.data.goods_id,
+        sku_id: that.data.sku_id,
         number: that.data.buy_number,
         receiver: that.data.receiver,
         token: app.globalData.token
