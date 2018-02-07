@@ -123,7 +123,8 @@ Page({
       url: app.config.host + '/order/buynow' ,
       method: 'post',
       data: {
-        sku_id: that.data.goods_id,
+        goods_id: that.data.goods_id,
+        sku_id: that.data.sku_id,
         number: that.data.buy_number,
         receiver: that.data.receiver,
         token: app.globalData.token
