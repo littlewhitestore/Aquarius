@@ -62,7 +62,7 @@ Page({
       url: app.config.host + '/settlement',
       method: 'post',
       data: {
-        product_id: that.data.goods_id,
+        sku_id: that.data.goods_id,
         number: that.data.buy_number,        
         receiver: that.data.receiver,
         token: app.globalData.token
@@ -122,7 +122,7 @@ Page({
       url: app.config.host + '/order/buynow' ,
       method: 'post',
       data: {
-        product_id: that.data.goods_id,
+        sku_id: that.data.goods_id,
         number: that.data.buy_number,
         receiver: that.data.receiver,
         token: app.globalData.token

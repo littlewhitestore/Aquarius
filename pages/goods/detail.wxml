@@ -30,11 +30,16 @@
 
 
   <view class="gmxx">
-    <view class="fb_row" wx:for="{{services}}">
+    <view class="fb_row" wx:for="{{services}}" wx:for-index='index'>
       <view>
         <image class="circle" src="/images/icons/rond.png"></image>
       </view>
-      <view style='color:#43484c'>{{item.desc}}</view>
+      <!-- <form bindsubmit="formSubmit" bindreset="formReset" report-submit='true' >
+        <button class="o_h_btn font_12" formType="submit" type='testType+{{index}}'> -->
+            <view style='color:#43484c'>{{item.desc}}</view>
+        <!-- </button> -->
+      <!-- </form> -->
+      
     </view>
 
     <view class="fb_row">

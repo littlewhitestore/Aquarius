@@ -27,8 +27,10 @@
       <view class='pro_img' >
         <image src="{{item.goods_img}}"></image>
       </view>
+      
       <view class='pro_title'>{{item.goods_name}}</view>
       <view class='pro_price'>
+        
         <view class="nowprice">￥{{item.goods_price}}</view>
         <view class="oldprice">￥{{item.market_price}} </view>
       </view>

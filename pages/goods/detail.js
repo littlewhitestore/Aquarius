@@ -64,6 +64,14 @@ Page({
       }
     }
   },
+  //formsubmit 事件
+  formSubmit: function (e) {
+    let formId = e.detail.formId;
+    // this.dealFormIds(formId); //处理保存推送码
+    let type = e.detail.target.dataset.type;
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    console.log('formsubmit e==  %o' ,e)
+  },
   backshop: function (e) {
 
     wx.reLaunch({
