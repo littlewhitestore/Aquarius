@@ -77,7 +77,7 @@ Page({
           that.setData({
           total_amount: res.data.data.total_amount,
           items: res.data.data.items,
-          amount_payable: "0.01",
+          amount_payable: res.data.data.amount_payable,
           postage: res.data.data.postage
           });
         } else if (res.data.status_code == 0){
