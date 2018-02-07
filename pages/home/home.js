@@ -1,12 +1,12 @@
- var app = getApp();
- var util = require("../../utils/util.js");
+var app = getApp();
+var util = require("../../utils/util.js");
 // home/home.js
 Page({
   data: {
     imgUrls: [],
     circular: true,
     slider: [
-     
+
     ],
     count: 4,
 
@@ -21,25 +21,30 @@ Page({
     imgUrl: [],
     kbs: [],
     lastcat: [],
-    course: []
+    course: [],
+   floorstatus: false
+   
   },
-  gotop:function(){
+  gotop: function () {
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 300
     })
   },
+
+
+
   swiperChange: function (e) {
     this.setData({
       swiperCurrent: e.detail.current
     })
   },
   godetail: function (res) {
- console.log(res)
- var goods_id=res.currentTarget.dataset.id;
-wx.navigateTo({
-      url:"../goods/detail?goods_id="+goods_id,
-       
+    console.log(res)
+    var goods_id = res.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: "../goods/detail?goods_id=" + goods_id,
+
     })
 
   },
@@ -60,8 +65,8 @@ wx.navigateTo({
       }
     })
   },
-  
-  
+
+
 
   //品牌街跳转商家详情页
   jj: function (e) {
@@ -109,20 +114,20 @@ wx.navigateTo({
       },
       success: function (res) {
         if (res.data.status_code == 1) {
-        var prolist = res.data.prolist;
-        if (prolist == '') {
-          wx.showToast({
-            title: '没有更多数据！',
-            duration: 2000
+          var prolist = res.data.prolist;
+          if (prolist == '') {
+            wx.showToast({
+              title: '没有更多数据！',
+              duration: 2000
+            });
+            return false;
+          }
+          //that.initProductData(data);
+          that.setData({
+            page: page + 1,
+            productData: that.data.productData.concat(prolist)
           });
-          return false;
-        }
-        //that.initProductData(data);
-        that.setData({
-          page: page + 1,
-          productData: that.data.productData.concat(prolist)
-        });
-        //endInitData
+          //endInitData
         } else if (res.data.status_code == 0) {
           wx.showToast({
             title: res.data.message,
@@ -130,7 +135,7 @@ wx.navigateTo({
         }
 
       },
-      fail: function(e){
+      fail: function (e) {
         wx.showToast({
           title: '网络异常！',
           duration: 2000
@@ -162,11 +167,23 @@ wx.navigateTo({
 
 
   onLoad: function () {
-    this.loadList(0);
-
-
+    this.loadList(0)
+  
+  
   },
 
+  floorstatus:function(){
+    var that=this;
+    var prolength= that.data.productData.length;
+    var count = that.data.count;
+    var page = prolength / count;
+    if(page>1){
+      that.setData({
+        floorstatus: true,
+      })
+    }
+   
+  },
 
   loadList: function (offset) {
     var that = this;
@@ -193,7 +210,7 @@ wx.navigateTo({
 
             });
 
-           
+
           } else if (offset > 0) {
             that.data.productData = that.data.productData.concat(res.data.data.goods_list);
 
@@ -207,9 +224,18 @@ wx.navigateTo({
           wx.showToast({
             title: res.data.message,
           })
-        } 
+        }
 
-        console.log(that.data.productData);
+ 
+
+        var prolength = that.data.productData.length;
+        var count = that.data.count;
+        var page = prolength / count;
+        if (page > 1) {
+          that.setData({
+            floorstatus: true,
+          })
+        }
       },
       fail: function (e) {
         wx.showToast({
