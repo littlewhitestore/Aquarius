@@ -2,27 +2,39 @@
 <view class="w100">
 
 
-  <view class="ptb addr addr2 grey font_14"  bindtap="getWxAddress" wx:if="{{receiver != null}}">
-    <image class="ic_addr" src="../../images/icons/i-address-white.png"></image>
-    <view class="addr_detail c6">
-      <view class="width_fill white">收货人：{{receiver.name}}
-        <text class="fl_r mr10 mr20 white ellipsis">{{receiver.mobile}}</text>
+
+    <view class='basetop'> </view>
+    <view class="info"  bindtap="getWxAddress" wx:if="{{receiver != null}}">
+      <view class="in_left">
+        <image src="../../images/icons/i-address.png"> </image>
       </view>
-      <view class=" mt5 white">
-      地址：{{receiver.province}} {{receiver.city}} {{receiver.district}} {{receiver.address}}
+      <view class="in_right">
+        <view class="in_right_title">
+          <view>收货人: {{receiver.name}}</view>
+          <view>{{receiver.mobile}}</view>
+
+        </view>
+        <view class='address'>收货地址: {{receiver.province}} {{receiver.city}} {{receiver.district}} {{receiver.address}}</view>
       </view>
+     <image class="arrow arrow_selected" src="/images/icons/more-black.png"></image>
+
     </view>
-    <image class="arrow" src="/images/icons/icon_white_r_arrow.png"></image>
-  </view>
-  <view class="addr grey  font_14" bindtap="getWxAddress" wx:else>
+ 
+
+  <view class="addr  font_14" bindtap="getWxAddress" wx:else>
     <view class="addr_add_item">
-      <image class="d_plus" src="/images/icons/icon_white_plus.png"></image>
-      <view class="df text_aligncenter white" >
+      <image class="d_plus" src="/images/icons/i-add.png"></image>
+      <view class="df text_aligncenter ">
         添加收货地址
       </view>
     </view>
-    <image class="arrow" src="/images/icons/icon_white_r_arrow.png"></image> 
+    <image class="arrow" src="/images/icons/more-black.png"></image>
   </view>
+<view class='base'>
+   <image class='addbtm_img' src="../../images/icons/addbtm.png"> </image>
+    <view class='baser'>
+    </view>
+</view> 
   <!--商品列表  -->
   <view class='bbe list_title p_all bg_grey_fafbfc'>
     <image class="i_n_image" src='/images/icons/goods-list.png'></image>
@@ -36,30 +48,30 @@
       <view class="font_14 mt5 ovh1 font_444">
         {{item.name}}
       </view>
-      <view class="pn"> 
+      <view class="pn">
         <text class="gm_ovh_1h theme_color pt10 price">¥{{item.price}}</text>
 
         <image class="minus" src="/images/icons/ic_minus_dis.png" wx:if="{{buy_number == 1}}"></image>
         <image class="minus" src="/images/icons/ic_minus.png" bindtap="minus" wx:else></image>
         <text class="gm_ovh_1h pt10">{{buy_number}}</text>
-        <image class="plus"  src="/images/icons/ic_plus.png" bindtap="plus" ></image>
+        <image class="plus" src="/images/icons/ic_plus.png" bindtap="plus"></image>
       </view>
-      
+
     </view>
-  <!--金额  -->
+    <!--金额  -->
   </view>
   <view class="p_all bg_grey_fafbfc item">
     <view class='pn'>
-      <text class='font_14 c6 w_160rpx font_444'>商品金额</text>
-      <text class='font_14 margin_l font_444'>¥ {{total_amount}}</text>     
+      <text class='font_14 c6 w_160rpx font_979fa7'>商品金额</text>
+      <text class='font_14 margin_l font_444'>¥ {{total_amount}}</text>
     </view>
     <view class='pn'>
-      <text class='font_14 c6 w_160rpx font_444'>运费</text>
-      <text class='font_14 margin_l font_444'>{{postage}}</text>     
+      <text class='font_14 c6 w_160rpx font_979fa7'>运费</text>
+      <text class='font_14 margin_l font_444'>{{postage}}</text>
     </view>
     <view class='pn'>
-      <text class='font_14 theme_color w_160rpx'>需付款金额</text>
-      <text class='font_14 theme_color margin_l'>¥ {{amount_payable}}</text>     
+      <text class='font_14  w_160rpx font_979fa7'>需付款金额</text>
+      <text class='font_14 theme_color margin_l'>¥ {{amount_payable}}</text>
     </view>
   </view>
   <!--支付选项  -->
@@ -69,15 +81,15 @@
     <image class='ic_selected mr28' src="/images/icons/ic_selected.png"></image>
   </view>
 
-  <view class="mt20 ml20 font_12 color_757f8a" >
-      注：目前仅支持微信支付
+  <view class="mt20 ml20 font_12 color_757f8a">
+    注：目前仅支持微信支付
   </view>
   <view class="p_all mt10">
-    
+
     <view class="wx_pay_btn white font_16" bindtap="submitOrder">
-      立即支付 
-    </view>    
-    
+      立即支付
+    </view>
+
   </view>
 
 </view>

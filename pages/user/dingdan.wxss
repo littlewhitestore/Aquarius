@@ -5,7 +5,7 @@
 }
 
 .num {
-  padding: 12rpx 30rpx 0 30rpx;
+  padding: 12rpx 30rpx 15rpx 30rpx;
   height: 58rpx;
   line-height: 58rpx;
   display: flex;
@@ -14,21 +14,21 @@
 }
 
 .no {
-color: #757f8a;
+color: #43484c;
 }
 
 .status {
- color: #757f8a;
+ color: #43484c;
 }
 
 .line {
-  border-bottom: solid 1rpx #ddd;
+  border-bottom: solid 1rpx rgba(151,159,167,0.5);
   margin-bottom: 10rpx ;
 
 }
 .liner{
   margin-top:20rpx;
-	border-bottom:dashed 1rpx #ddd;
+	border-bottom:dashed 1rpx rgba(151,159,167,0.5);
 
 }
 
@@ -54,16 +54,16 @@ color: #757f8a;
 }
 
 .name {
-  font-size: 14px;
-  color: #757f8a;
+  font-size: 13px;
+  color: #43484c;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .number{
-  color:#757f8a;
-  font-size:14px;
+  color:#979fa7;
+  font-size:12px;
   padding-top:50rpx;
 }
 
@@ -76,7 +76,7 @@ color: #757f8a;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  color: #48434c;
+  color: #979fa7;
 }
 .share image{
   width: 46rpx;

@@ -31,10 +31,10 @@
       <text>支付总计:￥{{item.amount_payable}}</text>
     </view>
      <view class='share'>
-      <button open-type='share' class="btn">
+      <!-- <button open-type='share' class="btn">
         <image src='../../images/icons/share_white.png'></image>
         <view>分享</view>
-      </button>
+      </button> -->
     </view>
   </view>
   

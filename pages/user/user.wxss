@@ -47,7 +47,7 @@
 }
 .font{
  color:#43484c;
- font-size:16px;
+ font-size:14px;
 }
 .space{
   height: 10rpx;

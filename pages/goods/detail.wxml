@@ -20,7 +20,7 @@
 
   <view class="title">{{goods_info.goods_name}}</view>
   <view class="fb_r ">
-    <view class="price"><text class='i'>￥</text>{{goods_info.goods_price}}</view>
+    <view class="price">￥{{goods_info.goods_price}}</view>
     <view class="oldprice">
       <text style="text-decoration:line-through">￥{{goods_info.market_price}}</text>
     </view>
@@ -34,27 +34,28 @@
       <view>
         <image class="circle" src="/images/icons/rond.png"></image>
       </view>
+
       <!-- <form bindsubmit="formSubmit" bindreset="formReset" report-submit='true' >
         <button class="o_h_btn font_12" formType="submit" type='testType+{{index}}'> -->
-            <view style='color:#43484c'>{{item.desc}}</view>
+            <view style='color: #979fa7;'>{{item.desc}}</view>
         <!-- </button> -->
       <!-- </form> -->
-      
+
     </view>
 
     <view class="fb_row">
       <view>
         <image class="circle" src="/images/icons/rond.png"></image>
       </view>
-      <view style='color:#43484c'>{{goods_info.postage_desc}}</view>
+      <view style='color: #979fa7;'>{{goods_info.postage_desc}}</view>
     </view>
 
   </view>
 
   <view class="font">商品详情</view>
-  <view class="line">
+  <!-- <view class="line">
     <view class="liner"></view>
-  </view>
+  </view> -->
   <view class="info">
 
     <view wx:for="{{detailImageList}}">
@@ -68,13 +69,13 @@
 </view>
 <view class="footfixed tc">
 
-  <view class="b_t fl_l w60 font_12 hui03 df">
+  <view class="b_t fl_l w45 font_12 hui03 df">
     <view class="df_1 l_h15 pt5 bre">
 
 
       <view bindtap="backshop">
-        <image class="icon_kf" src="/images/icons/shop.png"></image>
-        <view bindtap="backshop" class="dbtext">回首页</view>
+        <image class="icon_kf" src="/images/icons/shop-detail.png"></image>
+        <view bindtap="backshop" class="dbtext">首页</view>
       </view>
 
     </view>
@@ -83,17 +84,17 @@
       <contact-button size="27" session-from="productId_{{detailData.id}}" class="bt">
       </contact-button>
 
-      <image class="icon_kf" src="/images/icons/support.png"></image>
-      <view class="dbtext">联系客服</view>
+      <image class="icon_kf" src="/images/icons/support-detail.png"></image>
+      <view class="dbtext">客服</view>
 
     </view>
     <button class=" btshare df_1 l_h15 pt5" open-type="share">
 
-      <image class="icon_kf" src="/images/icons/share.png"></image>
-      <view class="dbtext" style='margin-top:6rpx'>好友分享</view>
+      <image class="icon_kf" src="/images/icons/share-detail.png"></image>
+      <view class="dbtext" style='margin-top:6rpx'>分享</view>
     </button>
   </view>
-  <view class="fl_l w40 b1">
+  <view class="fl_l w55 b1">
     <!-- <view class="w50 fl_l bg_cheng white" bindtap="addShopCart" data-type="addcart">加入购物车</view> -->
 
     <view class="bg_btn white w100 fl_l" bindtap="{{ goods_info.sku_list.length == 1 ? 'gobuy' :'setModalStatus'}}" data-status="1">立即抢购</view>

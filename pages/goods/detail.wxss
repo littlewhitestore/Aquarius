@@ -48,9 +48,10 @@
 }
 
 .cont .title {
-  font-size: 17px;
-  color: rgba(67, 72, 76, 0.87);
-  margin: 20rpx 0;
+  font-size: 16px;
+  color: rgba(67, 72, 76, 1);
+  margin-top: 20rpx ;
+  margin-bottom: 10rpx;
   padding-left: 20rpx;
   line-height: 20px;
   max-height: 40px;
@@ -68,16 +69,21 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  font-size: 12px;
-  border-bottom: solid 15rpx #e9eaec;
-  border-top: solid 15rpx #e9eaec;
+  font-size: 13px;
+  border-bottom: solid 20rpx #fafbfc;
+  border-top: solid 20rpx #fafbfc;
 }
-
+.w45{
+  width: 45%;
+}
+.w55{
+  width:55%;
+}
 .icon_kf {
-  width: 20px;
-  height: 20px;
+  width: 46rpx;
+  height: 46rpx;
   display: inline-block;
-  margin-top: 5px;
+  margin-top: 10rpx;
 }
 
 .ke {
@@ -91,7 +97,7 @@
 
 .dbtext {
   line-height: 15px;
-  color: #666;
+  color: #979fa7;
   font-size: 12px;
 }
 
@@ -567,15 +573,15 @@ swiper-container {
 }
 
 .price {
-  font-size: 22px;
+  font-size: 16px;
   color: #fe6e1f;
   margin-left: 20rpx;
 }
 
 .oldprice {
   font-size: 16px;
-  color: #757f8a;
-  margin: 10rpx 50rpx;
+  color: #979fa7;
+  margin: 0 50rpx;
 }
 .bg_btn{
    background-color: #fe6e1f;
@@ -598,7 +604,7 @@ swiper-container {
 .font {
   color: #43484c;
   width: 150rpx;
-  font-size: 17px;
+  font-size: 16px;
 
   padding: 20rpx;
 }
@@ -611,7 +617,7 @@ swiper-container {
 .liner {
   border: solid 3rpx #fe6e1f;
   margin-left: 14rpx;
-  width: 150rpx;
+  width: 130rpx;
 }
 
 .info {

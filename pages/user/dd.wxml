@@ -22,9 +22,11 @@
   </view>
 </view>
 
-  <image class='addbtm_img' src="../../images/icons/addbtm.png"> </image>
+<image class='addbtm_img' src="../../images/icons/addbtm.png"> </image>
 <view class='baser'>
 </view>
+
+
 <view class='list'>
   <view class="num">
     <image class="listimg" src='../../images/icons/goods-list.png'></image>
@@ -70,7 +72,7 @@
 <view class='wuliu'>
   <view class="num">
     <image class="car" src='../../images/icons/logistics-title.png'></image>
-    <text style="color:#43484c;font-size:14px">物流跟踪</text>
+    <text style="color:#43484c;font-size:13px">物流跟踪</text>
 
   </view>
   <view class="line">
