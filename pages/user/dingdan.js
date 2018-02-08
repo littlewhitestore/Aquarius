@@ -158,7 +158,7 @@ gohome:function(){
   wx.reLaunch({
     url: '../home/home',
     success: function (res) {
-      console.log(e)
+      console.log(res)
     },
     fail: function () {
       // fail

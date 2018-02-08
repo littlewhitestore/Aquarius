@@ -46,7 +46,7 @@
 <view wx:if="{{show==0}}"  class='o'>
    <image class="noimg" src="../../images/icons/no-orders.png"></image>
     <view class="nofont">您还没有相关订单</view>
-    <button class="gohome">随便逛逛</button>
+    <button class="gohome" bindtap='gohome'>随便逛逛</button>
  
 </view>
 

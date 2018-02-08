@@ -1,5 +1,8 @@
 <!-- index.wxml -->
 <view class="page">
+
+
+
   <view class="swiper-container">
     <swiper autoplay="auto" circular="true" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
       <block wx:for="{{slider}}" wx:key="unique">
@@ -9,35 +12,37 @@
       </block>
     </swiper>
 
+
     <view wx:if="{{slider.length>1}}" class="dots">
       <block wx:for="{{slider}}" wx:key="unique">
         <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
       </block>
+
+
     </view>
-  </view>
 
-  <view class="space">
-    <view class="line"></view>
-    <view class="font">好物精选</view>
-    <view class="line"></view>
-  </view>
+    <view class="space">
+      <view class="line"></view>
+      <view class="font">好物精选</view>
+      <view class="line"></view>
+    </view>
 
-  <view class='con'>
-    <view class='pro' wx:for="{{productData}}" data-id="{{item.goods_id}}" bindtap='godetail'>
-      <view class='pro_img' >
-        <image src="{{item.goods_img}}"></image>
-      </view>
-      
-      <view class='pro_title'>{{item.goods_name}}</view>
-      <view class='pro_price'>
-        
-        <view class="nowprice">￥{{item.goods_price}}</view>
-        <view class="oldprice">￥{{item.market_price}} </view>
+    <view class='con'>
+      <view class='pro' wx:for="{{productData}}" data-id="{{item.goods_id}}" bindtap='godetail'>
+        <view class='pro_img'>
+          <image src="{{item.goods_img}}"></image>
+        </view>
+        <view class='pro_title'>{{item.goods_name}}</view>
+        <view class='pro_price'>
+          <view class="nowprice">￥{{item.goods_price}}</view>
+          <view class="oldprice">￥{{item.market_price}} </view>
+        </view>
       </view>
     </view>
+    <image class='gotop' bindtap='gotop' wx:if="{{floorstatus}}" src="../../images/icons/back-to-top.png"></image>
+
   </view>
-
-
+  </view>
   <!-- <view class="content">
 
 
@@ -69,7 +74,8 @@
 
 
   </view> -->
-  <image class='gotop' bindtap='gotop' src="../../images/icons/back-to-top.png"></image>
+
+
 
   <!-- <view class="cont">
     <navigator class="pr" url="../goods/detail?goodsId={{item.id}}" hover-class="changestyle" wx:for="{{productData}}">
@@ -90,5 +96,3 @@
     </navigator>
   </view>
   <view class="clear mt10" bindtap="getMore">点击查看更多</view> -->
-</view>
-
