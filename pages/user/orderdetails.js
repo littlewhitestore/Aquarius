@@ -1,4 +1,4 @@
-// user/dd.js
+// user/orderdetails.js
 var app = getApp();
 var common = require("../../utils/common.js");
 var util = require("../../utils/util.js");

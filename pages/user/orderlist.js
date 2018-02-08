@@ -1,4 +1,4 @@
-// pages/user/dingdan.js
+// pages/user/orderlist.js
 //index.js  
 //获取应用实例  
 var app = getApp();
@@ -32,7 +32,7 @@ Page({
     var orderid = event.currentTarget.dataset.orderid
     console.log(event)
     wx.navigateTo({
-      url: 'dd?orderid=' + orderid
+      url: 'orderdetails?orderid=' + orderid
     })
 
   },
