@@ -173,9 +173,7 @@ Page({
   
   },
 
-<<<<<<< HEAD
-  
-=======
+
   floorstatus:function(){
     var that=this;
     var prolength= that.data.productData.length;
@@ -189,7 +187,7 @@ Page({
    
   },
 
->>>>>>> 6ee8b758eea15371b4e6874ebf935b60ac01be7c
+
   loadList: function (offset) {
     var that = this;
     wx.request({
