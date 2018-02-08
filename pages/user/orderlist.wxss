@@ -95,7 +95,7 @@ color: #43484c;
 .nofont{
   margin-top: 30rpx;
   	color: #43484c;
-    font-size: 18px;
+    font-size: 14px;
 }
 .noimg{
   width: 160rpx;
@@ -133,7 +133,8 @@ color: #43484c;
   background-color: #fe6e1f;
   border-radius: 5rpx;
   color: #fff;
-  border: 0
+  border: 0;
+  font-size: 14px;
 }
 .gohome::after{
   border: 0;
