@@ -151,8 +151,7 @@ Page({
     
     
     
-    if (that.data.arr1[postid1].btn_class == "unselect"){//判断为选中事件
-      
+    if (that.data.arr1[postid1].btn_class == "unselect"){//判断为选中事件 
       that.unselecteRowBtn(that.data.arr1 ,0)
       that.data.arr1[postid1].btn_class = "selected";//改变选中样式
       that.setData({
@@ -160,9 +159,6 @@ Page({
       });
 
       that.checkClickEv("down",0);
-
-
-     
 
     } else if (that.data.arr1[postid1].btn_class == "selected") {//判断为取消事件
       that.data.arr1[postid1].btn_class = "unselect";//改变选中样式     
@@ -223,12 +219,10 @@ Page({
   getSelectedNum: function(){
     var selectedList = []
     var that = this;  
-    
     if (that.data.arr1 && that.data.arr1.length >0){
       
       for (var index in that.data.arr1) {
-        
-        if (that.data.arr1[index].btn_class == "selected") {
+       if (that.data.arr1[index].btn_class == "selected") {
           selectedList.push(that.data.arr1[index].value)
         }
       }
@@ -305,11 +299,6 @@ Page({
     }
 
    },
-  
- 
-
-
-
   //2个attr组合后与skulist比较
   compareSkuToSelected:function(array_arrt){
 

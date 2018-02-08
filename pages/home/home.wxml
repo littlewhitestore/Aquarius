@@ -34,7 +34,7 @@
         </view>
         <view class='pro_title'>{{item.goods_name}}</view>
         <view class='pro_price'>
-          <view class="nowprice">￥{{item.goods_price}}</view>
+          <view class="nowprice theme_color">￥{{item.goods_price}}</view>
           <view class="oldprice">￥{{item.market_price}} </view>
         </view>
       </view>

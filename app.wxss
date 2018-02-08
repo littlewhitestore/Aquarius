@@ -13,7 +13,7 @@ page{
   font-family: '微软雅黑'
 }
 .theme_color{
-  color: #fe6e1f;
+  color: #f33975;
 }
 .theme_bg{
   background-color: #fe6e1f;

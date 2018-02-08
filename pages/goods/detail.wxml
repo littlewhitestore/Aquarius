@@ -49,7 +49,6 @@
       </view>
       <view style='color: #979fa7;'>{{goods_info.postage_desc}}</view>
     </view>
-
   </view>
 
   <view class="font">商品详情</view>
