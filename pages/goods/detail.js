@@ -352,6 +352,10 @@ Page({
     Promisify.httpsPromisify(wx.request)({
       url: app.config.host + '/goods/'+that.data.goods_id+'/detail',
       method: 'get',
+      data:{
+        entry: app.globalData.entry,
+        token: app.globalData.token,
+      },
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },

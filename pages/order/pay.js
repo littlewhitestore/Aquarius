@@ -66,7 +66,8 @@ Page({
         sku_id: that.data.sku_id,
         number: that.data.buy_number,        
         receiver: that.data.receiver,
-        token: app.globalData.token
+        token: app.globalData.token,
+        entry: app.globalData.entry,
       },
       header: {
         'Content-Type': 'application/json'
@@ -127,7 +128,8 @@ Page({
         sku_id: that.data.sku_id,
         number: that.data.buy_number,
         receiver: that.data.receiver,
-        token: app.globalData.token
+        token: app.globalData.token,
+        entry: app.globalData.entry,
         // receiver: {
         //   province: "beijing",
         //   city: "beijing",

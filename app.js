@@ -2,6 +2,7 @@
 App({
   globalData: {
     token: "",
+    entry:"Paris",
     userInfo: null,
     picUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516107456424&di=fa76e77ada13337b47b711d45f05edf3&imgtype=0&src=http%3A%2F%2Fimage.tupian114.com%2F20121029%2F11381052.jpg.238.jpg",
     login_fail_time: 0,
@@ -70,7 +71,8 @@ App({
           url: that.config.host + '/login',
           method: 'get',
           data: {
-            'code': code
+            'code': code,
+            'entry':that.globalData.entry,
           },
           header: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -176,7 +178,8 @@ App({
         'signature': res.signature,
         'encrypted_data': res.encryptedData,
         'iv': res.iv,
-        'token': that.globalData.token
+        'token': that.globalData.token,
+        'entry': that.globalData.entry
       },
       header: {
         'Content-Type': 'application/json'

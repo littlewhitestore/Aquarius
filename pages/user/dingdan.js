@@ -50,7 +50,7 @@ Page({
     var that = this;
     console.log("请求订单url==" + app.config.host + '/orders?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count)
     wx.request({
-      url: app.config.host + '/orders?token=' + util.gettoken()+ "&offset=" + offset + "&count=" + that.data.count,
+      url: app.config.host + '/orders?token=' + util.gettoken() + "&entry=" + app.globalData.entry+"&offset=" + offset + "&count=" + that.data.count,
       method: 'get',
       data: {},
       header: {
@@ -67,9 +67,7 @@ Page({
           show: 0
         })
       }
-        if (fail_count==0){
-          res.data.status_code = 2;
-        }        
+           
         if (res.data.status_code && res.data.status_code == 1) {
           if (offset == 0){
             that.setData({

@@ -168,11 +168,11 @@ wx.navigateTo({
 
   },
 
-
+  
   loadList: function (offset) {
     var that = this;
     wx.request({
-      url: app.config.host + '/home?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count,
+      url: app.config.host + '/home?token=' + util.gettoken() +"&entry="+app.globalData.entry+ "&offset=" + offset + "&count=" + that.data.count,
       method: 'get',
       data: {},
       header: {
