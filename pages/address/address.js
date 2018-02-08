@@ -31,6 +31,7 @@ Page({
         quyu: this.data.area,
         adds: adds.address,
         code: this.data.code,
+        entry: app.globalData.entry,
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       header: {// 设置请求的 header
@@ -74,7 +75,9 @@ Page({
     //获取省级城市
     wx.request({
       url: app.d.ceshiUrl + '/Api/Address/get_province',
-      data: {},
+      data: {
+        entry: app.globalData.entry,
+      },
       method: 'POST',
       success: function (res) {
         var status = res.data.status;

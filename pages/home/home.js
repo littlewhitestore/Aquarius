@@ -173,6 +173,9 @@ Page({
   
   },
 
+<<<<<<< HEAD
+  
+=======
   floorstatus:function(){
     var that=this;
     var prolength= that.data.productData.length;
@@ -186,10 +189,11 @@ Page({
    
   },
 
+>>>>>>> 6ee8b758eea15371b4e6874ebf935b60ac01be7c
   loadList: function (offset) {
     var that = this;
     wx.request({
-      url: app.config.host + '/home?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count,
+      url: app.config.host + '/home?token=' + util.gettoken() +"&entry="+app.globalData.entry+ "&offset=" + offset + "&count=" + that.data.count,
       method: 'get',
       data: {},
       header: {
