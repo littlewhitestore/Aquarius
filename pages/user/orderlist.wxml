@@ -16,7 +16,7 @@
   </view>
   <view class="con" bindtap='dddetail' data-orderid="{{item.order_id}}">
     <view>
-      <image class='img' src="../../images/44.png"></image>
+      <image class='img' src="{{item.items[0].thumbnail}}"></image>
     </view>
     <view class='font'>
       <view class='name'>{{item.items[0].sku_name}}</view>
@@ -27,7 +27,7 @@
   <view class="bottom">
    
     <view class='money'>
-      <text decode='true'>运费:{{item.postage}} &nbsp; &nbsp;</text>
+      <!-- <text decode='true'>运费:{{item.postage}} &nbsp; &nbsp;</text> -->
       <text>支付总计:￥{{item.amount_payable}}</text>
     </view>
      <view class='share'>
