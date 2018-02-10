@@ -42,7 +42,7 @@
   </view>
   <view class="con" bindtap='dddetail'>
     <view>
-      <image class='img' src="../../images/44.png"></image>
+      <image class='img' src="{{orderinfo.items[0].thumbnail}}"></image>
     </view>
     <view class='font'>
       <view class='name'>{{orderinfo.items[0].sku_name}}</view>
@@ -54,13 +54,12 @@
   <view class="liner"></view>
   <view class="bottom">
     <view class='pay'>
-
-      <image src='../../images/icons/i-wechat.png'></image>
+    <image src='../../images/icons/i-wechat.png'></image>
       <text>微信支付</text>
 
     </view>
     <view class='money'>
-      <text decode='true'>运费:{{orderinfo.postage}}&nbsp; &nbsp;</text>
+      <!-- <text decode='true'>运费:{{orderinfo.postage}}&nbsp; &nbsp;</text> -->
       <text>支付总计: <text style="color:#d0021b;">￥{{orderinfo.amount_payable}}</text></text>
     </view>
   </view>
