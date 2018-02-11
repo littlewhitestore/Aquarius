@@ -59,7 +59,7 @@ Page({
       mask: true
     })
     wx.request({
-      url: app.config.host + '/settlement',
+      url: app.config.host + '/settlement/buynow',
       method: 'post',
       data: {
         goods_id: that.data.goods_id,
