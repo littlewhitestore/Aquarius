@@ -10,19 +10,26 @@
 <view class='basetop'> </view>
 <view class="info">
   <view class="in_left">
-    <image src="../../images/icons/i-address.png"> </image>
-  </view>
-  <view class="in_right">
     <view class="in_right_title">
       <view>收货人: {{orderinfo.receiver.name}}</view>
       <view>{{orderinfo.receiver.mobile}}</view>
 
     </view>
     <view class='address'>收货地址: {{orderinfo.receiver.address}}</view>
+    <!-- <image src="../../images/icons/i-address.png"> </image> -->
+  </view>
+  <view class="in_right">
+    <view>
+      <contact-button class="chatimg_btn" size="27"></contact-button>
+      <image class="chatimg_image" src='../../images/icons/order-chat.png'></image>
+    </view>
+    <view class="chating">
+      <contact-button class="chatimg_btn" size="27"></contact-button>
+      <text>联系客服</text>
+
+    </view>
   </view>
 </view>
-
-<image class='addbtm_img' src="../../images/icons/addbtm.png"> </image>
 <view class='baser'>
 </view>
 
@@ -32,8 +39,7 @@
     <image class="listimg" src='../../images/icons/goods-list.png'></image>
     <text class='z'> 商品清单</text>
     <view>
-      <contact-button class="chatimg_btn" size="27"></contact-button>
-      <image class="chatimg_image" src='../../images/icons/order-chat.png'></image>
+
     </view>
 
   </view>
@@ -45,8 +51,11 @@
       <image class='img' src="{{orderinfo.items[0].thumbnail}}"></image>
     </view>
     <view class='font'>
-      <view class='name'>{{orderinfo.items[0].sku_name}}</view>
-      <view class='number'> X{{orderinfo.items[0].number}}</view>
+      <view class='top'>
+        <view class='name'>{{orderinfo.items[0].sku_name}}</view>
+        <view class='number'> X{{orderinfo.items[0].number}}</view>
+      </view>
+
       <view class='pri'> ￥{{orderinfo.items[0].sale_price}}</view>
 
     </view>
@@ -54,13 +63,13 @@
   <view class="liner"></view>
   <view class="bottom">
     <view class='pay'>
-    <image src='../../images/icons/i-wechat.png'></image>
-      <text>微信支付</text>
+      <image src='../../images/icons/i-wechat.png'></image>
+      <text style='color: #565656; font-size:13px;'>微信支付</text>
 
     </view>
     <view class='money'>
       <!-- <text decode='true'>运费:{{orderinfo.postage}}&nbsp; &nbsp;</text> -->
-      <text>支付总计: <text style="color:#d0021b;">￥{{orderinfo.amount_payable}}</text></text>
+      <text>支付总计: <text style="color:#fe6e1f">￥{{orderinfo.amount_payable}}</text></text>
     </view>
   </view>
 
