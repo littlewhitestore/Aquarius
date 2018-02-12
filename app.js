@@ -15,7 +15,9 @@ App({
     appId: "wxd4eae843e18ff7da",//小程序APPid
     mchId: "1495032292"//微信商户id
   },
-  onLaunch: function () {
+  onLaunch: function (res) {
+    console.log("执行 app  onLaunch")
+    console.log(res)
     this.confirmUserLogin();
     this.globalData.login_fail_time = 0;
   },
