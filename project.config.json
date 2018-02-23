@@ -25,7 +25,15 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "测试启动项",
+					"pathName": "pages/goods/detail",
+					"query": "token=12312312312",
+					"scene": "1008"
+				}
+			]
 		}
 	}
 }
