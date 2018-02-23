@@ -121,7 +121,7 @@ Page({
       mask: true
     })
     wx.request({
-      url: app.config.host + '/order/buynow' ,
+      url: app.config.host + '/order/create/buynow' ,
       method: 'post',
       data: {
         goods_id: that.data.goods_id,

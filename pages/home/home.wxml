@@ -39,6 +39,7 @@
         </view>
       </view>
     </view>
+    
     <image class='gotop' bindtap='gotop' wx:if="{{floorstatus}}" src="../../images/icons/back-to-top.png"></image>
 
   </view>

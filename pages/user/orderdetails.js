@@ -37,7 +37,7 @@ Page({
     var orderid = options.orderid;
     var that = this;
     wx.request({
-      url: app.config.host + '/orders/' + orderid + '?token=' + util.gettoken()+"&entry="+app.globalData.entry,
+      url: app.config.host + '/order/' + orderid + '?token=' + util.gettoken()+"&entry="+app.globalData.entry,
       method: 'get',
       data: {},
       header: {

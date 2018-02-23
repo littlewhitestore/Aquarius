@@ -48,9 +48,9 @@ Page({
   
    loadOrderList: function (offset) {
     var that = this;
-    console.log("请求订单url==" + app.config.host + '/orders?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count)
+    console.log("请求订单url==" + app.config.host + '/order/all?token=' + util.gettoken() + "&offset=" + offset + "&count=" + that.data.count)
     wx.request({
-      url: app.config.host + '/orders?token=' + util.gettoken() + "&entry=" + app.globalData.entry+"&offset=" + offset + "&count=" + that.data.count,
+      url: app.config.host + '/order/all?token=' + util.gettoken() + "&entry=" + app.globalData.entry+"&offset=" + offset + "&count=" + that.data.count,
       method: 'get',
       data: {},
       header: {
